@@ -1569,6 +1569,7 @@ Contact Style
   z-index: 3;
 }
 
+
 #contact-form input::placeholder {
   color: #fff;
 }
@@ -1610,6 +1611,129 @@ Contact Style
 #contact-form button:hover {
   opacity: 0.8;
 }
+
+
+#contact-form input {
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  background-color: rgba(249, 235, 255, 0.15);
+  border: none;
+  outline: none;
+  font-weight: 300;
+  padding: 0px 20px;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 3;
+}
+
+
+#contact-form input::placeholder {
+  color: #fff;
+}
+
+#contact-form textarea {
+  width: 100%;
+  height: 120px;
+  border-radius: 25px;
+  background-color: rgba(249, 235, 255, 0.15);
+  border: none;
+  outline: none;
+  font-weight: 300;
+  padding: 20px;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 3;
+}
+
+#contact-form textarea::placeholder {
+  color: #fff;
+}
+
+#contact-form button {
+  border: none;
+  height: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #fff;
+  padding: 0px 25px;
+  border-radius: 25px;
+  color: #66c5e3;
+  transition: all .4s;
+  position: relative;
+  z-index: 3;
+}
+
+#contact-form button:hover {
+  opacity: 0.8;
+}
+
+
+
+
+
+#register-form input {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgba(249, 235, 255, 0.15);
+    border: none;
+    outline: none;
+    font-weight: 300;
+    padding: 0px 20px;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+
+    #register-form input::placeholder {
+        color: #fff;
+    }
+
+#register-form textarea {
+    width: 100%;
+    height: 120px;
+    border-radius: 25px;
+    background-color: rgba(249, 235, 255, 0.15);
+    border: none;
+    outline: none;
+    font-weight: 300;
+    padding: 20px;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+    #register-form textarea::placeholder {
+        color: #fff;
+    }
+
+#register-form button {
+    border: none;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #fff;
+    padding: 0px 25px;
+    border-radius: 25px;
+    color: #66c5e3;
+    transition: all .4s;
+    position: relative;
+    z-index: 3;
+}
+
+    #register-form button:hover {
+        opacity: 0.8;
+    }
 
 .contact-us-content .more-info {
   text-align: center;

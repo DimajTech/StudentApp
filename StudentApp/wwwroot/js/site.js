@@ -1,16 +1,35 @@
-﻿
+﻿$(document).ready(() => {
+    $(document).on('submit', '#contact-form', function (event) {
 
-$(document).ready(() => {
-    $('#contact-form').submit(function (event) {
-
-        event.preventDefault(); 
+        event.preventDefault();
 
         AuthenticateUser();
-        
-        return false;
     });
-})
+});
+function AuthenticateUser() {
+    const email = $('#email').val();
+    const password = $('#password').val();
 
+    $.ajax({
+        url: "/User/Login",
+        type: "POST",
+        data: { email, password },
+        success: function (response) {
+            if (response.success) {
+
+                window.location.href = "/";
+
+            } else {
+
+                $('#validation').text(response.message).css('color', '#900C3F');
+            }
+        },
+        error: function () {
+
+            $('#validation').text('Hubo un problema con el servidor. Intente de nuevo más tarde.').css('color', '#900C3F');
+        }
+    });
+}
 function LoadNewsItems() {
     const mockData = [
         {
@@ -111,27 +130,5 @@ function LoadNewsItems() {
 
     // Recalcular el tamaño del contenedor
     $("#news-container").css('height', 'auto');
-}
-function AuthenticateUser() {
-
-    // Obtener valores de los inputs
-    const email = $('#email').val();
-    const password = $('#password').val();
-
-    console.log(email, password); // Verificar los valores en la consola
-
-    $.ajax({
-        url: "/User/Login",
-        type: "POST",
-        data: { email, password }, // Enviar como form-urlencoded
-        success: function () {
-            // Redirigir al usuario después del login exitoso
-            window.location.href = "/";
-        },
-        error: function () {
-            // Mostrar mensaje de error
-            $('#validation').text('Credenciales inválidas. Intente de nuevo.');
-        }
-    });
 }
 

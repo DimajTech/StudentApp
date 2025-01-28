@@ -27,10 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
 function loadSection(section) {
     const mainContent = document.getElementById("main-content");
 
-    // Limpia completamente el contenido anterior
     mainContent.innerHTML = "";
 
-    // Llama al backend para obtener la vista parcial
     fetch(`/${section}`)
         .then(response => {
             if (!response.ok) {
@@ -39,17 +37,13 @@ function loadSection(section) {
             return response.text();
         })
         .then(html => {
-            // Crea un contenedor temporal para parsear el HTML
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = html;
 
-            // Selecciona solo el contenido de la sección relevante
             const sectionContent = tempDiv.querySelector("#main-content").innerHTML;
 
-            // Inserta solo el contenido de la sección en el contenedor principal
             mainContent.innerHTML = sectionContent;
 
-            // Verifica si es la sección "news" y llama a LoadNewsItems si es necesario
             if (section === "news") {
                 LoadNewsItems();
             }

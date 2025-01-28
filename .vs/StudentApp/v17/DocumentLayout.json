@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\ucr\\iii s - 2024\\lenguajes\\proyecto\\student mvc\\studentapp\\studentapp\\views\\shared\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\ucr\\iii s - 2024\\lenguajes\\proyecto\\student mvc\\studentapp\\studentapp\\wwwroot\\js\\routes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\js\\routes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\ucr\\iii s - 2024\\lenguajes\\proyecto\\student mvc\\studentapp\\studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\ucr\\iii s - 2024\\lenguajes\\proyecto\\student mvc\\studentapp\\studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\ucr\\iii s - 2024\\lenguajes\\proyecto\\student mvc\\studentapp\\studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\ucr\\iii s - 2024\\lenguajes\\proyecto\\student mvc\\studentapp\\studentapp\\views\\shared\\appointment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\appointment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +22,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "routes.js",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\wwwroot\\js\\routes.js",
+              "RelativeDocumentMoniker": "StudentApp\\wwwroot\\js\\routes.js",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\wwwroot\\js\\routes.js",
+              "RelativeToolTip": "StudentApp\\wwwroot\\js\\routes.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-28T05:12:46.845Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -36,48 +45,22 @@
               "RelativeDocumentMoniker": "StudentApp\\wwwroot\\js\\site.js",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
               "RelativeToolTip": "StudentApp\\wwwroot\\js\\site.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAIAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwIMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-27T08:33:21.634Z",
+              "WhenOpened": "2025-01-28T05:11:59.303Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "StudentApp\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
-              "RelativeToolTip": "StudentApp\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAA1wB8AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T08:23:52.339Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Views\\Shared\\Login.cshtml",
-              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Login.cshtml",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Views\\Shared\\Login.cshtml",
-              "RelativeToolTip": "StudentApp\\Views\\Shared\\Login.cshtml",
-              "ViewState": "AQIAABAAAAAAAAAAAADwvyUAAAArAAAA",
+              "Title": "Appointment.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Views\\Shared\\Appointment.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Appointment.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Views\\Shared\\Appointment.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\Appointment.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-27T08:21:09.33Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "StudentApp\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAO4BAAAAAAAAAAAiwAUCAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-18T19:12:48.089Z",
+              "WhenOpened": "2025-01-28T05:09:23.429Z",
               "EditorCaption": ""
             }
           ]

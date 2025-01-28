@@ -17,7 +17,8 @@
             return;
         }
 
-        //si la cookie existe
+
+        //si la cookie no existe
         if (!context.Request.Cookies.ContainsKey("AuthCookie"))
         {
             context.Response.Redirect("/User/Login");

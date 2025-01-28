@@ -32,14 +32,16 @@ https://templatemo.com/tm-586-scholar
 
 <body>
 
-    @if (ViewData["Title"]?.ToString() != "Login")
+    @{
+        var isAuthenticated = Context.Request.Cookies.ContainsKey("AuthCookie");
+    }
+
+    @if (isAuthenticated)
     {
         <component type="typeof(DashboardHeader)" render-mode="Static" />
         <div class="container">
             <main role="main" id="main-content">
-
                 @RenderBody()
-
             </main>
         </div>
     }
@@ -48,12 +50,11 @@ https://templatemo.com/tm-586-scholar
         <component type="typeof(Header)" render-mode="Static" />
         <div>
             <main role="main" id="main-content">
-
                 @RenderBody()
-
             </main>
         </div>
     }
+
 
 
 
