@@ -43,7 +43,7 @@ namespace StudentApp.Models.Entity
         public string ProfessionalBackground { get => professionalBackground; set => professionalBackground = value; }
         public string Password { get => password; set => password = value; }
         public bool IsActive { get => isActive; set => isActive = value; }
-        public DateOnly CreatedAt { get => createdAt; set => createdAt = value; }
+        public DateTime CreatedAt { get => createdAt; set => createdAt = value; }
         public string RegistrationStatus { get => registrationStatus; set => registrationStatus = value; }
         public string Role { get => role; set => role = value; }
     }
