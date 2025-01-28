@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using StudentApp.Models.Entity;
+using System.Data;
 
 namespace StudentApp.Models.DAO
 {
@@ -25,6 +26,11 @@ namespace StudentApp.Models.DAO
                         SqlCommand command = new SqlCommand("InsertUser", connection);
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         //TODO AddValue
+                        command.Parameters.AddWithValue("@id", Guid.NewGuid().ToString());
+                        command.Parameters.AddWithValue("@name", user.Name);
+                        command.Parameters.AddWithValue("@email", user.Email);
+                        command.Parameters.AddWithValue("@password", user.Password);
+                        command.Parameters.AddWithValue("@role", "Student");
 
                         result = command.ExecuteNonQuery();
                         connection.Close();
@@ -39,7 +45,7 @@ namespace StudentApp.Models.DAO
             return result;
 
         }
-        public User Get(string id)
+        public User Get(string email)
         {
             User user = new User();
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -48,7 +54,7 @@ namespace StudentApp.Models.DAO
                 SqlCommand command = new SqlCommand("GetUserById", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@Id", email);
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.Read()) //ask if an user has been found with the given id
@@ -59,7 +65,31 @@ namespace StudentApp.Models.DAO
             }
             return user;
         }
+        public User GetByEmail(string email)
+        {
+            User user = new User();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("GetUserByEmail", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
 
+                command.Parameters.AddWithValue("@email", email);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read()) //ask if an user has been found with the given id
+                {
+                    user.Id = reader.GetString(0);
+                    user.Email = reader.GetString(1);
+                    user.Password = reader.GetString(2);
+                    user.IsActive = reader.GetBoolean(3);
+                    user.RegistrationStatus = reader.GetString(4);
+                    user.Role = reader.GetString(5);
+                }
+                connection.Close();
+            }
+            return user;
+        }
         public int Delete(string id)
         {
             int result = 0; //Saves 1 or 0 depending on the insertion result

@@ -5,7 +5,15 @@
 
         AuthenticateUser();
     });
+
+    $(document).on('submit', '#register-form', function (event) {
+
+        event.preventDefault();
+        Add();
+    });
 });
+
+//Login
 function AuthenticateUser() {
     const email = $('#email').val();
     const password = $('#password').val();
@@ -29,6 +37,53 @@ function AuthenticateUser() {
             $('#validation').text('Hubo un problema con el servidor. Intente de nuevo más tarde.').css('color', '#900C3F');
         }
     });
+}
+
+//Register
+function Add() {
+
+    var user = {
+
+        name: $('#r-name').val(),
+        email: $('#r-email').val(),
+        password: $('#r-password').val(),
+    };
+
+    if (user.password != $('#confirm-password').val()) {
+
+        $('#validation').text('Las contraseñas no coinciden');
+
+    } else {
+        $.ajax({
+            url: "/User/Register",
+            data: JSON.stringify(user), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+
+
+                if (response.success) {
+
+                    $('#r-name').val('');
+                    $('#r-email').val('');
+                    $('#r-password').val('');
+                    $('confirm-password').val('');
+                    $('#validation').text(response.message);
+                    $('#validation').css('color', 'green');
+
+                } else {
+
+                    $('#validation').text(response.message).css('color', '#900C3F');
+                }
+
+
+            },
+            error: function (errorMessage) {
+                $('#validation').text(errorMessage.message).css('color', '#900C3F');
+            }
+        });
+    }
 }
 function LoadNewsItems() {
     const mockData = [

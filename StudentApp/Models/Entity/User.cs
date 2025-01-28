@@ -5,7 +5,8 @@ namespace StudentApp.Models.Entity
     public class User
     {
 
-        private Guid id;
+        //private Guid id;
+        private string id;
         private string name;
         private string email;
         private string picture; //¿?
@@ -22,19 +23,20 @@ namespace StudentApp.Models.Entity
         {
         }
 
-        public User(string name, string email, string password, string registrationStatus)
+        public User(string name, string email, string password)
         {
-            id = Guid.NewGuid(); //Genera el id
+            //id = Guid.NewGuid(); //Genera el id 
+            this.id = Guid.NewGuid().ToString();
             this.name = name;
             this.email = email;
             this.password = password;
             isActive = false; //predefinido para el momento de crear el registro
             createdAt = DateTime.Now; //Le asigna la fecha actual
-            this.registrationStatus = registrationStatus;
+            this.registrationStatus = "pending";
             role = "Student";
         }
 
-        public Guid Id { get => id; set => id = value; }
+        public string Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public string Email { get => email; set => email = value; }
         public string Picture { get => picture; set => picture = value; }

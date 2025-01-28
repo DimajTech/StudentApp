@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\StudentApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\wwwroot\\js\\custom.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\js\\custom.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\views\\shared\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\components\\dashboardheader.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\components\\dashboardheader.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\wwwroot\\js\\routes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\js\\routes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\models\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,79 +31,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "custom.js",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\js\\custom.js",
-              "RelativeDocumentMoniker": "StudentApp\\wwwroot\\js\\custom.js",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\js\\custom.js",
-              "RelativeToolTip": "StudentApp\\wwwroot\\js\\custom.js",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAQwAkAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-28T07:32:03.993Z",
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\Shared\\Register.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Register.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\Shared\\Register.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\Register.cshtml",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAADIAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-28T08:57:19.484Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "routes.js",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\js\\routes.js",
-              "RelativeDocumentMoniker": "StudentApp\\wwwroot\\js\\routes.js",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\js\\routes.js",
-              "RelativeToolTip": "StudentApp\\wwwroot\\js\\routes.js",
-              "ViewState": "AQIAABoAAAAAAAAAAAAxwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-28T07:28:53.297Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "StudentApp\\wwwroot\\js\\site.js",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
               "RelativeToolTip": "StudentApp\\wwwroot\\js\\site.js",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAcwDkAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-28T07:28:40.191Z",
+              "WhenOpened": "2025-01-28T07:55:07.246Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "StudentApp\\Views\\_ViewImports.cshtml",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\_ViewImports.cshtml",
-              "RelativeToolTip": "StudentApp\\Views\\_ViewImports.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-28T07:27:01.719Z",
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Models\\Entity\\User.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\Entity\\User.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Models\\Entity\\User.cs",
+              "RelativeToolTip": "StudentApp\\Models\\Entity\\User.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAQwCAAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T08:16:55.812Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DashboardHeader.razor",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Components\\DashboardHeader.razor",
-              "RelativeDocumentMoniker": "StudentApp\\Components\\DashboardHeader.razor",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Components\\DashboardHeader.razor",
-              "RelativeToolTip": "StudentApp\\Components\\DashboardHeader.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABrAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-28T07:26:28.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "StudentApp\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAowCgAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-28T07:24:43.087Z",
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
+              "RelativeToolTip": "StudentApp\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAIwFoAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T07:55:17.337Z",
               "EditorCaption": ""
             }
           ]
