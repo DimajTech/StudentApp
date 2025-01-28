@@ -1,13 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\",
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\blanca segura\\source\\repos\\studentapp\\studentapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\ucr\\iii s - 2024\\lenguajes\\proyecto\\student mvc\\studentapp\\studentapp\\views\\shared\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\blanca segura\\source\\repos\\studentapp\\studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\ucr\\iii s - 2024\\lenguajes\\proyecto\\student mvc\\studentapp\\studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\ucr\\iii s - 2024\\lenguajes\\proyecto\\student mvc\\studentapp\\studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\ucr\\iii s - 2024\\lenguajes\\proyecto\\student mvc\\studentapp\\studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -18,30 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\StudentApp\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "StudentApp\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\StudentApp\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "StudentApp\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-18T19:20:26.864Z",
+              "DocumentIndex": 1,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "StudentApp\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "StudentApp\\wwwroot\\js\\site.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-27T08:33:21.634Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
+              "RelativeToolTip": "StudentApp\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAA1wB8AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T08:23:52.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Views\\Shared\\Login.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Views\\Shared\\Login.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\Login.cshtml",
+              "ViewState": "AQIAABAAAAAAAAAAAADwvyUAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-27T08:21:09.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\UCR\\III S - 2024\\Lenguajes\\Proyecto\\Student MVC\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "StudentApp\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAADoAAAAAAAAAAAAIwEgAAABXAAAAAAAAAA==",
+              "ViewState": "AQIAAO4BAAAAAAAAAAAiwAUCAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-18T19:12:48.089Z",
               "EditorCaption": ""
