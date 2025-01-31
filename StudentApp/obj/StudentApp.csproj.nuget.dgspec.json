@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj": {}
+    "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj": {
+    "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj",
+        "projectUniqueName": "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj",
         "projectName": "StudentApp",
-        "projectPath": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj",
-        "packagesPath": "C:\\Users\\daniv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\obj\\",
+        "projectPath": "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj",
+        "packagesPath": "C:\\Users\\Blanca Segura\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\StudentApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\daniv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Blanca Segura\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,7 +44,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -74,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

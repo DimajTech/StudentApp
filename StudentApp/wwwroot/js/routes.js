@@ -47,6 +47,9 @@ function loadSection(section) {
             if (section === "news") {
                 LoadNewsItems();
             }
+            if (section === "appointment") {
+                GetAppointments();
+            }
         })
         .catch(error => {
             console.error(error);

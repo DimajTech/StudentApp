@@ -11,6 +11,7 @@
         event.preventDefault();
         Add();
     });
+   
 });
 
 //Login
@@ -185,5 +186,38 @@ function LoadNewsItems() {
 
     // Recalcular el tamaño del contenedor
     $("#news-container").css('height', 'auto');
+}
+
+
+//GetAllAppointments
+function GetAppointments() {
+    $.ajax({
+        url: "/Appointment/GetAllAppointmentsByUser",
+        type: "GET",
+        data: {
+            email: 'test4@example.com'
+        },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var htmlTable = '';
+            $.each(result, function (key, item) {
+                htmlTable += '<tr>';
+                htmlTable += '<td>' + item.date + '</td>';
+                htmlTable += '<td>' + item.mode + '</td>';
+                htmlTable += '<td>' + item.status + '</td>';
+                htmlTable += '<td>' + item.course.name + '</td>';
+                htmlTable += '<td>' + item.professorComment + '</td>';
+                htmlTable += '</tr>';
+            });
+            $('#myappointments-tbody').html(htmlTable); //shows table on screen
+
+
+        },
+        error: function (errorMessage) {
+            //TODO
+            alert(errorMessage.responseText);
+        }
+    });
 }
 
