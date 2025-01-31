@@ -1413,6 +1413,11 @@ Events Style
   border-radius: 60px 0px 0px 60px;
 }
 
+/* 
+---------------------------------------------
+News Style
+--------------------------------------------- 
+*/
 
 /* 
 ---------------------------------------------
@@ -1607,6 +1612,7 @@ Contact Style
   position: relative;
   z-index: 3;
 }
+
 
 #contact-form button:hover {
   opacity: 0.8;

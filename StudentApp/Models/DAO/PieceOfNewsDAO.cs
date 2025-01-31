@@ -1,5 +1,7 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using StudentApp.Models.Entity;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace StudentApp.Models.DAO
 {
@@ -23,12 +25,42 @@ namespace StudentApp.Models.DAO
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read()) 
+                while (reader.Read())
                 {
                     news.Add(new PieceOfNews
                     {
-                        //TODO: agregar los datos
+                        Id = reader["Id"].ToString(),
+                        Title = reader["Title"].ToString(),
+                        Description = reader["Description"].ToString(),
+                        Picture = reader["Picture"].ToString(),
+                        Date = DateOnly.FromDateTime((DateTime)reader["Date"]),
+                        User = new User(reader["AuthorID"].ToString(), reader["AuthorName"].ToString(), null, null, reader["AuthorRole"].ToString()),
                     });
+                }
+                connection.Close();
+            }
+            return news;
+        }
+        public PieceOfNews Get(string id)
+        {
+            PieceOfNews news = new PieceOfNews();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("GetNewsById", connection);
+
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Id", id);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read()) //Asks if a user has been found with the given email
+                {
+                    news.Title = reader["Title"].ToString();
+                    news.Description = reader["Description"].ToString();
+                    news.Picture = reader["Picture"].ToString();
+                    news.Date = DateOnly.FromDateTime((DateTime)reader["Date"]);
+                    news.User = new User(reader["AuthorID"].ToString(), reader["AuthorName"].ToString(), null, null, reader["AuthorRole"].ToString());
                 }
                 connection.Close();
             }

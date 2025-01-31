@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\views\\shared\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\wwwroot\\css\\templatemo-scholar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\css\\templatemo-scholar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\models\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\views\\shared\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,20 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\Shared\\Register.cshtml",
-              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Register.cshtml",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\Shared\\Register.cshtml",
-              "RelativeToolTip": "StudentApp\\Views\\Shared\\Register.cshtml",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAACgAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-28T08:57:19.484Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -48,34 +36,50 @@
               "RelativeDocumentMoniker": "StudentApp\\wwwroot\\js\\site.js",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
               "RelativeToolTip": "StudentApp\\wwwroot\\js\\site.js",
-              "ViewState": "AQIAADoAAAAAAAAAAAAcwEMAAAApAAAA",
+              "ViewState": "AQIAAIgAAAAAAAAAAAAqwJ0AAABcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-01-28T07:55:07.246Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "StudentApp\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "StudentApp\\wwwroot\\css\\site.css",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACEAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-31T09:41:47.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "templatemo-scholar.css",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\css\\templatemo-scholar.css",
+              "RelativeDocumentMoniker": "StudentApp\\wwwroot\\css\\templatemo-scholar.css",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\css\\templatemo-scholar.css",
+              "RelativeToolTip": "StudentApp\\wwwroot\\css\\templatemo-scholar.css",
+              "ViewState": "AQIAAEYGAAAAAAAAAAAiwFAGAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-31T08:58:15.192Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Models\\Entity\\User.cs",
-              "RelativeDocumentMoniker": "StudentApp\\Models\\Entity\\User.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Models\\Entity\\User.cs",
-              "RelativeToolTip": "StudentApp\\Models\\Entity\\User.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwCAAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T08:16:55.812Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "StudentApp\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
-              "RelativeToolTip": "StudentApp\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAIwFoAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T07:55:17.337Z"
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\Shared\\Login.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\Shared\\Login.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\Login.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAqwBkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-31T08:48:45.334Z",
+              "EditorCaption": ""
             }
           ]
         }

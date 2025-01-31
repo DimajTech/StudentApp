@@ -36,6 +36,17 @@ namespace StudentApp.Models.Entity
             role = "Student";
         }
 
+        public User(string id, string name, string email, string picture, string role)
+        {
+            //id = Guid.NewGuid(); //Genera el id 
+            this.id = id;
+            this.picture = picture;
+            this.name = name;
+            this.email = email;
+            this.role = role;
+        }
+
+
         public string Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public string Email { get => email; set => email = value; }

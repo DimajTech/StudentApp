@@ -20,3 +20,16 @@ html {
 body {
   margin-bottom: 60px;
 }
+.button-class {
+    border: none;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #fff;
+    padding: 0px 25px;
+    border-radius: 25px;
+    color: #66c5e3;
+    transition: all .4s;
+    position: relative;
+    z-index: 3;
+}

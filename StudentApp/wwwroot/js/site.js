@@ -39,6 +39,7 @@ function AuthenticateUser() {
     });
 }
 
+
 //Register
 function Add() {
 
@@ -85,6 +86,89 @@ function Add() {
         });
     }
 }
+function LoadNewsItems() {
+    $.ajax({
+        url: "/PieceOfNews/GetNews",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+
+            var htmlContent = '';
+            $.each(result, (key, item) => {
+
+                htmlContent += `
+    <div class="col-lg-4 col-md-6 align-self-center mb-90 event_outer col-md-6 wordpress design">
+        <div class="events_item">
+            <div class="thumb">
+                <a href="javascript:void(0);" onclick="LoadNewsDetail('${item.id}')">
+                    <img src="${item.picture}" alt="">
+                </a>
+                <span class="category">${item.date}</span>
+            </div>
+            <div class="down-content">
+                <span class="author">${item.user.name}</span>
+                <h5>${item.title}</h5>
+                <br/>
+                <h7>${item.description.length > 80 ? item.description.substring(0, item.description.lastIndexOf(' ', 80)) + "..." : item.description}</h7>
+            </div>
+        </div>
+    </div>
+`;
+
+            });
+
+            $("#news-container").html(htmlContent);
+            $("#news-container").css('height', 'auto');
+        },
+        error: function (errorMessage) {
+            console.log(errorMessage.responseText);
+        }
+    });
+}
+function LoadNewsDetail(pieceOfNewsID) {
+
+    console.log(pieceOfNewsID)
+
+    $.ajax({
+        url: "/PieceOfNews/GetById/" + pieceOfNewsID,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (newsItem) {
+
+            var detailHtml = `
+                    <fieldset>
+                        <button onclick="LoadNewsItems()" style="
+                            border: none;
+                            height: 50px;
+                            font-size: 14px;
+                            font-weight: 600;
+                            background-color: #fff;
+                            padding: 0px 25px;
+                            border-radius: 25px;
+                            color: #66c5e3;
+                            transition: all .4s;
+                            position: relative;
+                            z-index: 3;">
+                            ⬅ Volver</button>
+                    </fieldset>
+                    <img src="${newsItem.picture}" alt="" style="border-radius: 33px; padding-top:20px; padding-bottom:20px">
+                    <h2>${newsItem.title}</h2>
+                    <p><strong>Autor:</strong> ${newsItem.user.name} (${newsItem.user.role})</p>
+                    <p><strong>Fecha:</strong> ${newsItem.date}</p>
+                    <p style="text-align:justify; border-radius: 33px; padding-top:20px; padding-bottom:20px">${newsItem.description}</p>
+            `;
+
+            $("#news-container").html(detailHtml);
+        },
+        error: function (errorMessage) {
+            console.log(errorMessage.responseText);
+        }
+    });
+}
+
+/*
 function LoadNewsItems() {
     const mockData = [
         {
@@ -187,3 +271,4 @@ function LoadNewsItems() {
     $("#news-container").css('height', 'auto');
 }
 
+*/
