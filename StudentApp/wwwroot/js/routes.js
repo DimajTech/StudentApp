@@ -44,7 +44,9 @@ function loadSection(section) {
 
             mainContent.innerHTML = sectionContent;
 
-            if (section === "news") {
+            if (section === "profile") {
+                GetUserData();
+            } else if (section === "news") {
                 LoadNewsItems();
             }
         })

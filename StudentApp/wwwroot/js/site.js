@@ -1,4 +1,5 @@
 ﻿$(document).ready(() => {
+
     $(document).on('submit', '#contact-form', function (event) {
 
         event.preventDefault();
@@ -187,3 +188,26 @@ function LoadNewsItems() {
     $("#news-container").css('height', 'auto');
 }
 
+function GetUserData() {
+    console.log("GetUserData called");
+    $.ajax({
+        url: "/User/GetByEmail",
+        type: "GET",
+        data: { email: "test3@example.com" },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            console.log("User data retrieved:", result);
+            $('#p-name').text(result.name);
+            $('#p-name2').val(result.name);
+            $('#p-email').val(result.email);
+            $('#p-description').val(result.description);
+            $('#p-linkedin').val(result.linkedIn);
+            $('#p-password').val(result.password);
+        },
+        error: function (errorMessage) {
+            console.error(errorMessage);
+            alert(errorMessage.responseText);
+        }
+    });
+}

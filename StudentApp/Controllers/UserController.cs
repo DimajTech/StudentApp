@@ -31,6 +31,27 @@ namespace StudentApp.Controllers
             return View(); //ASP.NET Core busca automáticamente Views/Shared/Register.cshtml
         }
 
+        [HttpGet]
+        public IActionResult GetByEmail([FromQuery] string email)
+        {
+            try
+            {
+                User user = userDAO.GetByEmail(email);
+
+                if (user != null)
+                {
+                    return Ok(user);
+                }
+
+                return BadRequest();
+            }
+            catch (SqlException e)
+            {
+                return StatusCode(500, new { message = "An error occurred while retrieving the user.", error = e.Message });
+            }
+
+        }
+
         [HttpPost]
         public IActionResult Login(string email, string password)
         {

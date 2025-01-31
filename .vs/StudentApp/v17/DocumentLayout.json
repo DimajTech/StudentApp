@@ -1,22 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\StudentApp\\",
+  "WorkspaceRootPath": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\esteban\\documents\\ucr\\tercer a\u00F1o\\iii semestre\\lenguajes para aplicaciones comerciales\\proyecto\\studentapp\\studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\views\\shared\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\esteban\\documents\\ucr\\tercer a\u00F1o\\iii semestre\\lenguajes para aplicaciones comerciales\\proyecto\\studentapp\\studentapp\\views\\shared\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\esteban\\documents\\ucr\\tercer a\u00F1o\\iii semestre\\lenguajes para aplicaciones comerciales\\proyecto\\studentapp\\studentapp\\models\\dao\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\dao\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\esteban\\documents\\ucr\\tercer a\u00F1o\\iii semestre\\lenguajes para aplicaciones comerciales\\proyecto\\studentapp\\studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\usuario\\desktop\\studentapp\\studentapp\\models\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,56 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\Shared\\Register.cshtml",
-              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Register.cshtml",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Views\\Shared\\Register.cshtml",
-              "RelativeToolTip": "StudentApp\\Views\\Shared\\Register.cshtml",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAACgAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-28T08:57:19.484Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "site.js",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
+              "DocumentMoniker": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "StudentApp\\wwwroot\\js\\site.js",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
               "RelativeToolTip": "StudentApp\\wwwroot\\js\\site.js",
-              "ViewState": "AQIAADoAAAAAAAAAAAAcwEMAAAApAAAA",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAQwNEAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-01-28T07:55:07.246Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Models\\Entity\\User.cs",
-              "RelativeDocumentMoniker": "StudentApp\\Models\\Entity\\User.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Models\\Entity\\User.cs",
-              "RelativeToolTip": "StudentApp\\Models\\Entity\\User.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwCAAAAAxAAAA",
+              "DocumentIndex": 2,
+              "Title": "UserDAO.cs",
+              "DocumentMoniker": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Models\\DAO\\UserDAO.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\DAO\\UserDAO.cs",
+              "ToolTip": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Models\\DAO\\UserDAO.cs",
+              "RelativeToolTip": "StudentApp\\Models\\DAO\\UserDAO.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAwwEQAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T08:16:55.812Z"
+              "WhenOpened": "2025-01-31T05:39:22.349Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Views\\Shared\\Profile.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Profile.cshtml",
+              "ToolTip": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Views\\Shared\\Profile.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\Profile.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACEAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-31T05:31:53.672Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "StudentApp\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
               "RelativeToolTip": "StudentApp\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAIwFoAAAAiAAAA",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowDQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T07:55:17.337Z"
+              "WhenOpened": "2025-01-28T07:55:17.337Z",
+              "EditorCaption": ""
             }
           ]
         }

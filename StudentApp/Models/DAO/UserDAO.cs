@@ -70,24 +70,34 @@ namespace StudentApp.Models.DAO
             User user = new User();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand("GetUserByEmail", connection);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                command.Parameters.AddWithValue("@email", email);
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read()) //ask if an user has been found with the given id
+                try
                 {
-                    user.Id = reader.GetString(0);
-                    user.Email = reader.GetString(1);
-                    user.Password = reader.GetString(2);
-                    user.IsActive = reader.GetBoolean(3);
-                    user.RegistrationStatus = reader.GetString(4);
-                    user.Role = reader.GetString(5);
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("GetUserByEmail", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@email", email);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read()) //ask if an user has been found with the given id
+                    {
+                        user.Id = reader.GetString(0);
+                        user.Email = reader.GetString(1);
+                        user.Password = reader.GetString(2);
+                        user.IsActive = reader.GetBoolean(3);
+                        user.RegistrationStatus = reader.GetString(4);
+                        user.Role = reader.GetString(5);
+                        user.Name = reader.GetString(6);
+                        user.Description = reader.GetString(7);
+                        user.LinkedIn = reader.GetString(8);
+                        user.Picture = reader.GetString(9);
+                    }
+                    connection.Close();
+                }catch (SqlException)
+                {
+                    throw;
                 }
-                connection.Close();
-            }
+            } 
             return user;
         }
         public int Delete(string id)

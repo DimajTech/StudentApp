@@ -1,12 +1,122 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\esteban\\documents\\ucr\\tercer a\u00F1o\\iii semestre\\lenguajes para aplicaciones comerciales\\proyecto\\studentapp\\studentapp\\views\\shared\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\esteban\\documents\\ucr\\tercer a\u00F1o\\iii semestre\\lenguajes para aplicaciones comerciales\\proyecto\\studentapp\\studentapp\\models\\dao\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\dao\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\esteban\\documents\\ucr\\tercer a\u00F1o\\iii semestre\\lenguajes para aplicaciones comerciales\\proyecto\\studentapp\\studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\esteban\\documents\\ucr\\tercer a\u00F1o\\iii semestre\\lenguajes para aplicaciones comerciales\\proyecto\\studentapp\\studentapp\\views\\shared\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\esteban\\documents\\ucr\\tercer a\u00F1o\\iii semestre\\lenguajes para aplicaciones comerciales\\proyecto\\studentapp\\studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\esteban\\documents\\ucr\\tercer a\u00F1o\\iii semestre\\lenguajes para aplicaciones comerciales\\proyecto\\studentapp\\studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "StudentApp\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "StudentApp\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAQwM8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-28T07:55:07.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Views\\Shared\\Login.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Views\\Shared\\Login.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\Login.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABgAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-31T07:54:24.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-31T07:14:51.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserDAO.cs",
+              "DocumentMoniker": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Models\\DAO\\UserDAO.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\DAO\\UserDAO.cs",
+              "ToolTip": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Models\\DAO\\UserDAO.cs",
+              "RelativeToolTip": "StudentApp\\Models\\DAO\\UserDAO.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAwwEQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T05:39:22.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Views\\Shared\\Profile.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Profile.cshtml",
+              "ToolTip": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Views\\Shared\\Profile.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\Profile.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACEAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-31T05:31:53.672Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer a\u00F1o\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
+              "RelativeToolTip": "StudentApp\\Controllers\\UserController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowDQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T07:55:17.337Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
