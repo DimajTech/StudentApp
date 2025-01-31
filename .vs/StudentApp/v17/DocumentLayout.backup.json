@@ -1,12 +1,427 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Blanca Segura\\source\\repos\\StudentApp\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\daniv\\source\\repos\\StudentApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\dao\\coursedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\dao\\coursedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\dao\\appointmentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\dao\\appointmentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\entity\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\entity\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\entity\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\entity\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\entity\\commentnews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\entity\\commentnews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\dao\\pieceofnewsdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\dao\\pieceofnewsdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\views\\shared\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\views\\shared\\news.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\news.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\views\\shared\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\views\\shared\\appointment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\appointment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\dao\\advisementdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\dao\\advisementdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\dao\\responseadvisementdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\dao\\responseadvisementdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\dao\\commentnewsdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\dao\\commentnewsdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\dao\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\dao\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\models\\entity\\advisement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\models\\entity\\advisement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|c:\\users\\daniv\\source\\repos\\studentapp\\studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8A67DCE4-01B5-4085-9295-7E8ED7AC6FF5}|StudentApp\\StudentApp.csproj|solutionrelative:studentapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 15,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "News.cshtml",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\News.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\News.cshtml",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\News.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\News.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-31T07:21:10.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\Login.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Login.cshtml",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\Login.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-31T07:21:07.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Appointment.cshtml",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\Appointment.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Appointment.cshtml",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\Appointment.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\Appointment.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-31T07:21:06.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-31T07:21:04.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-31T07:21:03.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CommentNews.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\Entity\\CommentNews.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\Entity\\CommentNews.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\Entity\\CommentNews.cs",
+              "RelativeToolTip": "StudentApp\\Models\\Entity\\CommentNews.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:56:58.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Course.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\Entity\\Course.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\Entity\\Course.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\Entity\\Course.cs",
+              "RelativeToolTip": "StudentApp\\Models\\Entity\\Course.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:41:48.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Appointment.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\Entity\\Appointment.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\Entity\\Appointment.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\Entity\\Appointment.cs",
+              "RelativeToolTip": "StudentApp\\Models\\Entity\\Appointment.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:30:36.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "StudentApp\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:15:31.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CourseController.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Controllers\\CourseController.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Controllers\\CourseController.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Controllers\\CourseController.cs",
+              "RelativeToolTip": "StudentApp\\Controllers\\CourseController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCcAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:15:23.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Controllers\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Controllers\\AppointmentController.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Controllers\\AppointmentController.cs",
+              "RelativeToolTip": "StudentApp\\Controllers\\AppointmentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:14:48.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ResponseAdvisementDAO.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\ResponseAdvisementDAO.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\DAO\\ResponseAdvisementDAO.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\ResponseAdvisementDAO.cs",
+              "RelativeToolTip": "StudentApp\\Models\\DAO\\ResponseAdvisementDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:10:17.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "UserDAO.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\UserDAO.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\DAO\\UserDAO.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\UserDAO.cs",
+              "RelativeToolTip": "StudentApp\\Models\\DAO\\UserDAO.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwB4AAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:12:03.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PieceOfNewsDAO.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\PieceOfNewsDAO.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\DAO\\PieceOfNewsDAO.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\PieceOfNewsDAO.cs",
+              "RelativeToolTip": "StudentApp\\Models\\DAO\\PieceOfNewsDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:10:18.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CourseDAO.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\CourseDAO.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\DAO\\CourseDAO.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\CourseDAO.cs",
+              "RelativeToolTip": "StudentApp\\Models\\DAO\\CourseDAO.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAkwFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:08:52.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CommentNewsDAO.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\CommentNewsDAO.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\DAO\\CommentNewsDAO.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\CommentNewsDAO.cs",
+              "RelativeToolTip": "StudentApp\\Models\\DAO\\CommentNewsDAO.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:08:36.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppointmentDAO.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\AppointmentDAO.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\DAO\\AppointmentDAO.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\AppointmentDAO.cs",
+              "RelativeToolTip": "StudentApp\\Models\\DAO\\AppointmentDAO.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAIA6wEgAAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:07:46.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AdvisementDAO.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\AdvisementDAO.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\DAO\\AdvisementDAO.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\DAO\\AdvisementDAO.cs",
+              "RelativeToolTip": "StudentApp\\Models\\DAO\\AdvisementDAO.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:07:33.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Advisement.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\Entity\\Advisement.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\Entity\\Advisement.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\Entity\\Advisement.cs",
+              "RelativeToolTip": "StudentApp\\Models\\Entity\\Advisement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:07:25.441Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\Register.cshtml",
+              "RelativeDocumentMoniker": "StudentApp\\Views\\Shared\\Register.cshtml",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Views\\Shared\\Register.cshtml",
+              "RelativeToolTip": "StudentApp\\Views\\Shared\\Register.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACgAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-28T08:57:19.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "StudentApp\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "StudentApp\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAADoAAAAAAAAAAAAcwEMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-28T07:55:07.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\Entity\\User.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Models\\Entity\\User.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Models\\Entity\\User.cs",
+              "RelativeToolTip": "StudentApp\\Models\\Entity\\User.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCIAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T08:16:55.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "StudentApp\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\Controllers\\UserController.cs",
+              "RelativeToolTip": "StudentApp\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T07:55:17.337Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
