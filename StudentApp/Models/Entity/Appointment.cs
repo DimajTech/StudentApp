@@ -16,15 +16,20 @@ namespace StudentApp.Models.Entity
         {
         }
 
-        public Appointment(DateTime date, string mode, string status, Course course, User user, string professorComment)
+        public Appointment(string mode, Course course, User user)
         {
             id = Guid.NewGuid();
-            this.date = date;
+            this.date = DateTime.Now;
             this.mode = mode;
-            this.status = status;
-            this.course = course;
+            this.status = "pending"; //VALOR DEFAULT
+            this.course = course; 
             this.user = user;
-            this.professorComment = professorComment;
+        }
+
+        public Appointment(DateTime date, string mode, string status, Course course) //para el AppointmentDAO
+        {
+
+
         }
 
         public Guid Id { get => id; set => id = value; }
