@@ -52,9 +52,9 @@ namespace StudentApp.Controllers
 
 
 
-        public IActionResult GetAllAppointmentsByUser([FromBody] User user) {
+        public IActionResult GetAllAppointmentsByUser([FromQuery] string email) {
 
-            return Json(appointmentDAO.GetAll(user.Email));
+            return Json(appointmentDAO.GetAll(email));
 
         }
 
