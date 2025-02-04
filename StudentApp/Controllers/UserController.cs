@@ -115,25 +115,26 @@ namespace StudentApp.Controllers
 
         }
 
-		[HttpGet]
-		public IActionResult GetByEmail([FromQuery] string email)
-		{
-			try
-			{
-				User user = userDAO.GetByEmail(email);
+        [HttpGet]
+        public IActionResult GetByEmail([FromQuery] string email)
+        {
+            try
+            {
+                User user = userDAO.GetByEmail(email);
 
-				if (user != null)
-				{
-					return Ok(user);
-				}
+                if (user != null)
+                {
+                    return Ok(user);
+                }
 
-				return BadRequest();
-			}
-			catch (SqlException e)
-			{
-				return StatusCode(500, new { message = "An error occurred while retrieving the user.", error = e.Message });
-			}
+                return BadRequest();
+            }
+            catch (SqlException e)
+            {
+                return StatusCode(500, new { message = "An error occurred while retrieving the user.", error = e.Message });
+            }
 
-		}
-	}
+        }
+
+    }
 }

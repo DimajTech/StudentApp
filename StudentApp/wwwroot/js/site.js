@@ -146,10 +146,13 @@ function GetUserData() {
             $('#p-description').val(result.description);
             $('#p-linkedin').val(result.linkedIn);
             $('#p-password').val(result.password);
+
+            if (result.picture) {
+                $('#p-picture').attr('src', 'data:image/jpeg;base64,' + result.picture);
+            }
         },
         error: function (errorMessage) {
             console.error(errorMessage);
-            alert(errorMessage.responseText);
         }
     });
 }
@@ -190,8 +193,12 @@ function LoadNewsItems() {
 
             });
 
-            $("#news-container").html(htmlContent);
-            $("#news-container").css('height', 'auto');
+            try {
+                $("#news-container").html(htmlContent);
+                $("#news-container").css('height', 'auto');
+            } catch (error) {
+                console.error("Error al cargar las noticias:", error);
+            }
         },
         error: function (errorMessage) {
             console.log(errorMessage.responseText);

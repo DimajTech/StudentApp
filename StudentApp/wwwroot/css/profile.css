@@ -1,0 +1,62 @@
+﻿.profile-input {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgba(249, 235, 255, 0.15);
+    border: none;
+    outline: none;
+    font-weight: 300;
+    padding: 0px 20px;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+.profile-button {
+    border: none;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #fff;
+    padding: 0px 25px;
+    border-radius: 25px;
+    color: #66c5e3;
+    transition: all .4s;
+    position: relative;
+    z-index: 3;
+}
+
+.profile-second-div {
+    border-radius: 25px;
+    padding: 80px;
+    background-color: #66c5e3;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#p-picture {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+}
+
+@media (min-width: 992px) {
+    .profile-main-div {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
