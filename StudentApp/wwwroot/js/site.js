@@ -11,7 +11,7 @@
         event.preventDefault();
         Add();
     });
-   
+
 });
 
 //------------------------------------------------
@@ -140,6 +140,7 @@ function GetUserData() {
         dataType: "json",
         success: function (result) {
             console.log("User data retrieved:", result);
+            $('#p-id').val(result.id);
             $('#p-name').text(result.name);
             $('#p-name2').val(result.name);
             $('#p-email').val(result.email);
@@ -148,13 +149,94 @@ function GetUserData() {
             $('#p-password').val(result.password);
 
             if (result.picture) {
-                $('#p-picture').attr('src', 'data:image/jpeg;base64,' + result.picture);
+                $('#p-picture').attr('src', result.picture);
             }
         },
         error: function (errorMessage) {
             console.error(errorMessage);
         }
     });
+}
+
+function HandleEditing() {
+    if ($('#p-button').text() === 'Editar') {
+        AllowFieldEditing();
+    } else if ($('#p-button').text() === 'Confirmar cambios') {
+        EditUser();
+    }
+}
+
+function AllowFieldEditing() {
+    var originalValues = {
+        id: $('#p-id').val(),
+        name: $('#p-name2').val(),
+        email: $('#p-email').val(),
+        password: $('#p-password').val(),
+        description: $('#p-description').val(),
+        linkedIn: $('#p-linkedin').val(),
+        picture: $('#p-picture').val()
+    };
+
+    console.log('Original values', originalValues);
+
+    $('#p-name2').prop("readonly", false);
+    $('#p-email').prop("readonly", false);
+    $('#p-password').prop("readonly", false);
+    $('#p-description').prop("readonly", false);
+    $('#p-linkedin').prop("readonly", false);
+
+    $('#p-button').text("Confirmar cambios");
+    $('#p-cancel-button').prop("hidden", false);
+}
+
+function EditUser() {
+    var newValues = {
+        id: $('#p-id').val(),
+        name: $('#p-name2').val(),
+        email: $('#p-email').val(),
+        password: $('#p-password').val(),
+        description: $('#p-description').val(),
+        linkedIn: $('#p-linkedin').val()
+    }
+
+    console.log('New Values', newValues);
+
+    $.ajax({
+        url: "/User/UpdateUser",
+        type: "PUT",
+        data: JSON.stringify(newValues),
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            GetUserData();
+
+            $('#p-name2').prop("readonly", true);
+            $('#p-email').prop("readonly", true);
+            $('#p-password').prop("readonly", true);
+            $('#p-description').prop("readonly", true);
+            $('#p-linkedin').prop("readonly", true);
+
+            $('#p-button').text("Editar");
+            $('#p-cancel-button').prop("hidden", true);
+        },
+        error: function (errorMessage) {
+            console.error(errorMessage);
+        }
+    });
+    
+}
+
+function CancelEditing() {
+    GetUserData();
+
+    $('#p-name2').prop("readonly", true);
+    $('#p-email').prop("readonly", true);
+    $('#p-password').prop("readonly", true);
+    $('#p-description').prop("readonly", true);
+    $('#p-linkedin').prop("readonly", true);
+
+    $('#p-button').text("Editar");
+    $('#p-cancel-button').prop("hidden", true);
 }
 
 //------------------------------------------------

@@ -139,7 +139,13 @@ namespace StudentApp.Models.DAO
                     connection.Open();
                     SqlCommand command = new SqlCommand("UpdateUser", connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    //Todo AddValue
+                    
+                    command.Parameters.AddWithValue("@Id", user.Id);
+                    command.Parameters.AddWithValue("@Name", user.Name);
+                    command.Parameters.AddWithValue("@Email", user.Email);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+                    command.Parameters.AddWithValue("@Description", user.Description);
+                    command.Parameters.AddWithValue("@LinkedIn", user.LinkedIn);
 
                     resultToReturn = command.ExecuteNonQuery();
                     connection.Close();
@@ -156,5 +162,6 @@ namespace StudentApp.Models.DAO
             return resultToReturn;
 
         }
+
     }
 }

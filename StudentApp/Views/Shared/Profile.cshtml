@@ -2,19 +2,25 @@
     <div class="profile-main-div">
         <div class="profile-second-div">
 
-            <div class="profile-main-div">
-                <img src="" class="" id="p-picture">
+            <div class="p-photo-row">
+                <img src="" id="p-picture">
                 <h2 id="p-name" class=""></h2>
+                <p id="p-id" value="" hidden></p>
             </div>
 
             <div class="profile-main-div">
                 <label>Nombre</label>
-                <input id="p-name2" class="profile-input" value="Faraon Love Shady" readonly>
+                <input id="p-name2" class="profile-input" value="" readonly>
             </div>
 
             <div class="profile-main-div">
                 <label class="">Correo electrónico</label>
-                <input id="p-email" class="profile-input" type="email" value="test3@example.com" readonly>
+                <input id="p-email" class="profile-input" type="email" value="" readonly>
+            </div>
+
+            <div class="profile-main-div">
+                <label class="">Contraseña</label>
+                <input id="p-password" class="profile-input" type="password" value="" readonly>
             </div>
 
             <div class="profile-main-div">
@@ -27,13 +33,9 @@
                 <input id="p-linkedin" class="profile-input" value="" readonly>
             </div>
 
-            <div class="profile-main-div">
-                <label class="">Contraseña</label>
-                <input id="p-password" class="profile-input" type="password" value="" readonly>
-            </div>
-
-            <div class="profile-main-div">
-                <button id="p-button" class="profile-button">Editar</button>
+            <div class="p-buttons-row">
+                <button id="p-button" class="profile-button" onclick="HandleEditing()">Editar</button>
+                <button id="p-cancel-button" class="profile-button" onclick="CancelEditing()" hidden>Cancelar</button>
             </div>
 
             <div class="profile-main-div">

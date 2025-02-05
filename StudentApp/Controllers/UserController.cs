@@ -136,5 +136,18 @@ namespace StudentApp.Controllers
 
         }
 
+        [HttpPut]
+        public IActionResult UpdateUser([FromBody] User user)
+        {
+            try
+            {
+                return Ok(userDAO.Update(user));
+            }
+            catch (SqlException e)
+            {
+                return BadRequest();
+            }
+        }
+
     }
 }
