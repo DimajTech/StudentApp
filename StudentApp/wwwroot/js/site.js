@@ -275,12 +275,8 @@ function LoadNewsItems() {
 
             });
 
-            try {
-                $("#news-container").html(htmlContent);
-                $("#news-container").css('height', 'auto');
-            } catch (error) {
-                console.error("Error al cargar las noticias:", error);
-            }
+            $("#news-container").html(htmlContent);
+            $("#news-container").css('height', 'auto');
         },
         error: function (errorMessage) {
             console.log(errorMessage.responseText);

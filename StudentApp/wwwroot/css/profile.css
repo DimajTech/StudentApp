@@ -57,13 +57,12 @@
 @media (min-width: 992px) {
     .profile-main-div {
         flex: 0 0 auto;
-        width: 60%;
+        width: 75%;
     }
 }
 
 .p-photo-row {
     display: flex;
-    justify-content: center;
     align-items: center;
     width: 75%;
     margin-bottom: 25px;
@@ -76,5 +75,5 @@
     align-items: center;
     width: 75%;
     margin-bottom: 25px;
-    gap: 75px;
+    gap: 50%;
 }
