@@ -58,22 +58,32 @@
     <form class="form-appointment">
         <h2 class="h2-appointment">Agendar Hora Consulta</h2>
         <div>
-            <label class="label-appointment">
+            <label class="label-appointment" for="course">
                 Curso:
-                <select id="courses" class="select-appointment">
+                <select id="course" class="select-appointment">
                     <option value="0" selected>
                         Seleccione un curso
                     </option>
                 </select>
-
             </label>
         </div>
 
 
         <div>
-            <label class="label-appointment">Fecha y Hora:</labelfor>
+            <label class="label-appointment" >Fecha y Hora:</label>
             <input type="datetime-local" id="datetime" class="input-appointment"/>
         </div>
+        <div>
+            <label class="label-appointment">Modalidad</label>
+            <select id="mode">
+                <option value="0" selected>Seleccione una modalidad</option>
+                <option value="1">Virtual</option>
+                <option value="2">Presencial</option>
+            </select>
+        </div>
+        <button type="button" class="button button-registrar" onclick="AddAppointment()">Registrar</button> 
+        <button type="reset"class="button button-cancelar">Cancelar</button>
+
     </form>
 </section>
 

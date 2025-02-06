@@ -1,4 +1,5 @@
 ﻿$(document).ready(() => {
+
     $(document).on('submit', '#contact-form', function (event) {
 
         event.preventDefault();
@@ -10,8 +11,9 @@
 
         event.preventDefault();
         Add();
+
     });
-   
+
 });
 
 //------------------------------------------------
@@ -107,10 +109,23 @@ function GetAppointments() {
             $.each(result, function (key, item) {
                 htmlTable += '<tr>';
                 htmlTable += '<td>' + item.date + '</td>';
-                htmlTable += '<td>' + item.mode + '</td>';
-                htmlTable += '<td>' + item.status + '</td>';
-                htmlTable += '<td>' + item.course.name + '</td>';
-                htmlTable += '<td>' + item.professorComment + '</td>';
+                htmlTable += '<td>' + (item.mode == '1' ? 'Virtual' : 'Presencial') + '</td>';
+                let statusText;
+                switch (item.status) {
+                    case 'pending':
+                        statusText = 'Pendiente';
+                        break;
+                    case 'approved':
+                        statusText = 'Aprobada';
+                        break;
+                    case 'rejected':
+                        statusText = 'Rechazada';
+                        break;
+                    default:
+                        statusText = item.status; // Mostrar el valor original si no coincide con ninguno de los anteriores
+                }
+                htmlTable += '<td>' + statusText + '</td>'; htmlTable += '<td>' + item.course.name + '</td>';
+                htmlTable += '<td>' + (item.professorComment == null ? 'Sin comentarios' : item.professorComment) + '</td>';
                 htmlTable += '</tr>';
             });
             $('#myappointments-tbody').html(htmlTable); //shows table on screen
@@ -118,11 +133,76 @@ function GetAppointments() {
 
         },
         error: function (errorMessage) {
-            
-            alert(errorMessage.responseText);
+            configureToastr();
+            toastr.error(errorMessage.responseText);
         }
     });
 }
+function GetCourses() {
+    $.ajax({
+        url: "/Course/GetAllCourses",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var htmlSelect = '';
+            $.each(result, function (key, item) {
+                htmlSelect += '<option value="' + item.id + '">' + item.name + '</option>';
+            });
+            $("#course").append(htmlSelect);
+
+        },
+        error: function (errorMessage) {
+            configureToastr();
+            toastr.error(errorMessage.responseText);
+        }
+    });
+
+}
+
+function AddAppointment() {
+
+    var appointment = {
+        date: $('#datetime').val(),
+        mode: $('#mode').val(),
+        courseid: $('#course').val(),
+        userid: 'a4163958-6f5a-4e0a-bd31-4f27abefa04d',
+    };
+    var course = {
+        id: $('#course').val(),
+        name: $('#course').find('option:selected').text(),
+    };
+    var user = {
+        id: 'a4163958-6f5a-4e0a-bd31-4f27abefa04d',
+        name: 'Pruebaaaaaaaa',
+    }
+    appointment.course = course;
+    appointment.user = user;
+    if (course.name == 'Seleccione un curso') {
+
+    } else {
+        $.ajax({
+            url: "/Appointment/CreateNewAppointment",
+            data: JSON.stringify(appointment),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#datetime').val('');
+                $("#course").val(0);
+                $("#mode").val(0);
+                configureToastr();
+
+                toastr.success('Registrado con éxito');
+                GetAppointments();
+            },
+            error: function (errorMessage) {
+                toastr.error(errorMessage.responseText);
+            }
+        });
+    }
+
+};
 
 //------------------------------------------------
 //--------------PROFILE SECTION-------------------
@@ -189,9 +269,9 @@ function LoadNewsItems() {
 `;
 
             });
-
             $("#news-container").html(htmlContent);
             $("#news-container").css('height', 'auto');
+
         },
         error: function (errorMessage) {
             console.log(errorMessage.responseText);
@@ -235,7 +315,21 @@ function LoadNewsDetail(pieceOfNewsID) {
             $("#news-container").html(detailHtml);
         },
         error: function (errorMessage) {
-            console.log(errorMessage.responseText);
+            toastr.error(errorMessage.responseText);
         }
     });
+}
+
+//------------------------------------------------
+//-------------------UTILITY----------------------
+//------------------------------------------------
+function configureToastr() {
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-right",
+        // ... otras opciones
+    };
 }

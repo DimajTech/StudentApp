@@ -49,6 +49,8 @@ function loadSection(section) {
             }
             if (section === "appointment") {
                 GetAppointments();
+                GetCourses();
+                
             }
         })
         .catch(error => {
