@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 namespace StudentApp.Models.Entity
 {
@@ -15,22 +16,16 @@ namespace StudentApp.Models.Entity
         public Appointment()
         {
         }
-
-        public Appointment(string mode, Course course, User user)
+        public Appointment(DateTime date, string mode, Course course, User user)
         {
-            id = Guid.NewGuid();
-            this.date = DateTime.Now;
-            this.mode = mode;
+            Id = Guid.NewGuid();
+            Date = date;
+            Mode = mode;
             this.status = "pending"; //VALOR DEFAULT
-            this.course = course; 
-            this.user = user;
+            Course = course;
+            User = user;
         }
-
-        public Appointment(DateTime date, string mode, string status, Course course) //para el AppointmentDAO
-        {
-
-
-        }
+        
 
         public Guid Id { get => id; set => id = value; }
         public DateTime Date { get => date; set => date = value; }
@@ -38,6 +33,5 @@ namespace StudentApp.Models.Entity
         public string Status { get => status; set => status = value; }
         public Course Course { get => course; set => course = value; }
         public User User { get => user; set => user = value; }
-        public string ProfessorComment { get => professorComment; set => professorComment = value; }
     }
 }

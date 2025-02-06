@@ -27,20 +27,23 @@ namespace StudentApp.Controllers
         }
 
 
-   
+
         public IActionResult CreateNewAppointment([FromBody] Appointment appointment)
         {
             try
             {
-               
-                return Ok(appointmentDAO.CreateAppointment(appointment)); 
+                return Ok(appointmentDAO.CreateAppointment(appointment));
             }
             catch (SqlException e)
             {
-                ViewBag.Message = e.Message;
-                return StatusCode(500, new { message = "An error ocurred", error = e.Message });
+                return StatusCode(500, new { message = "An error occurred", error = e.Message });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
             }
         }
+
 
 
         public IActionResult GetAppointmentById([FromBody] Guid id)

@@ -27,9 +27,10 @@ namespace StudentApp.Models.DAO
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@Id", Guid.NewGuid());
+                        command.Parameters.AddWithValue("@Id", Guid.NewGuid().ToString());
                         command.Parameters.AddWithValue("@Date", appointment.Date);
                         command.Parameters.AddWithValue("@Mode", appointment.Mode);
+                        command.Parameters.AddWithValue("@Status", "pending");
                         command.Parameters.AddWithValue("@CourseId", appointment.Course.Id);
                         command.Parameters.AddWithValue("@StudentId", appointment.User.Id); 
 
