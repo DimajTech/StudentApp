@@ -162,7 +162,12 @@ function HandleEditing() {
     if ($('#p-button').text() === 'Editar') {
         AllowFieldEditing();
     } else if ($('#p-button').text() === 'Confirmar cambios') {
-        EditUser();
+        if ($('#p-name2').val() == '' || $('#p-email').val() == '' || $('#p-password').val() == '') {
+            configureToastr();
+            toastr.error('Por favor rellene todos los campos');
+        } else {
+            EditUser();
+        }
     }
 }
 
@@ -176,8 +181,6 @@ function AllowFieldEditing() {
         linkedIn: $('#p-linkedin').val(),
         picture: $('#p-picture').val()
     };
-
-    console.log('Original values', originalValues);
 
     $('#p-name2').prop("readonly", false);
     $('#p-email').prop("readonly", false);
@@ -199,8 +202,6 @@ function EditUser() {
         linkedIn: $('#p-linkedin').val()
     }
 
-    console.log('New Values', newValues);
-
     $.ajax({
         url: "/User/UpdateUser",
         type: "PUT",
@@ -218,9 +219,12 @@ function EditUser() {
 
             $('#p-button').text("Editar");
             $('#p-cancel-button').prop("hidden", true);
+
+            configureToastr();
+            toastr.success('Los datos fueron actualizados correctamente');
         },
         error: function (errorMessage) {
-            console.error(errorMessage);
+            toastr.error('Algo salió mal');
         }
     });
     
@@ -323,4 +327,19 @@ function LoadNewsDetail(pieceOfNewsID) {
             console.log(errorMessage.responseText);
         }
     });
+}
+
+
+//------------------------------------------------
+//-------------------UTILITY----------------------
+//------------------------------------------------
+function configureToastr() {
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-right",
+        // ... otras opciones
+    };
 }
