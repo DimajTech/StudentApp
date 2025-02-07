@@ -2061,7 +2061,7 @@ Secciones Propias
     padding: 20px;
 }
 
-/* T�tulos h2 m�s bonitos */
+/* Títulos h2 más bonitos */
 .section-title-appointment h2 {
     font-size: 2em;
     color: #333;
@@ -2175,6 +2175,126 @@ Secciones Propias
     background-color: #fff;
     cursor: pointer;
 }
+
+
+
+
+
+/*News Comments*/
+
+
+.comment-card {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    gap: 10px;
+    color: #555;
+}
+
+.comment-user {
+    font-weight: bold;
+    color: black;
+}
+
+.comment-role {
+    font-style: italic;
+    color: #777;
+}
+
+.comment-date {
+    font-size: 0.8em;
+    color: gray;
+    text-align: right;
+}
+
+.comment-body {
+    margin-top: 8px;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre-line;
+}
+
+.no-comments {
+    text-align: center;
+    font-size: 1.1em;
+    color: #777;
+}
+
+.comment-add-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#comment-text-area {
+    resize: none;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#addCommentBtn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#addCommentBtn:hover {
+        background-color: #45a049;
+}
+
+/*Loader*/
+/* Estilo para el overlay que cubre toda la pantalla */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    z-index: 10; /* Asegura que esté encima de todo */
+}
+
+/* Estilo del loader */
+.loader {
+    border: 8px solid lightGray; /* Fondo claro */
+    border-top: 8px solid #66c5e3; /* Color del borde superior */
+    border-radius: 50%; /* Hace que sea un círculo */
+    width: 70px; /* Tamaño del círculo */
+    height: 70px; /* Tamaño del círculo */
+    animation: spin 1s linear infinite; /* Animación que hace que gire */
+}
+
+/* Animación del círculo */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg); /* Inicia sin rotación */
+    }
+
+    100% {
+        transform: rotate(360deg); /* Completa una rotación de 360 grados */
+    }
+}
+
 .button {
     padding: 10px 20px;
     font-size: 16px;
@@ -2203,3 +2323,4 @@ Secciones Propias
         background-color: #c82333;
         transform: scale(1.05);
     }
+

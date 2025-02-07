@@ -34,47 +34,59 @@ namespace StudentApp.Controllers
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            //TODO Encerrar esto en un try catch
-            User user = userDAO.GetByEmail(email);
-            bool success = false;
-            string message = "";
-
-            if (user != null && user.Password == password)
+            try
             {
+                User user = userDAO.GetByEmail(email);
+                bool success = false;
+                string message = "";
+                string userId = "";
 
-                //TODO verificar que esté aceptado y activo
-                if (user.RegistrationStatus == "accepted")
+                if (user != null && user.Password == password)
                 {
-                    if (user.IsActive)
+                    if (user.RegistrationStatus == "accepted")
                     {
-                        //Configurar la cookie de autenticación
-                        var cookieOptions = new CookieOptions
+                        if (user.IsActive)
                         {
-                            HttpOnly = true,
-                            Expires = DateTime.UtcNow.AddHours(1)
-                        };
-                        Response.Cookies.Append("AuthCookie", "true", cookieOptions);
-                        success = true;
+                            // Crear la cookie con email y UUID
+                            var authData = $"{user.Email} {user.Id}";
+
+                            var cookieOptions = new CookieOptions
+                            {
+                                HttpOnly = true,
+                                Secure = true,
+                                Expires = DateTime.UtcNow.AddHours(3)
+                            };
+
+                            Response.Cookies.Append("AuthCookie", authData, cookieOptions);
+
+                            // Devolver los datos en la respuesta JSON
+                            success = true;
+                            userId = user.Id.ToString();
+                        }
+                        else
+                        {
+                            message = "Su usuario se encuentra inactivo. Contacte un administrador.";
+                        }
                     }
                     else
                     {
-                        success = false;
-                        message = "Su usuario se encuentra inactivo. Por favor contacte un administrador.";
+                        message = "Su usuario aún no ha sido aprobado.";
                     }
                 }
                 else
                 {
-                    message = "Su usuario aún no ha sido aprobado por un administrador.";
+                    message = "Credenciales inválidas.";
                 }
-            }
-            else
-            {
-                success = false;
-                message = "Credenciales inválidas. Intente de nuevo.";
-            }
 
-            return Json(new { success = success, message = message });
+                return Json(new { success, message, userId });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error en el servidor." });
+            }
         }
+
+
 
 
         [HttpPost]
@@ -116,25 +128,25 @@ namespace StudentApp.Controllers
         }
 
 		[HttpGet]
-        public IActionResult GetByEmail([FromQuery] string email)
-        {
-            try
-            {
-                User user = userDAO.GetByEmail(email);
+		public IActionResult GetByEmail([FromQuery] string email)
+		{
+			try
+			{
+				User user = userDAO.GetByEmail(email);
 
-                if (user != null)
-                {
-                    return Ok(user);
-                }
+				if (user != null)
+				{
+					return Ok(user);
+				}
 
-                return BadRequest();
-            }
-            catch (SqlException e)
-            {
-                return StatusCode(500, new { message = "An error occurred while retrieving the user.", error = e.Message });
-            }
+				return BadRequest();
+			}
+			catch (SqlException e)
+			{
+				return StatusCode(500, new { message = "An error occurred while retrieving the user.", error = e.Message });
+			}
 
-        }
+		}
 
         [HttpPut]
         public IActionResult UpdateUser([FromBody] User user)

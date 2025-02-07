@@ -16,6 +16,16 @@
 
 });
 
+function setLoading(isloading) {
+
+    if (isloading) {
+        $('#loading-overlay').css('display', 'flex');
+
+    } else {
+        $('#loading-overlay').css('display', 'none');
+
+    }
+}
 //------------------------------------------------
 //---------LOGIN & REGISTER SECTION---------------
 //------------------------------------------------
@@ -30,7 +40,11 @@ function AuthenticateUser() {
         success: function (response) {
             if (response.success) {
 
+                localStorage.setItem("email", email);
+                localStorage.setItem("userId", response.userId);
+
                 window.location.href = "/";
+
 
             } else {
 
@@ -59,7 +73,7 @@ function Add() {
     } else {
         $.ajax({
             url: "/User/Register",
-            data: JSON.stringify(user), //converte la variable estudiante en tipo json
+            data: JSON.stringify(user), //convierte la variable estudiante en tipo json
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -328,6 +342,9 @@ function CancelEditing() {
 //--------------NEWS SECTION----------------------
 //------------------------------------------------
 function LoadNewsItems() {
+
+    setLoading(true);
+
     $.ajax({
         url: "/PieceOfNews/GetNews",
         type: "GET",
@@ -335,31 +352,32 @@ function LoadNewsItems() {
         dataType: "json",
         success: function (result) {
 
+            htmlContent =  '';
 
-            var htmlContent = '';
             $.each(result, (key, item) => {
 
                 htmlContent += `
-    <div class="col-lg-4 col-md-6 align-self-center mb-90 event_outer col-md-6 wordpress design">
-        <div class="events_item">
-            <div class="thumb">
-                <a href="javascript:void(0);" onclick="LoadNewsDetail('${item.id}')">
-                    <img src="${item.picture}" alt="">
-                </a>
-                <span class="category">${item.date}</span>
-            </div>
-            <div class="down-content">
-                <span class="author">${item.user.name}</span>
-                <h5>${item.title}</h5>
-                <br/>
-                <h7>${item.description.length > 80 ? item.description.substring(0, item.description.lastIndexOf(' ', 80)) + "..." : item.description}</h7>
-            </div>
-        </div>
-    </div>
-`;
+                <div class="col-lg-4 col-md-6 align-self-center mb-90 event_outer col-md-6 wordpress design">
+                    <div class="events_item">
+                        <div class="thumb">
+                            <a href="javascript:void(0);" onclick="LoadNewsDetail('${item.id}')">
+                                <img src="${item.picture}" alt="">
+                            </a>
+                            <span class="category">${item.date}</span>
+                        </div>
+                        <div class="down-content">
+                            <span class="author">${item.user.name}</span>
+                            <h5>${item.title}</h5>
+                            <br/>
+                            <h7>${item.description.length > 80 ? item.description.substring(0, item.description.lastIndexOf(' ', 80)) + "..." : item.description}</h7>
+                        </div>
+                    </div>
+                </div> `;
 
             });
             $("#news-container").html(htmlContent);
+            setLoading(false);
+
             $("#news-container").css('height', 'auto');
 
         },
@@ -371,7 +389,7 @@ function LoadNewsItems() {
 
 function LoadNewsDetail(pieceOfNewsID) {
 
-    console.log(pieceOfNewsID)
+    setLoading(true);
 
     $.ajax({
         url: "/PieceOfNews/GetById/" + pieceOfNewsID,
@@ -399,16 +417,131 @@ function LoadNewsDetail(pieceOfNewsID) {
                     <h2>${newsItem.title}</h2>
                     <p><strong>Autor:</strong> ${newsItem.user.name} (${newsItem.user.role})</p>
                     <p><strong>Fecha:</strong> ${newsItem.date}</p>
-                    <p style="text-align:justify; border-radius: 33px; padding-top:20px; padding-bottom:20px">${newsItem.description}</p>
+                    <p style="text-align:justify; border-radius: 33px; padding-top:20px; padding-bottom:20px; white-space: pre-line;">${newsItem.description}</p>
+                    <div id="commentsContainer"></div>
             `;
 
+            setLoading(false);
+
             $("#news-container").html(detailHtml);
+            LoadNewsComments(pieceOfNewsID);
+        },
+        error: function (errorMessage) {
+            console.log(errorMessage.responseText);
+        }
+    });
+}
+
+function LoadNewsComments(pieceOfNewsID) {
+
+    $.ajax({
+        url: "/CommentNews/GetCommentNewsByPieceOfNewsId/" + pieceOfNewsID,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (newsComments) {
+
+
+
+            var htmlContent = `<br><h3>Comentarios</h3>`;
+            $("#commentsContainer>").html(`<div class="loader"></div>`);
+
+            htmlContent += `
+                <div class="comment-add-container" id="comment-news-form">
+
+                    <textarea id="comment-text-area" class="comment-text-area" maxlength="200" rows="4" placeholder="Escribe tu comentario..." required></textarea><br>
+                    <button id="addCommentBtn" class="comment-button" onclick="AddNewsComment('${pieceOfNewsID}')">
+                        Agregar Comentario
+                    </button>
+                </div>
+                <div style="text-align:right; padding-right:10px;">
+                    <br> <h6>${newsComments.length !== 1 ? newsComments.length + " comentarios" : " comentario"} </h6><br>
+                </div>
+            `;
+
+            newsComments.forEach(comment => {
+
+                htmlContent += `
+                    <div class="comment-card">
+                        <div class="comment-header">
+                            <div>
+                                <span class="comment-user">${comment.user.name}</span>
+                                <span class="comment-role">(${comment.user.role})</span>
+                            </div>
+                           
+                            <span class="comment-date">${new Date(comment.dateTime).toLocaleString()}</span>
+                        </div>
+                        <div class="comment-body">
+                            <p>${comment.text}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            $('#commentsContainer').html(htmlContent);
+            
+
         },
         error: function (errorMessage) {
             toastr.error(errorMessage.responseText);
         }
     });
 }
+function AddNewsComment(pieceOfNewsID) {
+
+    
+    var text = $('#comment-text-area').val();
+
+    if (text) {
+        $("#comment-text-area").css("border-color", "black");
+
+        const userID = localStorage.getItem("userId");
+
+        var comment = {
+
+            pieceOfNews: {
+                id: pieceOfNewsID
+            },
+            user: {
+                id: userID
+            },
+            text: text
+        }
+
+        setLoading(true);
+        $.ajax({
+            url: "/CommentNews/AddNewsComment",
+            data: JSON.stringify(comment), //convierte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                toastr.options.positionClass = 'toast-bottom-right';
+                toastr.success('Comentario publicado con éxito');
+
+                LoadNewsComments(pieceOfNewsID);
+                setLoading(false);
+
+
+            },
+            error: function (errorMessage) {
+                console.log(errorMessage.responseText);
+                setLoading(false);
+
+            }
+        });
+    } else {
+
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.error('Por favor rellene todos los campos');
+
+        $("#comment-text-area").css("border-color", "red");
+
+    }
+  
+
+}
+
 
 //------------------------------------------------
 //-------------------UTILITY----------------------
