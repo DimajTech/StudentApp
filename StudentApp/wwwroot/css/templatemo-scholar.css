@@ -2061,7 +2061,7 @@ Secciones Propias
     padding: 20px;
 }
 
-/* TÌtulos h2 m·s bonitos */
+/* T√≠tulos h2 m√°s bonitos */
 .section-title-appointment h2 {
     font-size: 2em;
     color: #333;
@@ -2179,6 +2179,7 @@ Secciones Propias
 
 
 
+
 /*News Comments*/
 
 
@@ -2270,26 +2271,56 @@ Secciones Propias
     display: flex;
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra el contenido verticalmente */
-    z-index: 10; /* Asegura que estÈ encima de todo */
+    z-index: 10; /* Asegura que est√© encima de todo */
 }
 
 /* Estilo del loader */
 .loader {
     border: 8px solid lightGray; /* Fondo claro */
     border-top: 8px solid #66c5e3; /* Color del borde superior */
-    border-radius: 50%; /* Hace que sea un cÌrculo */
-    width: 70px; /* TamaÒo del cÌrculo */
-    height: 70px; /* TamaÒo del cÌrculo */
-    animation: spin 1s linear infinite; /* AnimaciÛn que hace que gire */
+    border-radius: 50%; /* Hace que sea un c√≠rculo */
+    width: 70px; /* Tama√±o del c√≠rculo */
+    height: 70px; /* Tama√±o del c√≠rculo */
+    animation: spin 1s linear infinite; /* Animaci√≥n que hace que gire */
 }
 
-/* AnimaciÛn del cÌrculo */
+/* Animaci√≥n del c√≠rculo */
 @keyframes spin {
     0% {
-        transform: rotate(0deg); /* Inicia sin rotaciÛn */
+        transform: rotate(0deg); /* Inicia sin rotaci√≥n */
     }
 
     100% {
-        transform: rotate(360deg); /* Completa una rotaciÛn de 360 grados */
+        transform: rotate(360deg); /* Completa una rotaci√≥n de 360 grados */
     }
 }
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.button-registrar {
+    background-color: #28a745;
+    color: white;
+}
+
+    .button-registrar:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+.button-cancelar {
+    background-color: #dc3545;
+    color: white;
+}
+
+    .button-cancelar:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+    }
+

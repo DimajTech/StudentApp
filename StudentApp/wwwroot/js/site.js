@@ -1,4 +1,5 @@
 ﻿$(document).ready(() => {
+
     $(document).on('submit', '#contact-form', function (event) {
 
         event.preventDefault();
@@ -10,6 +11,7 @@
 
         event.preventDefault();
         Add();
+
     });
 
 });
@@ -121,10 +123,23 @@ function GetAppointments() {
             $.each(result, function (key, item) {
                 htmlTable += '<tr>';
                 htmlTable += '<td>' + item.date + '</td>';
-                htmlTable += '<td>' + item.mode + '</td>';
-                htmlTable += '<td>' + item.status + '</td>';
-                htmlTable += '<td>' + item.course.name + '</td>';
-                htmlTable += '<td>' + item.professorComment + '</td>';
+                htmlTable += '<td>' + (item.mode == '1' ? 'Virtual' : 'Presencial') + '</td>';
+                let statusText;
+                switch (item.status) {
+                    case 'pending':
+                        statusText = 'Pendiente';
+                        break;
+                    case 'approved':
+                        statusText = 'Aprobada';
+                        break;
+                    case 'rejected':
+                        statusText = 'Rechazada';
+                        break;
+                    default:
+                        statusText = item.status; // Mostrar el valor original si no coincide con ninguno de los anteriores
+                }
+                htmlTable += '<td>' + statusText + '</td>'; htmlTable += '<td>' + item.course.name + '</td>';
+                htmlTable += '<td>' + (item.professorComment == null ? 'Sin comentarios' : item.professorComment) + '</td>';
                 htmlTable += '</tr>';
             });
             $('#myappointments-tbody').html(htmlTable); //shows table on screen
@@ -132,11 +147,76 @@ function GetAppointments() {
 
         },
         error: function (errorMessage) {
-            
-            alert(errorMessage.responseText);
+            configureToastr();
+            toastr.error(errorMessage.responseText);
         }
     });
 }
+function GetCourses() {
+    $.ajax({
+        url: "/Course/GetAllCourses",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var htmlSelect = '';
+            $.each(result, function (key, item) {
+                htmlSelect += '<option value="' + item.id + '">' + item.name + '</option>';
+            });
+            $("#course").append(htmlSelect);
+
+        },
+        error: function (errorMessage) {
+            configureToastr();
+            toastr.error(errorMessage.responseText);
+        }
+    });
+
+}
+
+function AddAppointment() {
+
+    var appointment = {
+        date: $('#datetime').val(),
+        mode: $('#mode').val(),
+        courseid: $('#course').val(),
+        userid: 'a4163958-6f5a-4e0a-bd31-4f27abefa04d',
+    };
+    var course = {
+        id: $('#course').val(),
+        name: $('#course').find('option:selected').text(),
+    };
+    var user = {
+        id: 'a4163958-6f5a-4e0a-bd31-4f27abefa04d',
+        name: 'Pruebaaaaaaaa',
+    }
+    appointment.course = course;
+    appointment.user = user;
+    if (course.name == 'Seleccione un curso') {
+
+    } else {
+        $.ajax({
+            url: "/Appointment/CreateNewAppointment",
+            data: JSON.stringify(appointment),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#datetime').val('');
+                $("#course").val(0);
+                $("#mode").val(0);
+                configureToastr();
+
+                toastr.success('Registrado con éxito');
+                GetAppointments();
+            },
+            error: function (errorMessage) {
+                toastr.error(errorMessage.responseText);
+            }
+        });
+    }
+
+};
 
 //------------------------------------------------
 //--------------PROFILE SECTION-------------------
@@ -154,18 +234,108 @@ function GetUserData() {
         dataType: "json",
         success: function (result) {
             console.log("User data retrieved:", result);
+            $('#p-id').val(result.id);
             $('#p-name').text(result.name);
             $('#p-name2').val(result.name);
             $('#p-email').val(result.email);
             $('#p-description').val(result.description);
             $('#p-linkedin').val(result.linkedIn);
             $('#p-password').val(result.password);
+
+            if (result.picture) {
+                $('#p-picture').attr('src', result.picture);
+            }
         },
         error: function (errorMessage) {
             console.error(errorMessage);
-            alert(errorMessage.responseText);
         }
     });
+}
+
+
+function HandleEditing() {
+    if ($('#p-button').text() === 'Editar') {
+        AllowFieldEditing();
+    } else if ($('#p-button').text() === 'Confirmar cambios') {
+        if ($('#p-name2').val() == '' || $('#p-email').val() == '' || $('#p-password').val() == '') {
+            configureToastr();
+            toastr.error('Por favor rellene todos los campos');
+        } else {
+            EditUser();
+        }
+    }
+}
+
+function AllowFieldEditing() {
+    var originalValues = {
+        id: $('#p-id').val(),
+        name: $('#p-name2').val(),
+        email: $('#p-email').val(),
+        password: $('#p-password').val(),
+        description: $('#p-description').val(),
+        linkedIn: $('#p-linkedin').val(),
+        picture: $('#p-picture').val()
+    };
+
+    $('#p-name2').prop("readonly", false);
+    $('#p-email').prop("readonly", false);
+    $('#p-password').prop("readonly", false);
+    $('#p-description').prop("readonly", false);
+    $('#p-linkedin').prop("readonly", false);
+
+    $('#p-button').text("Confirmar cambios");
+    $('#p-cancel-button').prop("hidden", false);
+}
+
+function EditUser() {
+    var newValues = {
+        id: $('#p-id').val(),
+        name: $('#p-name2').val(),
+        email: $('#p-email').val(),
+        password: $('#p-password').val(),
+        description: $('#p-description').val(),
+        linkedIn: $('#p-linkedin').val()
+    }
+
+    $.ajax({
+        url: "/User/UpdateUser",
+        type: "PUT",
+        data: JSON.stringify(newValues),
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            GetUserData();
+
+            $('#p-name2').prop("readonly", true);
+            $('#p-email').prop("readonly", true);
+            $('#p-password').prop("readonly", true);
+            $('#p-description').prop("readonly", true);
+            $('#p-linkedin').prop("readonly", true);
+
+            $('#p-button').text("Editar");
+            $('#p-cancel-button').prop("hidden", true);
+
+            configureToastr();
+            toastr.success('Los datos fueron actualizados correctamente');
+        },
+        error: function (errorMessage) {
+            toastr.error('Algo salió mal');
+        }
+    });
+    
+}
+
+function CancelEditing() {
+    GetUserData();
+
+    $('#p-name2').prop("readonly", true);
+    $('#p-email').prop("readonly", true);
+    $('#p-password').prop("readonly", true);
+    $('#p-description').prop("readonly", true);
+    $('#p-linkedin').prop("readonly", true);
+
+    $('#p-button').text("Editar");
+    $('#p-cancel-button').prop("hidden", true);
 }
 
 //------------------------------------------------
@@ -205,7 +375,6 @@ function LoadNewsItems() {
                 </div> `;
 
             });
-
             $("#news-container").html(htmlContent);
             setLoading(false);
 
@@ -313,7 +482,7 @@ function LoadNewsComments(pieceOfNewsID) {
 
         },
         error: function (errorMessage) {
-            console.log(errorMessage.responseText);
+            toastr.error(errorMessage.responseText);
         }
     });
 }
@@ -371,4 +540,19 @@ function AddNewsComment(pieceOfNewsID) {
     }
   
 
+}
+
+
+//------------------------------------------------
+//-------------------UTILITY----------------------
+//------------------------------------------------
+function configureToastr() {
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-right",
+        // ... otras opciones
+    };
 }
