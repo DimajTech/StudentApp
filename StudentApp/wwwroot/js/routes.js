@@ -49,7 +49,10 @@ function loadSection(section) {
             }
             if (section === "appointment") {
                 GetAppointments();
-            } if (section === "profile") {
+                GetCourses();
+                
+            } 
+	    if (section === "profile") {
                 GetUserData();
             }
         })
