@@ -1,8 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using StudentApp.Models.Entity;
 
-namespace StudentApp.Models.DAO 
-{ 
+namespace StudentApp.Models.DAO
+{
     public class AdvisementDAO
     {
         private readonly IConfiguration _configuration;
@@ -15,7 +15,7 @@ namespace StudentApp.Models.DAO
         }
 
 
-        public int Insert(Advisement advisement)
+        public int Create(Advisement advisement)
         {
             int result = 0; //Saves 1 or 0 depending on the insertion result
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -23,9 +23,20 @@ namespace StudentApp.Models.DAO
                 {
                     {
                         connection.Open();
-                        SqlCommand command = new SqlCommand("InsertAdvisement", connection); //todo stored procedure
+                        SqlCommand command = new SqlCommand("CreateAdvisement", connection); //todo stored procedure
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        //Agregar AddValue para el procedimiento
+
+
+                        command.Parameters.AddWithValue("@Id", advisement.Id);
+                        command.Parameters.AddWithValue("@CourseId", advisement.Course.Id);
+                        command.Parameters.AddWithValue("@Content", advisement.Content);
+                        command.Parameters.AddWithValue("@Status", advisement.Status);
+                        command.Parameters.AddWithValue("@IsPublic", advisement.IsPublic);
+                        command.Parameters.AddWithValue("@StudentId", advisement.User.Id);
+                        command.Parameters.AddWithValue("@CreatedAt", advisement.CreatedAt);
+
+                        result = command.ExecuteNonQuery();
+                        connection.Close();
                         result = command.ExecuteNonQuery();
                         connection.Close();
 
@@ -40,8 +51,8 @@ namespace StudentApp.Models.DAO
 
         }
 
-        
-        public Advisement Get(string id)
+
+        public Advisement GetById(Guid id)
         {
             Advisement advisement = new Advisement();
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -53,13 +64,54 @@ namespace StudentApp.Models.DAO
                 command.Parameters.AddWithValue("@Id", id);
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.Read()) //ask if an user has been found with the given id
+                if (reader.Read()) 
                 {
-                    //Todo parámetros que devuelve el store procedure
+                    advisement = 
+                    {
+                        Id = reader["Id"] != DBNull.Value ? Guid.Parse(reader["Id"].ToString()) : Guid.Empty,
+                        Date = reader["Date"] != DBNull.Value ? Convert.ToDateTime(reader["Date"]) : DateTime.MinValue,
+                        Mode = reader["Mode"].ToString(),
+                        Status = reader["Status"].ToString(),
+                        Course = new Course(
+                               reader["Code"].ToString(),
+                               reader["Name"].ToString(),
+                               null, null, 0, true // 0 porque no deja pasar null en year, se debe sobrecargar constructor.
+                           )
+                    };
+
                 }
                 connection.Close();
             }
             return advisement;
         }
+
+
+        public Advisement GetByUser(string email)
+        {
+            Advisement advisement = new Advisement();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+            }
+            return advisement;
+        }
+
+
+
+
+
+        public List<Appointment> GetPublicAdvisements()
+        {
+            List<Appointment> appointments = new List<Appointment>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                return appointments;
+            }
+
+        }
+
+
+
     }
 }
