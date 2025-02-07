@@ -50,7 +50,6 @@ function loadSection(section) {
             if (section === "appointment") {
                 GetAppointments();
                 GetCourses();
-                
             }
 
 	    if (section === "profile") {

@@ -90,9 +90,13 @@ namespace StudentApp.Models.DAO
                         user.RegistrationStatus = reader.GetString(4);
                         user.Role = reader.GetString(5);
                         user.Name = reader.GetString(6);
-                        user.Description = reader.GetString(7);
-                        user.LinkedIn = reader.GetString(8);
-                        user.Picture = reader.GetString(9);
+
+                        //Validación de los datos opcionales:
+
+                        user.Description = reader.IsDBNull(7) ? "" : reader.GetString(7);
+                        user.LinkedIn = reader.IsDBNull(8) ? "" : reader.GetString(8);
+                        user.Picture = reader.IsDBNull(9) ? "/images/user.png" : reader.GetString(9);
+
                     }
                     connection.Close();
                 }

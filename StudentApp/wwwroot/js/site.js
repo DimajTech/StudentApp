@@ -109,12 +109,13 @@ function Add() {
 function GetAppointments() {
 
     //TODO: Obtener usuario por cookie
+    const userEmail = localStorage.getItem("email");
 
     $.ajax({
         url: "/Appointment/GetAllAppointmentsByUser",
         type: "GET",
         data: {
-            email: 'test4@example.com'
+            email: userEmail
         },
         contentType: "application/json;charset=utf-8",
         dataType: "json",
@@ -136,7 +137,7 @@ function GetAppointments() {
                         statusText = 'Rechazada';
                         break;
                     default:
-                        statusText = item.status; // Mostrar el valor original si no coincide con ninguno de los anteriores
+                        statusText = item.status; //Mostrar el valor original si no coincide con ninguno de los anteriores
                 }
                 htmlTable += '<td>' + statusText + '</td>'; htmlTable += '<td>' + item.course.name + '</td>';
                 htmlTable += '<td>' + (item.professorComment == null ? 'Sin comentarios' : item.professorComment) + '</td>';
@@ -148,11 +149,12 @@ function GetAppointments() {
         },
         error: function (errorMessage) {
             configureToastr();
-            toastr.error(errorMessage.responseText);
+            toastr.error(errorMessage.me);
         }
     });
 }
 function GetCourses() {
+
     $.ajax({
         url: "/Course/GetAllCourses",
         type: "GET",
@@ -176,18 +178,22 @@ function GetCourses() {
 
 function AddAppointment() {
 
+    configureToastr();
+
+    const userId = localStorage.getItem("userId");
+
     var appointment = {
         date: $('#datetime').val(),
         mode: $('#mode').val(),
         courseid: $('#course').val(),
-        userid: 'a4163958-6f5a-4e0a-bd31-4f27abefa04d',
+        userId,
     };
     var course = {
         id: $('#course').val(),
         name: $('#course').find('option:selected').text(),
     };
     var user = {
-        id: 'a4163958-6f5a-4e0a-bd31-4f27abefa04d',
+        id: userId,
         name: 'Pruebaaaaaaaa',
     }
     appointment.course = course;
@@ -205,7 +211,6 @@ function AddAppointment() {
                 $('#datetime').val('');
                 $("#course").val(0);
                 $("#mode").val(0);
-                configureToastr();
 
                 toastr.success('Registrado con éxito');
                 GetAppointments();
@@ -225,11 +230,12 @@ function GetUserData() {
     console.log("GetUserData called");
 
     //TODO: Obtener usuario por cookie
+    const userEmail = localStorage.getItem("email");
 
     $.ajax({
         url: "/User/GetByEmail",
         type: "GET",
-        data: { email: "test3@example.com" },
+        data: { email: userEmail },
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
@@ -243,6 +249,8 @@ function GetUserData() {
             $('#p-password').val(result.password);
 
             if (result.picture) {
+                console.log("Imagen asignada:", result.picture);
+
                 $('#p-picture').attr('src', result.picture);
             }
         },

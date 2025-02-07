@@ -2269,19 +2269,18 @@ Secciones Propias
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    z-index: 10; /* Asegura que esté encima de todo */
+    justify-content: center; 
+    align-items: center; 
+    z-index: 10; 
 }
 
-/* Estilo del loader */
 .loader {
-    border: 8px solid lightGray; /* Fondo claro */
-    border-top: 8px solid #66c5e3; /* Color del borde superior */
-    border-radius: 50%; /* Hace que sea un círculo */
-    width: 70px; /* Tamaño del círculo */
-    height: 70px; /* Tamaño del círculo */
-    animation: spin 1s linear infinite; /* Animación que hace que gire */
+    border: 8px solid lightGray; 
+    border-top: 8px solid #66c5e3; 
+    border-radius: 50%; 
+    width: 70px; 
+    height: 70px; 
+    animation: spin 1s linear infinite; 
 }
 
 /* Animación del círculo */
