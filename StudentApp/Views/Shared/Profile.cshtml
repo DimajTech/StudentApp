@@ -1,46 +1,42 @@
-﻿<section class="">
+﻿<section id="profile" class="p-section">
+    <div class="profile-main-div">
+        <div class="profile-second-div">
 
-    <div class="col-lg-6">
-
-        <div class="contact-us-content">
-
-            <div class="row">
-                    <img src="profile-icon.png" class="">
-                    <h2 id="p-name" class=""></h2>   
+            <div class="p-photo-row">
+                <img src="" id="p-picture">
+                <h2 id="p-name" class=""></h2>
+                <p id="p-id" value="" hidden></p>
             </div>
 
-            <div class="row">
-                    <label class="">Nombre</label>
-                    <input id="p-name2" class="" value="Faraon Love Shady" readonly>         
+            <div class="profile-main-div">
+                <label>Nombre</label>
+                <input id="p-name2" class="profile-input" value="" readonly>
             </div>
 
-            <div class="row">
-                    <label class="">Correo electrónico</label>
-                    <input id="p-email" class="" type="email" value="test3@example.com" readonly>                
+            <div class="profile-main-div">
+                <label class="">Correo electrónico</label>
+                <input id="p-email" class="profile-input" type="email" value="" readonly>
             </div>
 
-            <div class="row">
-                    <label class="">Descripción</label>
-                    <input id="p-description" class="" value="" readonly>               
+            <div class="profile-main-div">
+                <label class="">Contraseña</label>
+                <input id="p-password" class="profile-input" type="password" value="" readonly>
             </div>
 
-            <div class="row">
-                    <label class="">LinkedIn</label>
-                    <input id="p-linkedin" class="" value="" readonly>
+            <div class="profile-main-div">
+                <label class="">Descripción</label>
+                <input id="p-description" class="profile-input" value="" readonly>
             </div>
 
-            <div class="row">
-                    <label class="">Contraseña</label>
-                    <input id="p-password" class="" type="password" value="" readonly>              
+            <div class="profile-main-div">
+                <label class="">LinkedIn</label>
+                <input id="p-linkedin" class="profile-input" value="" readonly>
             </div>
 
-                <button id="p-button" class="orange-button" >Editar</button>
-
+            <div class="p-buttons-row">
+                <button id="p-button" class="profile-button" onclick="HandleEditing()">Editar</button>
+                <button id="p-cancel-button" class="profile-button" onclick="CancelEditing()" hidden>Cancelar</button>
+            </div>
         </div>
-
-        <br/>
-        <label id="p-validation"></label>
-
     </div>
-
 </section>

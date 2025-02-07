@@ -52,6 +52,10 @@ function loadSection(section) {
                 GetCourses();
                 
             }
+
+	    if (section === "profile") {
+                GetUserData();
+            }
         })
         .catch(error => {
             console.error(error);
