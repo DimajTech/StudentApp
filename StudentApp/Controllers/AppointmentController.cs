@@ -58,27 +58,5 @@ namespace StudentApp.Controllers
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

@@ -15,7 +15,6 @@
 		public PieceOfNews()
 		{
 		}
-		//todo: constructor
 
 
 		public string Id { get => id; set => id = value; }
