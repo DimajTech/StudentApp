@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Globalization;
+using System.Security.Cryptography;
 
 namespace StudentApp.Models.Entity
 {
@@ -46,8 +47,13 @@ namespace StudentApp.Models.Entity
 			this.role = role;
 		}
 
+        public User(string id)
+        { // se usa para advisement
+            this.id = id;
+            
+        }
 
-		public string Id { get => id; set => id = value; }
+        public string Id { get => id; set => id = value; }
 		public string Name { get => name; set => name = value; }
 		public string Email { get => email; set => email = value; }
 		public string Picture { get => picture; set => picture = value; }

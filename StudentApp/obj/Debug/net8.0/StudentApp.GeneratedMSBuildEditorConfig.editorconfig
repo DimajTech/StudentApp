@@ -34,24 +34,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Shared/Advisement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkdmlzZW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Shared/Appointment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFwcG9pbnRtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Shared/CreateAdvisement.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENyZWF0ZUFkdmlzZW1lbnQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Shared/DetailAdvisement.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXERldGFpbEFkdmlzZW1lbnQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Shared/ListAdvisements.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExpc3RBZHZpc2VtZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Shared/Login.cshtml]

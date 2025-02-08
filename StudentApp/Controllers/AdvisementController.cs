@@ -43,7 +43,7 @@ namespace StudentApp.Controllers
 
 
 
-        public IActionResult GetAdvisementById([FromBody] Guid id)
+        public IActionResult GetAdvisementById([FromBody] string id)
         {
             return Ok(advisementDAO.GetById(id));
 

@@ -1,5 +1,7 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Data.SqlClient;
 using StudentApp.Models.Entity;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace StudentApp.Models.DAO
 {
@@ -52,9 +54,9 @@ namespace StudentApp.Models.DAO
         }
 
 
-        public Advisement GetById(Guid id)
+        public Advisement GetById(string id)
         {
-            Advisement advisement = new Advisement();
+            Advisement advisement = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -64,21 +66,56 @@ namespace StudentApp.Models.DAO
                 command.Parameters.AddWithValue("@Id", id);
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.Read()) 
+                if (reader.Read())
                 {
-                    advisement = 
+                    advisement = new Advisement
                     {
-                        Id = reader["Id"] != DBNull.Value ? Guid.Parse(reader["Id"].ToString()) : Guid.Empty,
-                        Date = reader["Date"] != DBNull.Value ? Convert.ToDateTime(reader["Date"]) : DateTime.MinValue,
-                        Mode = reader["Mode"].ToString(),
-                        Status = reader["Status"].ToString(),
+                        Id = reader["Id"].ToString(),
                         Course = new Course(
-                               reader["Code"].ToString(),
-                               reader["Name"].ToString(),
-                               null, null, 0, true // 0 porque no deja pasar null en year, se debe sobrecargar constructor.
-                           )
+                            reader["CourseCode"].ToString(),
+                            reader["CourseName"].ToString(),
+                            null, null, 0, true
+                        ), // constructor sobrecargado 
+                        Content = reader["Content"].ToString(),
+                        Status = reader["Status"].ToString(),
+                        IsPublic = reader["IsPublic"] != DBNull.Value && Convert.ToBoolean(reader["IsPublic"]),
+                        User = new User(reader["UserId"] != DBNull.Value ? reader["UserId"].ToString() : string.Empty), 
+                        CreatedAt = reader["CreatedAt"] != DBNull.Value ? Convert.ToDateTime(reader["CreatedAt"]) : DateTime.MinValue
                     };
+                }
+                connection.Close();
+            }
+            return advisement;
+        }
 
+        public Advisement GetByUser(string email)
+        {
+            Advisement advisement = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("GetAdvisementByUser", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure; // Especificar que es un procedimiento almacenado
+                command.Parameters.AddWithValue("@Email", email);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    advisement = new Advisement
+                    {
+                        Id = reader["Id"].ToString(),
+                        Course = new Course(
+                            reader["CourseCode"].ToString(),
+                            reader["CourseName"].ToString(),
+                            null, null, 0, true
+                        ),  
+                        Content = reader["Content"].ToString(),
+                        Status = reader["Status"].ToString(),
+                        IsPublic = reader["IsPublic"] != DBNull.Value && Convert.ToBoolean(reader["IsPublic"]),
+                        User = new User(reader["UserId"] != DBNull.Value ? reader["UserId"].ToString() : string.Empty),
+                        CreatedAt = reader["CreatedAt"] != DBNull.Value ? Convert.ToDateTime(reader["CreatedAt"]) : DateTime.MinValue
+                    };
                 }
                 connection.Close();
             }
@@ -86,31 +123,42 @@ namespace StudentApp.Models.DAO
         }
 
 
-        public Advisement GetByUser(string email)
+        public IEnumerable<Advisement> GetPublicAdvisements()
         {
-            Advisement advisement = new Advisement();
+            List<Advisement> advisements = new List<Advisement>();
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                connection.Open();
+                SqlCommand command = new SqlCommand("GetPublicAdvisements", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
 
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Advisement advisement = new Advisement
+                        {
+                            Id = reader["Id"].ToString(),
+                            Course = new Course(
+                                reader["CourseCode"].ToString(),
+                                reader["CourseName"].ToString(),
+                                null, null, 0, true
+                            ),
+                            Content = reader["Content"].ToString(),
+                            Status = reader["Status"].ToString(),
+                            IsPublic = reader["IsPublic"] != DBNull.Value && Convert.ToBoolean(reader["IsPublic"]),
+                            User = new User(reader["UserId"] != DBNull.Value ? reader["UserId"].ToString() : string.Empty),
+                            CreatedAt = reader["CreatedAt"] != DBNull.Value ? Convert.ToDateTime(reader["CreatedAt"]) : DateTime.MinValue
+                        };
+
+                        advisements.Add(advisement);
+                    }
+                }
             }
-            return advisement;
+
+            return advisements;
         }
-
-
-
-
-
-        public List<Appointment> GetPublicAdvisements()
-        {
-            List<Appointment> appointments = new List<Appointment>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-
-                return appointments;
-            }
-
-        }
-
 
 
     }

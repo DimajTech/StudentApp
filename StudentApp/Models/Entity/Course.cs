@@ -14,6 +14,8 @@
         {
         }
 
+
+
         public Course(string code, string name, string professorId, string semester, int year, bool isActive)
         {
             id = Guid.NewGuid();

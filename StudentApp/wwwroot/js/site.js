@@ -204,6 +204,127 @@ function AddAppointment() {
 
 };
 
+
+//------------------------------------------------
+//---------ADVISEMENT SECTION---------------
+//------------------------------------------------
+
+function GetAdvisementsByUser(email) {
+    $.ajax({
+        url: "/Advisement/GetAdvisementsByUser",
+        type: "GET",
+        data: { email: email },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+            var userHtmlTable = '';
+            $.each(result, function (key, item) {
+                userHtmlTable += '<tr>';
+                userHtmlTable += '<td>' + item.course.code + '</td>';
+                userHtmlTable += '<td>' + item.user.name + '</td>';
+                userHtmlTable += '<td>' + new Date(item.createdAt).toLocaleDateString() + '</td>';
+                userHtmlTable += '<td><button class="btn btn-info" onclick="GetAdvisementDetails(' + item.id + ')">Ver más</button></td>';
+                userHtmlTable += '</tr>';
+            });
+
+            $('#user-advisements').html(userHtmlTable);
+        },
+        error: function (errorMessage) {
+            console.error("Error en GetAdvisementsByUser:", errorMessage.responseText);
+        }
+    });
+}
+
+function GetPublicAdvisements() {
+    $.ajax({
+        url: "/Advisement/GetPublicAdvisements",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            console.log("Datos de consultas públicas recibidos:", result); // Verificación en consola
+
+            var publicHtmlTable = '';
+            $.each(result, function (key, item) {
+                publicHtmlTable += '<tr>';
+                publicHtmlTable += '<td>' + item.course.code + '</td>';
+                publicHtmlTable += '<td>' + item.user.name + '</td>';
+                publicHtmlTable += '<td>' + new Date(item.createdAt).toLocaleDateString() + '</td>';
+                publicHtmlTable += '<td><button class="btn btn-info" onclick="GetAdvisementDetails(' + item.id + ')">Ver más</button></td>';
+                publicHtmlTable += '</tr>';
+            });
+
+            $('#public-advisements').html(publicHtmlTable);
+        },
+        error: function (errorMessage) {
+            console.error("Error en GetPublicAdvisements:", errorMessage.responseText);
+        }
+    });
+}
+
+function GetAdvisementDetail(id) {
+    $.ajax({
+        url: "/Advisement/GetAdvisementById",
+        type: "GET",
+        data: { id: id }, // Enviar ID
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            // Asignar los datos a la vista
+            $("#course").text(result.course.name);
+            $("#author").text(result.user.name);
+            $("#content").text(result.content);
+
+            // Mostrar la sección de detalles
+            $("#advisement-details").show();
+        },
+        error: function (errorMessage) {
+            console.error("Error en GetAdvisementDetail:", errorMessage.responseText);
+        }
+    });
+}
+
+
+function AddAdvisement() { 
+    var selectedCourseId = $('#course').val();  // esto esta incorrecto
+    var selectedCourseName = $('#course option:selected').text();   // se puede hacer SP getCourseByName para traer el id, o hacerlo en el que ya esta 
+    var advisementContent = $('#advisement-content').val(); 
+    var isPublic = $('#publicCheck').is(':checked'); 
+
+    var user = {
+        id: "57f90130-0dee-4f6a-90bb-d00f37583cc0" 
+    };
+
+    var course = {
+        id: selectedCourseId, 
+        name: selectedCourseName
+    };
+
+    var advisement = {
+        course: course,
+        content: advisementContent,
+        isPublic: isPublic,
+        user: user
+    };
+
+    $.ajax({
+        url: "/Advisement/CreateNewAdvisement",
+        type: "POST",
+        data: JSON.stringify(advisement),
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            alert("Consulta creada con éxito.");
+            $("#create-advisement").hide();
+        },
+        error: function (errorMessage) {
+            console.error("Error al crear la consulta:", errorMessage.responseText);
+        }
+    });
+}
+
+
 //------------------------------------------------
 //--------------PROFILE SECTION-------------------
 //------------------------------------------------
