@@ -52,7 +52,7 @@ function loadSection(section) {
                 GetCourses();
                 
             }
-            if (section === "advisements") {
+            if (section === "advisement") {
                 var userEmail = "dani@gmail.com"; 
                 GetAdvisementsByUser(userEmail);
                 GetPublicAdvisements();

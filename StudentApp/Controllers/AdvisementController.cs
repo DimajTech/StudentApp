@@ -59,12 +59,15 @@ namespace StudentApp.Controllers
 
         }
 
+        [HttpGet]
         public IActionResult GetPublicAdvisements()
         {
 
             return Json(advisementDAO.GetPublicAdvisements());
 
         }
+
+
 
     }
 }
