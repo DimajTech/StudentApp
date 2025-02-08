@@ -2176,7 +2176,14 @@ Secciones Propias
     cursor: pointer;
 }
 
-
+#noAppointmentsMessage {
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    color: #555; /* Color gris tenue */
+    font-weight: 400; /* Peso de la fuente */
+    font-style: italic; /* Opcional: estilo en cursiva */
+    margin-top: 10px; /* Espaciado superior */
+    margin-left: 5px; /* Espaciado izquierdo */
+}
 
 
 
