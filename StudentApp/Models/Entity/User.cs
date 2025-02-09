@@ -47,10 +47,10 @@ namespace StudentApp.Models.Entity
 			this.role = role;
 		}
 
-        public User(string id)
+        public User(string id, string name)
         { // se usa para advisement
             this.id = id;
-            
+            this.name= name;
         }
 
         public string Id { get => id; set => id = value; }

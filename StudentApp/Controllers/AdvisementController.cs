@@ -51,13 +51,14 @@ namespace StudentApp.Controllers
         }
 
 
-
+        [HttpGet]
         public IActionResult GetAdvisementsByUser([FromQuery] string email)
         {
 
             return Json(advisementDAO.GetByUser(email));
 
         }
+
 
         [HttpGet]
         public IActionResult GetPublicAdvisements()
