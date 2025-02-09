@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Scholar - Online School HTML5 Template</title>
+    <title>UCR Estudiantes</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -47,24 +47,76 @@
 
     @if (isAuthenticated)
     {
+        <!-- ***** Header Area Start ***** -->
+        <header class="header-area header-sticky background-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- ***** Logo Start ***** -->
+                            <a href="/view/news" data-section="view/news" class="logo">
+                                <img src="/images/university-logo.png" alt="University Logo" style="height: 50px;" />
+                            </a>
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav" id= "header">
+                                <li class="scroll-to-section"><a href="/view/news" data-section="view/news">Noticias</a></li>
+                                <li class="scroll-to-section"><a href="/view/appointment" data-section="view/appointment">Horas consulta</a></li>
+                                <li class="scroll-to-section"><a href="/view/advisement" data-section="view/advisement">Consulta de Cursos</a></li>
+                                <li class="scroll-to-section"><a href="/view/profile" data-section="view/profile">Perfil</a></li>
+                            </ul>
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                            <!-- ***** Menu End ***** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-        <component type="typeof(DashboardHeader)" render-mode="Static" />
-        <div class="container">
-            <main role="main" id="main-content">
+        <div class="container" id="page-container">
+                <main role="main" id="main-content">
 
-                @RenderBody()
+                    @RenderBody()
 
-            </main>
+                </main>
         </div>
+
     }
     else
     {
-        <component type="typeof(Header)" render-mode="Static" />
+        <!-- ***** Header Area Start ***** -->
+        <header class="header-area header-sticky background-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- ***** Logo Start ***** -->
+                            <a href="/view/news" data-section="view/news" class="logo">
+                                <img src="/images/university-logo.png" alt="University Logo" style="height: 50px;" />
+                            </a>
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav">
+                                <li><a href="/User/Login">Iniciar Sesión</a></li>
+                                <li><a href="/User/Register">Registrarse</a></li>
+                            </ul>
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                            <!-- ***** Menu End ***** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
         <div>
             <main role="main" id="main-content">
 
- 
-                @RenderBody()
+                    @RenderBody()
+
             </main>
         </div>
     }
@@ -529,7 +581,7 @@
     <script src="/js/site.js"></script>
     <script src="/js/routes.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="~/_framework/blazor.server.js"></script>
+    <!--<script src="~/_framework/blazor.server.js"></script>-->
 
 </body>
 </html>

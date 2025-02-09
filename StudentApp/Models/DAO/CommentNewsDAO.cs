@@ -7,11 +7,14 @@ namespace StudentApp.Models.DAO
     {
         private readonly IConfiguration _configuration;
         string connectionString;
+        CommentNewsResponseDAO responseDAO;
 
         public CommentNewsDAO(IConfiguration configuration)
         {
             _configuration = configuration;
             connectionString = _configuration.GetConnectionString("DefaultConnection");
+            responseDAO= new CommentNewsResponseDAO(_configuration);
+
         }
         public int Insert(CommentNews comment)
         {
@@ -45,7 +48,8 @@ namespace StudentApp.Models.DAO
 		public List<CommentNews> GetCommentsByPieceOfNewsId(string id)
 		{
 			List<CommentNews> comments = new List<CommentNews>();
-			using (SqlConnection connection = new SqlConnection(connectionString))
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
 			{
 				connection.Open();
 				SqlCommand command = new SqlCommand("GetCommentByPieceOfNewsId", connection);
@@ -56,13 +60,14 @@ namespace StudentApp.Models.DAO
 
 				while (reader.Read())
 				{
-					comments.Add(new CommentNews
-					{
-						Id = reader["Id"].ToString(),
-						Text = reader["Text"].ToString(),
-						DateTime = DateTime.Parse(reader["Date"].ToString()),
-						User = new User(null, reader["Name"].ToString(), null, null, reader["Role"].ToString()),
-					});
+                    comments.Add(new CommentNews
+                    {
+                        Id = reader["Id"].ToString(),
+                        Text = reader["Text"].ToString(),
+                        DateTime = DateTime.Parse(reader["Date"].ToString()),
+                        User = new User(null, reader["Name"].ToString(), null, null, reader["Role"].ToString()),
+                        TotalResponses = Convert.ToInt32(reader["TotalResponses"])
+                }) ;
 				}
 				connection.Close();
 			}

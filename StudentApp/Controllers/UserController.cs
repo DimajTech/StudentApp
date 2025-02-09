@@ -40,6 +40,7 @@ namespace StudentApp.Controllers
                 bool success = false;
                 string message = "";
                 string userId = "";
+                string role = "";
 
                 if (user != null && user.Password == password)
                 {
@@ -47,12 +48,11 @@ namespace StudentApp.Controllers
                     {
                         if (user.IsActive)
                         {
-                            // Crear la cookie con email y UUID
                             var authData = $"{user.Email} {user.Id}";
 
                             var cookieOptions = new CookieOptions
                             {
-                                HttpOnly = true,
+                                //HttpOnly = false,
                                 Secure = true,
                                 Expires = DateTime.UtcNow.AddHours(3)
                             };
@@ -62,6 +62,7 @@ namespace StudentApp.Controllers
                             // Devolver los datos en la respuesta JSON
                             success = true;
                             userId = user.Id.ToString();
+                            role = user.Role.ToString();
                         }
                         else
                         {
@@ -78,7 +79,7 @@ namespace StudentApp.Controllers
                     message = "Credenciales inválidas.";
                 }
 
-                return Json(new { success, message, userId });
+                return Json(new { success, message, userId, role });
             }
             catch (Exception ex)
             {

@@ -14,11 +14,12 @@ namespace StudentApp.Controllers
 
 
 
-        [Route("{viewName}")]
-        public IActionResult LoadView(string viewName)
+        [Route("view/{viewName}/{id?}")]
+        public IActionResult LoadView(string viewName, string? id)
         {
             return View($"~/Views/Shared/{viewName}.cshtml");
         }
+
 
     }
 

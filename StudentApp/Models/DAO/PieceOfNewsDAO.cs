@@ -14,7 +14,44 @@ namespace StudentApp.Models.DAO
 			_configuration = configuration;
 			connectionString = _configuration.GetConnectionString("DefaultConnection");
 		}
-		public List<PieceOfNews> Get()
+
+        public int Insert(PieceOfNews news)
+        {
+            int result = 0; //Saves 1 or 0 depending on the insertion result
+
+            if (news.User.Role =="President")
+			{
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                    try
+                    {
+                        {
+                            connection.Open();
+                            SqlCommand command = new SqlCommand("InsertNews", connection);
+                            command.CommandType = System.Data.CommandType.StoredProcedure;
+                            command.Parameters.AddWithValue("@Title", news.Title);
+                            //command.Parameters.AddWithValue("@File", null);
+                            command.Parameters.AddWithValue("@Picture", news.Picture);
+                            command.Parameters.AddWithValue("@AuthorID", news.User.Id);
+                            command.Parameters.AddWithValue("@Description", news.Description);
+
+
+
+                            result = command.ExecuteNonQuery();
+                            connection.Close();
+
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        throw;
+                    }
+            }
+            
+
+            return result;
+
+        }
+        public List<PieceOfNews> Get()
 		{
 			List<PieceOfNews> news = new List<PieceOfNews>();
 			using (SqlConnection connection = new SqlConnection(connectionString))

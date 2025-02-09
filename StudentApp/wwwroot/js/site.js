@@ -1,4 +1,5 @@
-﻿$(document).ready(() => {
+﻿
+$(document).ready(() => {
 
     $(document).on('submit', '#contact-form', function (event) {
 
@@ -14,7 +15,14 @@
 
     });
 
+    $(document).on('submit', '#add-news-form', function (event) {
+
+        event.preventDefault();
+        AddPieceOfNews();
+    });
+
 });
+
 
 function setLoading(isloading) {
 
@@ -30,6 +38,9 @@ function setLoading(isloading) {
 //---------LOGIN & REGISTER SECTION---------------
 //------------------------------------------------
 function AuthenticateUser() {
+
+    setLoading(true);
+
     const email = $('#email').val();
     const password = $('#password').val();
 
@@ -41,6 +52,7 @@ function AuthenticateUser() {
             if (response.success) {
 
                 localStorage.setItem("email", email);
+                localStorage.setItem("role", response.role);
                 localStorage.setItem("userId", response.userId);
 
                 window.location.href = "/";
@@ -50,14 +62,20 @@ function AuthenticateUser() {
 
                 $('#validation').text(response.message).css('color', '#900C3F');
             }
+            setLoading(false);
+
         },
         error: function () {
 
             $('#validation').text('Hubo un problema con el servidor. Intente de nuevo más tarde.').css('color', '#900C3F');
+            setLoading(false);
+
         }
     });
 }
 function Add() {
+
+    setLoading(true);
 
     var user = {
 
@@ -94,10 +112,13 @@ function Add() {
                     $('#validation').text(response.message).css('color', '#900C3F');
                 }
 
+                setLoading(false);
 
             },
             error: function (errorMessage) {
                 $('#validation').text(errorMessage.message).css('color', '#900C3F');
+                setLoading(false);
+
             }
         });
     }
@@ -227,7 +248,6 @@ function AddAppointment() {
 //--------------PROFILE SECTION-------------------
 //------------------------------------------------
 function GetUserData() {
-    console.log("GetUserData called");
 
     //TODO: Obtener usuario por cookie
     const userEmail = localStorage.getItem("email");
@@ -239,7 +259,6 @@ function GetUserData() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            console.log("User data retrieved:", result);
             $('#p-id').val(result.id);
             $('#p-name').text(result.name);
             $('#p-name2').val(result.name);
@@ -249,8 +268,6 @@ function GetUserData() {
             $('#p-password').val(result.password);
 
             if (result.picture) {
-                console.log("Imagen asignada:", result.picture);
-
                 $('#p-picture').attr('src', result.picture);
             }
         },
@@ -296,6 +313,8 @@ function AllowFieldEditing() {
 }
 
 function EditUser() {
+    configureToastr();
+
     var newValues = {
         id: $('#p-id').val(),
         name: $('#p-name2').val(),
@@ -349,9 +368,140 @@ function CancelEditing() {
 //------------------------------------------------
 //--------------NEWS SECTION----------------------
 //------------------------------------------------
+
+//Add News
+
+function AddPieceOfNews() {
+
+    setLoading(true);
+
+    const fileInput = document.getElementById("add-news-image-upload");
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = function () {
+
+            var title = ($('#add-news-title').val() || "").trim();
+            var description = ($('#add-news-description').val() || "").trim();
+
+            if (title.length > 0 && description.length > 0) {
+
+                var news = {
+                    title: $('#add-news-title').val(),
+                    description: $('#add-news-description').val(),
+                    picture: reader.result,
+                    user: {
+                        id: localStorage.getItem("userId"),
+                        role: localStorage.getItem("role")
+                    }
+                };
+                $.ajax({
+                    url: "/PieceOfNews/CreateNews",
+                    data: JSON.stringify(news), //convierte la variable estudiante en tipo json
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        console.log(response)
+
+                        if (response === -1) {
+                            $('#add-news-title').val('');
+                            $('#add-news-description').val('');
+
+                            $("#previewImage").attr("src", "/images/photo-editor-icon.png");
+                            $(fileInput).val(""); // Resetear input si no es imagen
+                            $("#fileName").text("Sin archivos seleccionados");
+
+
+                            toastr.options.positionClass = 'toast-bottom-right';
+                            toastr.success('La noticia se ha publicado con éxito');
+
+                        } else {
+
+                            toastr.options.positionClass = 'toast-bottom-right';
+                            toastr.error('No cuentas con los permisos para realizar esta acción.');
+                        }
+
+                        setLoading(false);
+
+
+
+                    },
+                    error: function (errorMessage) {
+
+                        toastr.options.positionClass = 'toast-bottom-right';
+                        toastr.error('Ha ocurrido un error al guardar la noticia. Intente de nuevo más tarde.');
+
+                        console.error(errorMessage.message);
+                        setLoading(false);
+
+                    }
+                });
+            } else {
+                toastr.options.positionClass = 'toast-bottom-right';
+                toastr.error('No se permiten espacios vacíos...');
+                setLoading(false);
+            }
+        };
+
+        reader.onerror = function () {
+
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.error('Ha ocurrido un error al cargar la imagen. Intente de nuevo.');
+
+            setLoading(false);
+        };
+    } else {
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.error('Debes seleccionar una imagen de portada.');
+        setLoading(false);
+    }
+
+}
+function previewSelectedImage(input) {
+
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+
+        if (file.type.startsWith("image/")) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#previewImage").attr("src", e.target.result);
+                $("#fileName").text(file.name);
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.error('Por favor seleccione una imagen.');
+
+            $("#previewImage").attr("src", "/images/istockphoto-1128826884-612x612.jpg");
+
+            $(input).val(""); // Resetear input si no es imagen
+            $("#fileName").text("Sin archivos seleccionados");
+        }
+    }
+}
+
+
+//News Items
 function LoadNewsItems() {
 
     setLoading(true);
+
+    const role = localStorage.getItem("role");
+    const addBtn = $(`#add-news-btn`);
+
+    if (role === "President") {
+        addBtn.css("display", "block");
+    }else {
+        addBtn.css("display", "none");
+    }
 
     $.ajax({
         url: "/PieceOfNews/GetNews",
@@ -360,29 +510,33 @@ function LoadNewsItems() {
         dataType: "json",
         success: function (result) {
 
-            htmlContent =  '';
+            htmlContent = ` `;
+
 
             $.each(result, (key, item) => {
 
                 htmlContent += `
-                <div class="col-lg-4 col-md-6 align-self-center mb-90 event_outer col-md-6 wordpress design">
-                    <div class="events_item">
-                        <div class="thumb">
-                            <a href="javascript:void(0);" onclick="LoadNewsDetail('${item.id}')">
-                                <img src="${item.picture}" alt="">
-                            </a>
-                            <span class="category">${item.date}</span>
-                        </div>
-                        <div class="down-content">
-                            <span class="author">${item.user.name}</span>
-                            <h5>${item.title}</h5>
-                            <br/>
-                            <h7>${item.description.length > 80 ? item.description.substring(0, item.description.lastIndexOf(' ', 80)) + "..." : item.description}</h7>
+                    <div class="col-lg-4 col-md-6 align-self-center mb-90 event_outer col-md-6 wordpress design">
+                        <div class="events_item">
+                            <div class="thumb">
+                                <a href="#" onclick="loadSection('view/newsdetails/${item.id}'); return false;">
+                                    <img src="${item.picture}" alt="">
+                                </a>
+                                <span class="category">${item.date}</span>
+                            </div>
+                            <div class="down-content">
+                                <span class="author">${item.user.name}</span>
+                                <h5>${item.title}</h5>
+                                <br/>
+                                <h7>${item.description.length > 80 ? item.description.substring(0, item.description.lastIndexOf(' ', 80)) + "..." : item.description}</h7>
+                            </div>
                         </div>
                     </div>
-                </div> `;
+                    `;
 
             });
+
+
             $("#news-container").html(htmlContent);
             setLoading(false);
 
@@ -391,6 +545,11 @@ function LoadNewsItems() {
         },
         error: function (errorMessage) {
             console.log(errorMessage.responseText);
+
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.error('Ha ocurrido un error al cargar las noticias, intente de nuevo más tarde.');
+
+            setLoading(false);
         }
     });
 }
@@ -405,42 +564,44 @@ function LoadNewsDetail(pieceOfNewsID) {
         contentType: "application/json;charset=utf-8",
         success: function (newsItem) {
 
-            var detailHtml = `
-                    <fieldset>
-                        <button onclick="LoadNewsItems()" style="
-                            border: none;
-                            height: 50px;
-                            font-size: 14px;
-                            font-weight: 600;
-                            background-color: #fff;
-                            padding: 0px 25px;
-                            border-radius: 25px;
-                            color: #66c5e3;
-                            transition: all .4s;
-                            position: relative;
-                            z-index: 3;">
-                            ⬅ Volver</button>
-                    </fieldset>
-                    <img src="${newsItem.picture}" alt="" style="border-radius: 33px; padding-top:20px; padding-bottom:20px">
-                    <h2>${newsItem.title}</h2>
-                    <p><strong>Autor:</strong> ${newsItem.user.name} (${newsItem.user.role})</p>
-                    <p><strong>Fecha:</strong> ${newsItem.date}</p>
-                    <p style="text-align:justify; border-radius: 33px; padding-top:20px; padding-bottom:20px; white-space: pre-line;">${newsItem.description}</p>
-                    <div id="commentsContainer"></div>
-            `;
+            if (newsItem && Object.keys(newsItem).length > 0) {
+
+                $('#img-news-detail').attr('src', newsItem.picture);
+                $('#title-news-detail').text(newsItem.title);
+                $('#autor-news-detail').text("Autor: " + newsItem.user.name + " (" + newsItem.user.role + ")");
+                $('#date-news-detail').text(newsItem.date);
+                $('#description-news-detail').text(newsItem.description);
+
+                //$("#news-container").html(detailHtml);
+                LoadNewsComments(pieceOfNewsID);
+            } else {
+
+                toastr.options.positionClass = 'toast-bottom-right';
+                toastr.error('La noticia no existe o ha sido eliminada.');
+
+                setLoading(false);
+                loadSection('view/news');
+            }
+
 
             setLoading(false);
 
-            $("#news-container").html(detailHtml);
-            LoadNewsComments(pieceOfNewsID);
+
         },
         error: function (errorMessage) {
             console.log(errorMessage.responseText);
+
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.error('Ha ocurrido un error al cargar la noticia, intente de nuevo más tarde.');
+
+            setLoading(false);
         }
     });
 }
 
+let totalComments = 0;
 function LoadNewsComments(pieceOfNewsID) {
+
 
     $.ajax({
         url: "/CommentNews/GetCommentNewsByPieceOfNewsId/" + pieceOfNewsID,
@@ -450,6 +611,9 @@ function LoadNewsComments(pieceOfNewsID) {
 
 
 
+            totalComments = newsComments.length;
+
+            //Caja para comentar
             var htmlContent = `<br><h3>Comentarios</h3>`;
             $("#commentsContainer>").html(`<div class="loader"></div>`);
 
@@ -462,12 +626,17 @@ function LoadNewsComments(pieceOfNewsID) {
                     </button>
                 </div>
                 <div style="text-align:right; padding-right:10px;">
-                    <br> <h6>${newsComments.length !== 1 ? newsComments.length + " comentarios" : " comentario"} </h6><br>
+                    <br> <h6 id= "totalComments"></h6><br>
                 </div>
             `;
 
+            let index = 0;
+            //Comentarios
             newsComments.forEach(comment => {
 
+                totalComments += comment.totalResponses
+
+                index++;
                 htmlContent += `
                     <div class="comment-card">
                         <div class="comment-header">
@@ -481,25 +650,123 @@ function LoadNewsComments(pieceOfNewsID) {
                         <div class="comment-body">
                             <p>${comment.text}</p>
                         </div>
-                    </div>
+
+                        <div class="comment-footer">
+
+                        <div style="display: flex;flex-flow: row;margin-top:10px;">
+                            <p style: "align-content_center;" id=${index + "-response-counter"}></p>
+                            <img src="/images/comment-box-icon.png" alt="" style="width: 20px;height: 20px;margin-left: 10px;margin-top:5px;">
+                        </div>
+
+                            <button onclick="toggleAddResponse('${index + "-response-news-form"}','${index + "-response-news-form-btn"}' )" class="add-response-btn" id= ${index + "-response-news-form-btn"} >Responder</button>
+
+                        </div>
+
+                          <div class="comment-add-container" id= ${index + "-response-news-form"} style="display:none;">
+                             <textarea id= ${index + "-response-text-area"} class="comment-text-area" maxlength="200" rows="4" placeholder="Escribe tu respuesta para ${comment.user.name}..." required></textarea><br>
+                             <button id="addCommentBtn" class="comment-button" onclick="AddNewsCommentResponse('${comment.id}', '${index + "-response-news-container"}', '${index + "-response-text-area"}', '${index + "-response-counter"}')">
+                                 Agregar Respuesta
+                             </button>
+
+                          </div>
+                          
+                        </div>
+
+                        <div id=${index + "-response-news-container"}>
+                        
+                        </div>
                 `;
+
+                LoadNewsCommentsResponse(comment.id, index + "-response-news-container", index + "-response-counter");
+
             });
 
             $('#commentsContainer').html(htmlContent);
+            $('#totalComments').html(totalComments + " Comentario(s)");
             
 
         },
         error: function (errorMessage) {
-            toastr.error(errorMessage.responseText);
+            console.log(errorMessage.responseText);
+
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.error('Ha ocurrido un error al cargar los comentarios, intente de nuevo más tarde.');
+
+            setLoading(false);
         }
     });
 }
+
+function LoadNewsCommentsResponse(commentID, container, counter) {
+
+    let totalResponses = 0;
+
+    $.ajax({
+        url: "/CommentNews/GetCommentNewsResponsesByCommentId/" + commentID,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (responses) {
+
+
+            var htmlContent = '';
+            //Itera sobre las respuestas de los comentarios 
+            responses.forEach(response => {
+
+                totalResponses++;
+
+                htmlContent += `
+                    <div class="response-card">
+                        <div class="comment-header">
+                            <div>
+                                <span class="comment-user">${response.user.name}</span>
+                                <span class="comment-role">(${response.user.role})</span>
+                            </div>
+                           
+                            <span class="comment-date">${new Date(response.dateTime).toLocaleString()}</span>
+                        </div>
+                        <div class="comment-body">
+                            <p>${response.text}</p>
+                        </div>
+                    </div>
+                `;
+
+            });
+
+            
+            $('#' + container).html(htmlContent);
+            $('#' + counter).text(totalResponses);
+
+        },
+        error: function (errorMessage) {
+            console.log(errorMessage.responseText);
+
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.error('Ha ocurrido un error  cargando los comentarios, intente de nuevo más tarde.');
+
+            setLoading(false);        }
+    });
+}
+const toggleAddResponse = (id, btnId) => {
+    const element = $(`#${id}`);
+    const btn = $(`#${btnId}`);
+
+
+    if (element.is(":visible")) {
+        element.css("display", "none");
+        btn.text("Responder");
+    } else {
+        element.css("display", "block");
+
+        btn.text("Cancelar");
+    }
+};
+
 function AddNewsComment(pieceOfNewsID) {
 
-    
-    var text = $('#comment-text-area').val();
 
-    if (text) {
+    var text = ($('#comment-text-area').val() || "").trim(); 
+
+    if (text.length > 0) {
         $("#comment-text-area").css("border-color", "black");
 
         const userID = localStorage.getItem("userId");
@@ -531,9 +798,14 @@ function AddNewsComment(pieceOfNewsID) {
                 setLoading(false);
 
 
+
             },
             error: function (errorMessage) {
                 console.log(errorMessage.responseText);
+
+                toastr.options.positionClass = 'toast-bottom-right';
+                toastr.error('Ha ocurrido un error al agregar el comentario, intente de nuevo más tarde.');
+
                 setLoading(false);
 
             }
@@ -550,6 +822,69 @@ function AddNewsComment(pieceOfNewsID) {
 
 }
 
+function AddNewsCommentResponse(commentID, container, textarea, counter) {
+
+
+    var text = ($('#' + textarea).val() || "").trim();
+
+    if (text.length > 0) {
+        $('#' + textarea).css("border-color", "black");
+
+        const userID = localStorage.getItem("userId");
+
+        var response = {
+
+            CommentNews: {
+                id: commentID
+            },
+            user: {
+                id: userID
+            },
+            text: text
+        }
+
+        setLoading(true);
+        $.ajax({
+            url: "/CommentNews/AddNewsCommentResponse",
+            data: JSON.stringify(response), //convierte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                toastr.options.positionClass = 'toast-bottom-right';
+                toastr.success('Respuesta publicada con éxito');
+
+                LoadNewsCommentsResponse(commentID, container, counter);
+                setLoading(false);
+                $('#' + textarea).val('');
+
+                totalComments++;
+                $('#totalComments').html(totalComments + " Comentario(s)");
+
+
+            },
+            error: function (errorMessage) {
+                console.log(errorMessage.responseText);
+
+                toastr.options.positionClass = 'toast-bottom-right';
+                toastr.error('Ha ocurrido un error al agregar la respuesta, intente de nuevo más tarde.');
+
+                setLoading(false);
+
+            }
+        });
+    } else {
+
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.error('Por favor rellene todos los campos');
+
+        $('#' + textarea).css("border-color", "red");
+
+    }
+
+
+}
 
 //------------------------------------------------
 //-------------------UTILITY----------------------
