@@ -158,10 +158,26 @@ function GetAppointments() {
     });
 }
 
+function setAvailableTimeAppointment() {
+    const select = document.getElementById("time");
+
+    for (let hour = 8; hour <= 20; hour++) {
+        for (let minutes of [0, 30]) {
+            let timeValue = `${hour.toString().padStart(2, "0")}:${minutes === 0 ? "00" : "30"}`;
+            let option = new Option(timeValue, timeValue);
+            select.appendChild(option);
+        }
+    }
+
+}
 function GetCourses() {
     const now = new Date();
-    const formattedDate = now.toISOString().slice(0, 16);
+    const formattedDate = now.toISOString().split('T')[0]; 
     $('#datetime').attr('min', formattedDate);
+
+    setAvailableTimeAppointment();
+
+    console.log($('#time').val());
 
     $.ajax({
         url: "/Course/GetAllCourses",
@@ -187,12 +203,11 @@ function GetCourses() {
 function AddAppointment() {
 
     configureToastr();
-    
 
     const userId = localStorage.getItem("userId");
 
     var appointment = {
-        date: $('#datetime').val(),
+        date: $('#datetime').val() + "T" + $('#time').val(),
         mode: $('#mode').val(),
         courseid: $('#course').val(),
         userId,
@@ -206,7 +221,7 @@ function AddAppointment() {
     }
     appointment.course = course;
     appointment.user = user;
-    if (!appointment.date) {
+    if (!$('#datetime').val()) {
         toastr.error('Por favor, complete todos los campos correctamente.');
     } else {
         $.ajax({
@@ -218,7 +233,7 @@ function AddAppointment() {
             success: function (result) {
                 $('#datetime').val('');
                 $("#mode").val(1);
-
+                $('#time').val('08:00')
                 toastr.success('Registrado con éxito');
                 GetAppointments();
             },
