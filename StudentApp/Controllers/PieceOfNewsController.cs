@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using StudentApp.Models.DAO;
@@ -21,6 +22,8 @@ namespace StudentApp.Controllers
             newsDAO = new PieceOfNewsDAO(_configuration);
 
         }
+
+
         [HttpGet]
         public IEnumerable<PieceOfNews> GetNews()
         {
@@ -30,10 +33,43 @@ namespace StudentApp.Controllers
             return newsDAO.Get();
         }
 
-        public PieceOfNews GetById(string id)
+        [HttpPost]
+        public IActionResult CreateNews([FromBody] PieceOfNews news)
         {
+            try
+            {
+                return Ok(newsDAO.Insert(news));
+            }
+            catch (SqlException e)
+            {
+                return StatusCode(500, new { message = "An error occurred", error = e.Message });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
+            }
+        }
 
-            return newsDAO.Get(id);
+        public IActionResult GetById(string id)
+        {
+            try
+            {
+                PieceOfNews news =  newsDAO.Get(id);
+
+                Console.WriteLine(news);
+                if(news.User is null)
+                {
+                    return Ok(null);
+
+                }
+                return Ok(news);
+
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
+
+            }
         }
     }
 }

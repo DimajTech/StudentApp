@@ -19,7 +19,7 @@ app.Use(async (context, next) =>
 {
     if (context.Request.Path == "/" || context.Request.Path == "/index.html")
     {
-        context.Response.Redirect("/news");
+        context.Response.Redirect("/view/news");
         return;
     }
     await next();
