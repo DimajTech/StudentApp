@@ -2133,9 +2133,10 @@ Secciones Propias
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
     width: 300px;
     text-align: center;
+    justify-self:center;
 }
 
 .h2-appointment {
@@ -2178,6 +2179,14 @@ Secciones Propias
     cursor: pointer;
 }
 
+#noAppointmentsMessage {
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    color: #555; /* Color gris tenue */
+    font-weight: 400; /* Peso de la fuente */
+    font-style: italic; /* Opcional: estilo en cursiva */
+    margin-top: 10px; /* Espaciado superior */
+    margin-left: 5px; /* Espaciado izquierdo */
+}
 /*NEWS*/
 .custom-file-upload {
     display: inline-block;

@@ -75,6 +75,7 @@ function AuthenticateUser() {
 }
 function Add() {
 
+
     setLoading(true);
 
     var user = {
@@ -128,53 +129,77 @@ function Add() {
 //--------------APPOINTMENTS SECTION--------------
 //------------------------------------------------
 function GetAppointments() {
-
-    //TODO: Obtener usuario por cookie
     const userEmail = localStorage.getItem("email");
 
     $.ajax({
         url: "/Appointment/GetAllAppointmentsByUser",
         type: "GET",
-        data: {
-            email: userEmail
-        },
+        data: { email: userEmail },
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
+            
+            if (result.length === 0) {
+                $('#myappointments-table').hide();
+                $('#noAppointmentsMessage').show();
+                return;
+            }
+
+            $('#myappointments-table').show();
+            $('#noAppointmentsMessage').hide();
+
             var htmlTable = '';
             $.each(result, function (key, item) {
+                const [fecha, hora] = item.date.split('T');
+
                 htmlTable += '<tr>';
-                htmlTable += '<td>' + item.date + '</td>';
+                htmlTable += '<td>' + fecha + '</td>';
+                htmlTable += '<td>' + hora + '</td>';
                 htmlTable += '<td>' + (item.mode == '1' ? 'Virtual' : 'Presencial') + '</td>';
+
                 let statusText;
                 switch (item.status) {
-                    case 'pending':
-                        statusText = 'Pendiente';
-                        break;
-                    case 'approved':
-                        statusText = 'Aprobada';
-                        break;
-                    case 'rejected':
-                        statusText = 'Rechazada';
-                        break;
-                    default:
-                        statusText = item.status; //Mostrar el valor original si no coincide con ninguno de los anteriores
+                    case 'pending': statusText = 'Pendiente'; break;
+                    case 'approved': statusText = 'Aprobada'; break;
+                    case 'rejected': statusText = 'Rechazada'; break;
+                    default: statusText = item.status;
                 }
-                htmlTable += '<td>' + statusText + '</td>'; htmlTable += '<td>' + item.course.name + '</td>';
-                htmlTable += '<td>' + (item.professorComment == null ? 'Sin comentarios' : item.professorComment) + '</td>';
+
+                htmlTable += '<td>' + statusText + '</td>';
+                htmlTable += '<td>' + (item.course ? item.course.name : 'Desconocido') + '</td>';
+                htmlTable += '<td>' + (item.professorComment ? item.professorComment : 'Sin comentarios') + '</td>';
                 htmlTable += '</tr>';
             });
-            $('#myappointments-tbody').html(htmlTable); //shows table on screen
 
-
+            $('#myappointments-tbody').html(htmlTable);
         },
-        error: function (errorMessage) {
+        error: function () {
             configureToastr();
-            toastr.error(errorMessage.me);
+            toastr.error("Error al obtener citas.");
         }
     });
 }
+
+function setAvailableTimeAppointment() {
+    const select = document.getElementById("time");
+
+    for (let hour = 8; hour <= 20; hour++) {
+        for (let minutes of [0, 30]) {
+            let timeValue = `${hour.toString().padStart(2, "0")}:${minutes === 0 ? "00" : "30"}`;
+            let option = new Option(timeValue, timeValue);
+            select.appendChild(option);
+        }
+    }
+
+}
 function GetCourses() {
+    const now = new Date();
+    const formattedDate = now.toISOString().split('T')[0]; 
+    $('#datetime').attr('min', formattedDate);
+
+    setAvailableTimeAppointment();
+
+    console.log($('#time').val());
 
     $.ajax({
         url: "/Course/GetAllCourses",
@@ -191,7 +216,7 @@ function GetCourses() {
         },
         error: function (errorMessage) {
             configureToastr();
-            toastr.error(errorMessage.responseText);
+            toastr.error("Ha ocurrido un error al obtener los cursos.");
         }
     });
 
@@ -204,7 +229,7 @@ function AddAppointment() {
     const userId = localStorage.getItem("userId");
 
     var appointment = {
-        date: $('#datetime').val(),
+        date: $('#datetime').val() + "T" + $('#time').val(),
         mode: $('#mode').val(),
         courseid: $('#course').val(),
         userId,
@@ -215,12 +240,11 @@ function AddAppointment() {
     };
     var user = {
         id: userId,
-        name: 'Pruebaaaaaaaa',
     }
     appointment.course = course;
     appointment.user = user;
-    if (course.name == 'Seleccione un curso') {
-
+    if (!$('#datetime').val()) {
+        toastr.error('Por favor, complete todos los campos correctamente.');
     } else {
         $.ajax({
             url: "/Appointment/CreateNewAppointment",
@@ -230,14 +254,13 @@ function AddAppointment() {
             dataType: "json",
             success: function (result) {
                 $('#datetime').val('');
-                $("#course").val(0);
-                $("#mode").val(0);
-
+                $("#mode").val(1);
+                $('#time').val('08:00')
                 toastr.success('Registrado con éxito');
                 GetAppointments();
             },
             error: function (errorMessage) {
-                toastr.error(errorMessage.responseText);
+                toastr.error("Ha ocurrido un error al agendar la cita, por favor inténtelo más tarde");
             }
         });
     }
