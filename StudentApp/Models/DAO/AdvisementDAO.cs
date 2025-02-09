@@ -28,8 +28,7 @@ namespace StudentApp.Models.DAO
                         SqlCommand command = new SqlCommand("CreateAdvisement", connection); //todo stored procedure
                         command.CommandType = System.Data.CommandType.StoredProcedure;
 
-
-                        command.Parameters.AddWithValue("@Id", advisement.Id);
+                        command.Parameters.AddWithValue("@Id", Guid.NewGuid().ToString());
                         command.Parameters.AddWithValue("@CourseId", advisement.Course.Id);
                         command.Parameters.AddWithValue("@Content", advisement.Content);
                         command.Parameters.AddWithValue("@Status", advisement.Status);

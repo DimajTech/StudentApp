@@ -87,7 +87,7 @@
                 <!-- Selección de Curso -->
                 <div class="mb-3">
                     <label for="course" class="form-label">Curso:</label>
-                    <select id="course" class="form-select">
+                    <select id="advisement-course-select" class="form-select">
                         <option value="0" selected>Seleccione un curso</option>
                         <!-- Opciones se cargarán dinámicamente desde AJAX -->
                     </select>
@@ -108,7 +108,7 @@
                 <!-- Botones -->
                 <div class="d-flex gap-2">
                     <button type="button" class="btn btn-primary w-50" onclick="AddAdvisement()">Enviar</button>
-                    <button type="reset" class="btn btn-secondary w-50">Cancelar</button>
+                    <button type="reset" class="btn btn-secondary w-50" onclick="CancelCreateAdvisement()">Cancelar</button>
                 </div>
             </form>
         </div>

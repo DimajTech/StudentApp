@@ -53,7 +53,7 @@ function loadSection(section) {
                 
             }
             if (section === "advisement") {
-                var userEmail = "dani@gmail.com"; 
+                var userEmail = localStorage.getItem("email");
                 GetAdvisementsByUser(userEmail);
                 GetPublicAdvisements();
             }

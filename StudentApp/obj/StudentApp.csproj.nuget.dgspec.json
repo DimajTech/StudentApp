@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj": {}
+    "C:\\Users\\Esteban\\Documents\\UCR\\Tercer año\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\StudentApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj": {
+    "C:\\Users\\Esteban\\Documents\\UCR\\Tercer año\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\StudentApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj",
+        "projectUniqueName": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer año\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\StudentApp.csproj",
         "projectName": "StudentApp",
-        "projectPath": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\StudentApp.csproj",
-        "packagesPath": "C:\\Users\\daniv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\daniv\\source\\repos\\StudentApp\\StudentApp\\obj\\",
+        "projectPath": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer año\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\StudentApp.csproj",
+        "packagesPath": "C:\\Users\\Esteban\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Esteban\\Documents\\UCR\\Tercer año\\III Semestre\\Lenguajes para Aplicaciones Comerciales\\Proyecto\\StudentApp\\StudentApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\daniv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Esteban\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

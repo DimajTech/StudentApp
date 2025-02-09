@@ -165,8 +165,6 @@ function GetCourses() {
 //---------ADVISEMENT SECTION---------------
 //------------------------------------------------
 
-
-
 function GetAdvisementsByUser(email) {
     $.ajax({
         url: "/Advisement/GetAdvisementsByUser",
@@ -243,50 +241,37 @@ function GetAdvisementDetails(id) {
         }
     });
 }
-function GetCoursesForAdvisement() {
 
+function GetCoursesForAdvisement() {
     $.ajax({
         url: "/Course/GetAllCourses",
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            console.log("Respuesta de la API:", result); // Verifica la respuesta
-
-            console.log("Verificando si #course está en el DOM:", $("#course").length);
-
-
-            if (!Array.isArray(result) || result.length === 0) {
-                console.warn("No se recibieron cursos.");
-                return;
-            }
-
-            $("#course").empty().append('<option value="0" selected>Seleccione un curso</option>');
-
+            var htmlSelect = '';
             $.each(result, function (key, item) {
-                console.log("Agregando curso:", item.id, item.name);
-                $("#course").append('<option value="' + item.id + '">' + item.name + '</option>');
+                htmlSelect += '<option value="' + item.id + '">' + item.name + '</option>';
             });
+            $("#advisement-course-select").append(htmlSelect);
 
-            console.log("Dropdown cargado correctamente.");
         },
-        error: function (xhr, status, error) {
-            console.error("Error al obtener cursos:", xhr.responseText);
+        error: function (errorMessage) {
+            configureToastr();
+            toastr.error(errorMessage.responseText);
         }
     });
+    
 }
-
-
 
 function ShowCreateAdvisementForm() {
     console.log("Ejecutando ShowCreateAdvisementForm()");
 
     $(".section-advisements, #advisement-details").hide();
 
-    $("#create-advisement").show(); 
-    setTimeout(function () {
-        GetCoursesForAdvisement(); 
-    }, 300);
+    $("#create-advisement").show();
+
+    GetCoursesForAdvisement();
 }
 
 function AddAdvisement() {
@@ -306,11 +291,12 @@ function AddAdvisement() {
 
     //Se debe obtener el usuario autenticado correctamente
     var user = {
-        id: "57f90130-0dee-4f6a-90bb-d00f37583cc0", //ID de prueba de la cookie
+        id: localStorage.getItem("userId"), //ID de prueba de la cookie
         name: " " // 
     };
 
     var advisement = {
+        id: '',
         course: { id: selectedCourseId },  
         content: advisementContent,
         status: "Pending",
@@ -326,7 +312,6 @@ function AddAdvisement() {
         type: "POST",
         data: JSON.stringify(advisement),
         contentType: "application/json;charset=utf-8",
-        dataType: "json",
         success: function (response) {
             alert("Consulta creada con éxito.");
             $("#create-advisement").hide();
@@ -339,7 +324,11 @@ function AddAdvisement() {
     });
 }
 
-
+function CancelCreateAdvisement() {
+    $("#create-advisement").hide();
+    $('#advisements').show();
+    $("#advisement-course-select").html('<option value="0" selected>Seleccione un curso</option>');
+}
 
 //------------------------------------------------
 //--------------PROFILE SECTION-------------------

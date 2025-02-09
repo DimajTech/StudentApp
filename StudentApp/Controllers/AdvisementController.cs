@@ -25,7 +25,7 @@ namespace StudentApp.Controllers
             return View();
         }
 
-
+        [HttpPost]
         public IActionResult CreateNewAdvisement([FromBody] Advisement advisement)
         {
             try
