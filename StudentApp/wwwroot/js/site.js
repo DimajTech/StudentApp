@@ -427,14 +427,31 @@ function DeleteAccount() {
 }
 
 function ShowImage(input) {
+
     if (input.files && input.files[0]) {
-        var filerdr = new FileReader();
-        filerdr.onload = function (e) {
-            $('#p-picture').attr('src', e.target.result);
-        };
-        filerdr.readAsDataURL(input.files[0]);
+        const file = input.files[0];
+
+        if (file.type.startsWith("image/")) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#p-picture").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.error('Por favor seleccione una imagen.');
+
+            $("#previewImage").attr("src", "/images/istockphoto-1128826884-612x612.jpg");
+
+            $(input).val(""); // Resetear input si no es imagen
+            $("#fileName").text("Sin archivos seleccionados");
+        }
     }
+
 }
+
 
 //------------------------------------------------
 //--------------NEWS SECTION----------------------
