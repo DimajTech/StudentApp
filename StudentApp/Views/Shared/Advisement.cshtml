@@ -9,7 +9,7 @@
 <section class="section-advisements" id="advisements">
     <div class="container">
         <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-success" onclick="CreateNewAdvisement()">+ Crear nueva consulta</button>
+            <button class="btn btn-success" onclick="ShowCreateAdvisementForm()">+ Crear nueva consulta</button>
         </div>
 
         <h3>Mis consultas</h3>
@@ -50,10 +50,7 @@
 
 <section class="section-advisement-details" style="display: none;" id="advisement-details">
     <div class="container">
-        <div class="d-flex justify-content-start mb-3">
-            <button class="btn btn-secondary" onclick="GoBack()">&#8592; Back</button>
-        </div>
-
+        
         <h2 class="text-center">Detalles de consulta</h2>
 
         <div class="mb-3">
@@ -70,8 +67,12 @@
             <label for="content" class="form-label"><strong>Consultation Text:</strong></label>
             <textarea class="form-control" id="content" rows="4" placeholder="Enter the consultation content"></textarea>
         </div>
+
+        <!-- Falta la parte de los comentarios  -->
     </div>
 </section>
+
+
 
 <!-- Sección para crear consulta, permanece oculta -->
 
@@ -112,4 +113,5 @@
             </form>
         </div>
     </div>
+
 </section>

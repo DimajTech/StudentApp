@@ -38,12 +38,12 @@ namespace StudentApp.Controllers
                 return StatusCode(500, new { message = "An error ocurred", error = e.Message });
             }
 
-
         }
 
 
+        [HttpGet]
 
-        public IActionResult GetAdvisementById([FromBody] string id)
+        public IActionResult GetAdvisementById([FromQuery] string id)
         {
             return Ok(advisementDAO.GetById(id));
 
