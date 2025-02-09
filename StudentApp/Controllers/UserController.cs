@@ -158,8 +158,22 @@ namespace StudentApp.Controllers
             }
             catch (SqlException e)
             {
-                return BadRequest();
+                return BadRequest(e.Message);
             }
         }
-	}
+
+        [HttpDelete]
+        public IActionResult DeleteUser([FromQuery] string id)
+        {
+            try
+            {
+                var result = userDAO.Delete(id);
+                return Ok(new { success = true, result = result });
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(new { success = false, message = e.Message });
+            }
+        }
+    }
 }

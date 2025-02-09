@@ -9,6 +9,11 @@
             </div>
 
             <div class="profile-main-div">
+                <label for="upload-image-input" id="p-upload-img-label" hidden>Cambiar imagen</label>
+                <input type="file" id="upload-image-input" accept="image/*" onchange="ShowImage(this)"/>
+            </div>
+
+            <div class="profile-main-div">
                 <label>Nombre</label>
                 <input id="p-name2" class="profile-input" value="" readonly>
             </div>
@@ -16,6 +21,7 @@
             <div class="profile-main-div">
                 <label class="">Correo electrónico</label>
                 <input id="p-email" class="profile-input" type="email" value="" readonly>
+                <p id="email-warning" style="color: red; margin-bottom: 30px;" hidden>*El correo electrónico no se puede editar</p>
             </div>
 
             <div class="profile-main-div">
@@ -25,8 +31,9 @@
 
             <div class="profile-main-div">
                 <label class="">Descripción</label>
-                <input id="p-description" class="profile-input" value="" readonly>
+                <textarea id="p-description" class="profile-input" style="height:200px; resize: none; padding-top: 10px;" readonly></textarea>
             </div>
+
 
             <div class="profile-main-div">
                 <label class="">LinkedIn</label>
@@ -35,7 +42,11 @@
 
             <div class="p-buttons-row">
                 <button id="p-button" class="profile-button" onclick="HandleEditing()">Editar</button>
-                <button id="p-cancel-button" class="profile-button" onclick="CancelEditing()" hidden>Cancelar</button>
+                <button id="p-cancel-button" class="p-red-button" onclick="CancelEditing()" hidden>Cancelar</button>
+            </div>
+
+            <div class="p-div-delete-button" style="justify-content:center;">
+                <button id="p-delete-button" class="p-red-button" onclick="DeleteAccount()">Eliminar cuenta</button>
             </div>
         </div>
     </div>

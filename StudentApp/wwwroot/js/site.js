@@ -272,7 +272,6 @@ function AddAppointment() {
 //------------------------------------------------
 function GetUserData() {
 
-    //TODO: Obtener usuario por cookie
     const userEmail = localStorage.getItem("email");
 
     $.ajax({
@@ -291,6 +290,7 @@ function GetUserData() {
             $('#p-password').val(result.password);
 
             if (result.picture) {
+
                 $('#p-picture').attr('src', result.picture);
             }
         },
@@ -308,8 +308,24 @@ function HandleEditing() {
         if ($('#p-name2').val() == '' || $('#p-email').val() == '' || $('#p-password').val() == '') {
             configureToastr();
             toastr.error('Por favor rellene todos los campos');
-        } else {
-            EditUser();
+        } else if (!ValidatePassword()) {
+            configureToastr();
+            toastr.error('La contraseña debe tener una longitud mínima de 8 caracteres y debe contener al menos un número');
+        }
+        else {
+            Swal.fire({
+                text: "¿Deseas guardar los cambios realizados?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, guardar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    EditUser();
+                }
+            });
         }
     }
 }
@@ -326,13 +342,17 @@ function AllowFieldEditing() {
     };
 
     $('#p-name2').prop("readonly", false);
-    $('#p-email').prop("readonly", false);
+    $('#email-warning').prop("hidden", false);
     $('#p-password').prop("readonly", false);
     $('#p-description').prop("readonly", false);
     $('#p-linkedin').prop("readonly", false);
 
     $('#p-button').text("Confirmar cambios");
     $('#p-cancel-button').prop("hidden", false);
+    $('#p-upload-img-label').prop("hidden", false);
+    $('#p-delete-button').prop("hidden", true);
+
+    $('#p-email').css("margin-bottom", "0px");
 }
 
 function EditUser() {
@@ -341,10 +361,10 @@ function EditUser() {
     var newValues = {
         id: $('#p-id').val(),
         name: $('#p-name2').val(),
-        email: $('#p-email').val(),
         password: $('#p-password').val(),
         description: $('#p-description').val(),
-        linkedIn: $('#p-linkedin').val()
+        linkedIn: $('#p-linkedin').val(),
+        picture: $('#p-picture').attr("src")
     }
 
     $.ajax({
@@ -357,13 +377,16 @@ function EditUser() {
             GetUserData();
 
             $('#p-name2').prop("readonly", true);
-            $('#p-email').prop("readonly", true);
+            $('#email-warning').prop("hidden", true);
             $('#p-password').prop("readonly", true);
             $('#p-description').prop("readonly", true);
             $('#p-linkedin').prop("readonly", true);
 
             $('#p-button').text("Editar");
             $('#p-cancel-button').prop("hidden", true);
+            $('#p-upload-img-label').prop("hidden", true);
+
+            $('#p-email').css("margin-bottom", "30px");
 
             configureToastr();
             toastr.success('Los datos fueron actualizados correctamente');
@@ -379,14 +402,99 @@ function CancelEditing() {
     GetUserData();
 
     $('#p-name2').prop("readonly", true);
-    $('#p-email').prop("readonly", true);
+    $('#email-warning').prop("hidden", true);
     $('#p-password').prop("readonly", true);
     $('#p-description').prop("readonly", true);
     $('#p-linkedin').prop("readonly", true);
 
     $('#p-button').text("Editar");
     $('#p-cancel-button').prop("hidden", true);
+    $('#p-upload-img-label').prop("hidden", true);
+    $('#p-delete-button').prop("hidden", false);
+
+    $('#p-email').css("margin-bottom", "30px");
 }
+
+function ValidatePassword(){
+    var password = $('#p-password').val();
+
+    if (password.length < 8) {
+        return false;
+    }
+
+    var hasNumber = /\d/.test(password); //verifies that it contains at least a number
+    return hasNumber;
+}
+
+
+function DeleteAccount() {
+    const userId = localStorage.getItem("userId");
+
+    Swal.fire({
+        text: "¿Seguro de que deseas eliminar la cuenta?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/User/DeleteUser?id=${userId}`,
+                type: "DELETE",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Cuenta eliminada',
+                            text: 'Tu cuenta ha sido eliminada exitosamente'
+                        }).then(() => {
+                            //TODO: Redirect to login
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'No se pudo eliminar la cuenta'
+                    });
+                }
+            });
+        }
+    });
+}
+
+function ShowImage(input) {
+
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+
+        if (file.type.startsWith("image/")) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#p-picture").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.error('Por favor seleccione una imagen.');
+
+            $("#previewImage").attr("src", "/images/istockphoto-1128826884-612x612.jpg");
+
+            $(input).val(""); // Resetear input si no es imagen
+            $("#fileName").text("Sin archivos seleccionados");
+        }
+    }
+
+}
+
 
 //------------------------------------------------
 //--------------NEWS SECTION----------------------

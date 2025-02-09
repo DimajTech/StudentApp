@@ -150,10 +150,10 @@ namespace StudentApp.Models.DAO
                     
                     command.Parameters.AddWithValue("@Id", user.Id);
                     command.Parameters.AddWithValue("@Name", user.Name);
-                    command.Parameters.AddWithValue("@Email", user.Email);
                     command.Parameters.AddWithValue("@Password", user.Password);
                     command.Parameters.AddWithValue("@Description", user.Description);
                     command.Parameters.AddWithValue("@LinkedIn", user.LinkedIn);
+                    command.Parameters.AddWithValue("@Picture", user.Picture);
 
                     resultToReturn = command.ExecuteNonQuery();
                     connection.Close();

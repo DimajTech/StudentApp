@@ -26,6 +26,12 @@
     transition: all .4s;
     position: relative;
     z-index: 3;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.profile-button:hover {
+    transform: scale(1.1);
 }
 
 .profile-second-div {
@@ -76,4 +82,67 @@
     width: 75%;
     margin-bottom: 25px;
     gap: 50%;
+}
+
+.p-div-delete-button {
+    display: flex;
+    align-items: center;
+    width: 75%;
+    margin-bottom: 25px;
+}
+
+.p-red-button {
+    border: none;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #e91613;
+    color: white;
+    padding: 0px 25px;
+    border-radius: 25px;
+    transition: all .4s;
+    position: relative;
+    z-index: 3;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.p-red-button:hover {
+    transform: scale(1.1);
+}
+
+#upload-image-input {
+    display: none;
+}
+
+#p-picture {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#p-picture:hover {
+    transform: scale(1.1);
+}
+
+
+#p-upload-img-label {
+    border: none;
+    height: 40px;
+    width: 150px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 25px;
+    color: #66c5e3;
+    transition: all .4s;
+    position: relative;
+    z-index: 3;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#p-upload-img-label:hover {
+    transform: scale(1.1);
 }
