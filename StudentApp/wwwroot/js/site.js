@@ -203,11 +203,10 @@ function AddAppointment() {
     };
     var user = {
         id: userId,
-        name: 'Pruebaaaaaaaa',
     }
     appointment.course = course;
     appointment.user = user;
-    if (course.name == 'Seleccione un curso' || mode.name == "Seleccione una modalidad" || !appointment.date) {
+    if (!appointment.date) {
         toastr.error('Por favor, complete todos los campos correctamente.');
     } else {
         $.ajax({
@@ -218,8 +217,7 @@ function AddAppointment() {
             dataType: "json",
             success: function (result) {
                 $('#datetime').val('');
-                $("#course").val(0);
-                $("#mode").val(0);
+                $("#mode").val(1);
 
                 toastr.success('Registrado con éxito');
                 GetAppointments();
