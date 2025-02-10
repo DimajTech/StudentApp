@@ -53,9 +53,10 @@ function loadSection(section) {
                 
             }
             if (section === "advisement") {
-                var userEmail = localStorage.getItem("email");
+                //       var userEmail = localStorage.getItem("email");
+                var userEmail = "dani@gmail.com"
                 GetAdvisementsByUser(userEmail);
-                GetPublicAdvisements();
+                GetPublicAdvisements(userEmail); // paso email para filtrar y no traer mis consultas de nuevo
             }
 
         })

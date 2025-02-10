@@ -34,10 +34,12 @@ namespace StudentApp.Controllers
             }
             catch (SqlException e)
             {
-                ViewBag.Message = e.Message;
-                return StatusCode(500, new { message = "An error ocurred", error = e.Message });
+                return StatusCode(500, new { message = "An error occurred", error = e.Message });
             }
-
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
+            }
         }
 
 
@@ -45,27 +47,55 @@ namespace StudentApp.Controllers
 
         public IActionResult GetAdvisementById([FromQuery] string id)
         {
-            return Ok(advisementDAO.GetById(id));
-
-
+            try
+            {
+                return Ok(advisementDAO.GetById(id));
+            }
+            catch (SqlException e)
+            {
+                return StatusCode(500, new { message = "An error occurred", error = e.Message });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
+            }
         }
 
 
         [HttpGet]
         public IActionResult GetAdvisementsByUser([FromQuery] string email)
         {
-
-            return Json(advisementDAO.GetByUser(email));
+            try
+            {
+                return Json(advisementDAO.GetByUser(email));
+            }
+            catch (SqlException e)
+            {
+                return StatusCode(500, new { message = "An error occurred", error = e.Message });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
+            }
 
         }
 
 
         [HttpGet]
-        public IActionResult GetPublicAdvisements()
+        public IActionResult GetPublicAdvisements([FromQuery] string email)
         {
-
-            return Json(advisementDAO.GetPublicAdvisements());
-
+            try
+            {
+                return Json(advisementDAO.GetPublicAdvisements(email));
+            }
+            catch (SqlException e)
+            {
+                return StatusCode(500, new { message = "An error occurred", error = e.Message });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
+            }
         }
 
 

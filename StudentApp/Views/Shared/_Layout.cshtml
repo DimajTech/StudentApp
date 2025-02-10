@@ -4,24 +4,28 @@
 
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Scholar - Online School HTML5 Template</title>
+    <title>UCR Estudiantes</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/css/news.css>
     <link rel="stylesheet" href="/css/fontawesome.css">
     <link rel="stylesheet" href="/css/templatemo-scholar.css">
     <link rel="stylesheet" href="/css/owl.css">
     <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+
 
     <!--
 
@@ -30,47 +34,99 @@
     https://templatemo.com/tm-586-scholar
 
     -->
+
 </head>
+@{
+    var isAuthenticated = Context.Request.Cookies.ContainsKey("AuthCookie");
+}
+<body style="padding-bottom:100px;">
 
-<body>
 
-    @{
-        var isAuthenticated = Context.Request.Cookies.ContainsKey("AuthCookie");
-    }
+    <div id="loading-overlay" class="loading-overlay" style="display:none;">
+        <div class="loader"></div>
+    </div>
 
     @if (isAuthenticated)
     {
-        <component type="typeof(DashboardHeader)" render-mode="Static" />
-        <div class="container">
+        <!-- ** Header Area Start ** -->
+        <header class="header-area header-sticky background-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- ** Logo Start ** -->
+                            <a href="/view/news" data-section="view/news" class="logo">
+                                <img src="/images/university-logo.png" alt="University Logo" style="height: 50px;" />
+                            </a>
+                            <!-- ** Logo End ** -->
+                            <!-- ** Menu Start ** -->
+                            <ul class="nav" id="header">
+                                <li class="scroll-to-section"><a href="/view/news" data-section="view/news">Noticias</a></li>
+                                <li class="scroll-to-section"><a href="/view/appointment" data-section="view/appointment">Horas consulta</a></li>
+                                <li class="scroll-to-section"><a href="/view/advisement" data-section="view/advisement">Consulta de Cursos</a></li>
+                                <li class="scroll-to-section"><a href="/view/profile" data-section="view/profile">Perfil</a></li>
+                            </ul>
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                            <!-- ** Menu End ** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container" id="page-container">
             <main role="main" id="main-content">
+
                 @RenderBody()
+
             </main>
         </div>
+
     }
     else
     {
-        <component type="typeof(Header)" render-mode="Static" />
+        <!-- ** Header Area Start ** -->
+        <header class="header-area header-sticky background-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- ** Logo Start ** -->
+                            <a href="/view/news" data-section="view/news" class="logo">
+                                <img src="/images/university-logo.png" alt="University Logo" style="height: 50px;" />
+                            </a>
+                            <!-- ** Logo End ** -->
+                            <!-- ** Menu Start ** -->
+                            <ul class="nav">
+                                <li><a href="/User/Login">Iniciar Sesión</a></li>
+                                <li><a href="/User/Register">Registrarse</a></li>
+                            </ul>
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                            <!-- ** Menu End ** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
         <div>
             <main role="main" id="main-content">
+
                 @RenderBody()
+
             </main>
         </div>
     }
 
 
-    <!-- ***** Preloader Start ***** -->
-    <!--
-    <div id="js-preloader" class="js-preloader">
-        <div class="preloader-inner">
-            <span class="dot"></span>
-            <div class="dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
-    -->
+
+
+
+    <!-- ** Preloader Start ** -->
     <!--
     <div class="main-banner" id="top">
       <div class="container">
@@ -499,9 +555,9 @@
     </div>
 
        -->
+    <!--
 
-
-    <footer>
+        <footer>
         <div class="container">
             <div class="col-lg-12">
                 <p>Copyright © 2036 Scholar Organization. All rights reserved. &nbsp;&nbsp;&nbsp; Design: <a href="https://templatemo.com" rel="nofollow" target="_blank">TemplateMo</a></p>
@@ -509,7 +565,7 @@
         </div>
     </footer>
 
-
+    -->
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="/jquery/jquery.js"></script>
@@ -520,9 +576,8 @@
     <script src="/js/site.js"></script>
     <script src="/js/routes.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-
-    <script src="~/_framework/blazor.server.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <!--<script src="~/_framework/blazor.server.js"></script>-->
 
 </body>
 </html>

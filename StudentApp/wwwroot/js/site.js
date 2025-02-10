@@ -187,15 +187,17 @@ function GetAdvisementsByUser(email) {
             $('#user-advisements').html(userHtmlTable);
         },
         error: function (errorMessage) {
-            console.error("Error en GetAdvisementsByUser:", errorMessage.responseText);
+            configureToastr();
+            toastr.error(errorMessage.responseText);
         }
     });
 }
 
-function GetPublicAdvisements() {
+function GetPublicAdvisements(email) {
     $.ajax({
         url: "/Advisement/GetPublicAdvisements",
         type: "GET",
+        data: { email: email },
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
@@ -214,7 +216,8 @@ function GetPublicAdvisements() {
             $('#public-advisements').html(publicHtmlTable);
         },
         error: function (errorMessage) {
-            console.error("Error en GetPublicAdvisements:", errorMessage.responseText);
+            configureToastr();
+            toastr.error(errorMessage.responseText);
         }
     });
 }
@@ -227,17 +230,18 @@ function GetAdvisementDetails(id) {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            // Asignar los datos a la vista
+       
             $("#course").val(result.course.name);
             $("#author").val(result.user.name);
             $("#content").val(result.content);
 
-            // Mostrar la sección de detalles
+          
             $(".section-advisements, #create-advisement").hide(); // Oculta las otras secciones
             $("#advisement-details").show(); // Muestra la sección correcta
         },
         error: function (errorMessage) {
-            console.error("Error en GetAdvisementDetail:", errorMessage.responseText);
+            configureToastr();
+            toastr.error(errorMessage.responseText);
         }
     });
 }
@@ -265,7 +269,6 @@ function GetCoursesForAdvisement() {
 }
 
 function ShowCreateAdvisementForm() {
-    console.log("Ejecutando ShowCreateAdvisementForm()");
 
     $(".section-advisements, #advisement-details").hide();
 
@@ -275,39 +278,44 @@ function ShowCreateAdvisementForm() {
 }
 
 function AddAdvisement() {
-    var selectedCourseId = $('#course').val();  
+
+    configureToastr(); 
+    var selectedCourseId = $("#advisement-course-select option:selected").val();
+   
     var advisementContent = $('#advisement-content').val();
     var isPublic = $('#publicCheck').is(':checked');
 
+
     if (selectedCourseId === "0") {
-        alert("Por favor, seleccione un curso válido.");
+     
+        toastr.error("Por favor, seleccione un curso válido.");
         return;
     }
 
     if (advisementContent.trim() === "") {
-        alert("Por favor, ingrese un mensaje.");
+     
+        toastr.error("Por favor, ingrese un mensaje.");
         return;
     }
 
     //Se debe obtener el usuario autenticado correctamente
     var user = {
-        id: localStorage.getItem("userId"), //ID de prueba de la cookie
+        id: "57f90130-0dee-4f6a-90bb-d00f37583cc0", //ID de prueba de la cookie
         name: " " // 
     };
 
 
+    // Convertir ID del curso a string GUID en minúsculas
+    var formattedCourseId = selectedCourseId ? selectedCourseId.toLowerCase() : null;
+
 
     var advisement = {
-        id: '',
-        course: { id: selectedCourseId ? selectedCourseId.toLowerCase() : null },
+        course: { id: formattedCourseId }, //porque el constructor de curso espera GUUID
         content: advisementContent,
         status: "Pending",
         isPublic: isPublic,
-        user: user,
-        createdAt: new Date().toISOString()
+        user: user
     };
-
-    console.log("JSON enviado:", JSON.stringify(advisement));
 
     $.ajax({
         url: "/Advisement/CreateNewAdvisement",
@@ -316,13 +324,15 @@ function AddAdvisement() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (response) {
-            alert("Consulta creada con éxito.");
+
+            configureToastr(); 
+            toastr.success("Consulta creada con éxito."); 
+
             $("#create-advisement").hide();
             $(".section-advisements").show();
         },
-        error: function (xhr, status, error) {
-            console.error("Error al crear la consulta:", xhr.responseText);
-            alert("Hubo un error al crear la consulta.");
+        error: function (errorMessage) {
+            toastr.error(errorMessage.responseText);
         }
     });
 }
