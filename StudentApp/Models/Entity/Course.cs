@@ -27,6 +27,11 @@
             this.isActive = isActive;
         }
 
+        public Course(Guid id)
+        {
+            this.id = id;
+        } // se usa para crear una consulta en el controller de AdvisementController
+
         public Guid Id { get => id; set => id = value; }
         public string Code { get => code; set => code = value; }
         public string Name { get => name; set => name = value; }

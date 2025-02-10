@@ -199,7 +199,7 @@ function GetPublicAdvisements() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            console.log("Datos de consultas públicas recibidos:", result); // Verificación en consola
+           
 
             var publicHtmlTable = '';
             $.each(result, function (key, item) {
@@ -275,7 +275,7 @@ function ShowCreateAdvisementForm() {
 }
 
 function AddAdvisement() {
-    var selectedCourseId = $('#course').val();  //Obtiene el verdadero ID del curso
+    var selectedCourseId = $('#course').val();  
     var advisementContent = $('#advisement-content').val();
     var isPublic = $('#publicCheck').is(':checked');
 
@@ -295,9 +295,11 @@ function AddAdvisement() {
         name: " " // 
     };
 
+
+
     var advisement = {
         id: '',
-        course: { id: selectedCourseId },  
+        course: { id: selectedCourseId ? selectedCourseId.toLowerCase() : null },
         content: advisementContent,
         status: "Pending",
         isPublic: isPublic,
@@ -305,13 +307,14 @@ function AddAdvisement() {
         createdAt: new Date().toISOString()
     };
 
-    console.log("Enviando consulta:", advisement); 
+    console.log("JSON enviado:", JSON.stringify(advisement));
 
     $.ajax({
         url: "/Advisement/CreateNewAdvisement",
         type: "POST",
         data: JSON.stringify(advisement),
         contentType: "application/json;charset=utf-8",
+        dataType: "json",
         success: function (response) {
             alert("Consulta creada con éxito.");
             $("#create-advisement").hide();
