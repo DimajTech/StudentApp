@@ -2467,3 +2467,20 @@ Secciones Propias
         transform: scale(0.9); /* Reduce el tamaño al 90% */
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Agrega una sombra suave */
     }
+#p-picture-header {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    margin:0;
+    padding:0,
+}
+
+#p-picture-header {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+    #p-picture-header:hover {
+        transform: scale(1.1);
+    }

@@ -2,11 +2,10 @@
 {
     public class ResponseAdvisement
     {
-        private Guid id;
+        private string id;
         //references to an object or just the id?
         private string advisementId; //references to other DB
-        private string userId; //references to professor or student
-        private string userRole; //student or professor
+        private User user;
         private string text;
         private DateTime date;
 
@@ -15,16 +14,10 @@
         }
         
         //todo constructor
-        public Guid Id { get => id; set => id = value; }
+        public string Id { get => id; set => id = value; }
         public string AdvisementId { get => advisementId; set => advisementId = value; }
-        public string UserId { get => userId; set => userId = value; }
-        public string UserRole { get => userRole; set => userRole = value; }
         public string Text { get => text; set => text = value; }
-        public DateTime Date { get => date; set => date = value; }
-
-        
-
-
-
+        public DateTime DateTime { get => date; set => date = value; }
+        public User User { get => user; set => user = value; }
     }
 }
