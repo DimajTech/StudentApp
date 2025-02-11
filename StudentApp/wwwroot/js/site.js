@@ -43,7 +43,7 @@ function AuthenticateUser() {
 
     const email = $('#email').val();
     const password = $('#password').val();
-
+    
     $.ajax({
         url: "/User/Login",
         type: "POST",
@@ -84,12 +84,12 @@ function Add() {
         email: $('#r-email').val(),
         password: $('#r-password').val(),
     };
-
     if (user.password != $('#confirm-password').val()) {
 
         $('#validation').text('Las contraseñas no coinciden');
 
     } else {
+
         $.ajax({
             url: "/User/Register",
             data: JSON.stringify(user), //convierte la variable estudiante en tipo json
@@ -104,7 +104,7 @@ function Add() {
                     $('#r-name').val('');
                     $('#r-email').val('');
                     $('#r-password').val('');
-                    $('confirm-password').val('');
+                    $('#confirm-password').val('');
                     $('#validation').text(response.message);
                     $('#validation').css('color', 'green');
 
@@ -1154,7 +1154,6 @@ function AddNewsCommentResponse(commentID, container, textarea, counter) {
 
 
 }
-
 //------------------------------------------------
 //-------------------UTILITY----------------------
 //------------------------------------------------
