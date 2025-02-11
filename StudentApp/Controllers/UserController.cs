@@ -34,47 +34,60 @@ namespace StudentApp.Controllers
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            //TODO Encerrar esto en un try catch
-            User user = userDAO.GetByEmail(email);
-            bool success = false;
-            string message = "";
-
-            if (user != null && user.Password == password)
+            try
             {
+                User user = userDAO.GetByEmail(email);
+                bool success = false;
+                string message = "";
+                string userId = "";
+                string role = "";
 
-                //TODO verificar que esté aceptado y activo
-                if (user.RegistrationStatus == "accepted")
+                if (user != null && user.Password == password)
                 {
-                    if (user.IsActive)
+                    if (user.RegistrationStatus == "accepted")
                     {
-                        //Configurar la cookie de autenticación
-                        var cookieOptions = new CookieOptions
+                        if (user.IsActive)
                         {
-                            HttpOnly = true,
-                            Expires = DateTime.UtcNow.AddHours(1)
-                        };
-                        Response.Cookies.Append("AuthCookie", "true", cookieOptions);
-                        success = true;
+                            var authData = $"{user.Email} {user.Id}";
+
+                            var cookieOptions = new CookieOptions
+                            {
+                                //HttpOnly = false,
+                                Secure = true,
+                                Expires = DateTime.UtcNow.AddHours(3)
+                            };
+
+                            Response.Cookies.Append("AuthCookie", authData, cookieOptions);
+
+                            // Devolver los datos en la respuesta JSON
+                            success = true;
+                            userId = user.Id.ToString();
+                            role = user.Role.ToString();
+                        }
+                        else
+                        {
+                            message = "Su usuario se encuentra inactivo. Contacte un administrador.";
+                        }
                     }
                     else
                     {
-                        success = false;
-                        message = "Su usuario se encuentra inactivo. Por favor contacte un administrador.";
+                        message = "Su usuario aún no ha sido aprobado.";
                     }
                 }
                 else
                 {
-                    message = "Su usuario aún no ha sido aprobado por un administrador.";
+                    message = "Credenciales inválidas.";
                 }
-            }
-            else
-            {
-                success = false;
-                message = "Credenciales inválidas. Intente de nuevo.";
-            }
 
-            return Json(new { success = success, message = message });
+                return Json(new { success, message, userId, role });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error en el servidor." });
+            }
         }
+
+
 
 
         [HttpPost]
@@ -135,5 +148,32 @@ namespace StudentApp.Controllers
 			}
 
 		}
-	}
+
+        [HttpPut]
+        public IActionResult UpdateUser([FromBody] User user)
+        {
+            try
+            {
+                return Ok(userDAO.Update(user));
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteUser([FromQuery] string id)
+        {
+            try
+            {
+                var result = userDAO.Delete(id);
+                return Ok(new { success = true, result = result });
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(new { success = false, message = e.Message });
+            }
+        }
+    }
 }

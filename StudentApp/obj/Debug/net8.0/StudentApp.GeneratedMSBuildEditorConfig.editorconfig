@@ -18,15 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\daniv\source\repos\StudentApp\StudentApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/daniv/source/repos/StudentApp/StudentApp/Components/DashboardHeader.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEYXNoYm9hcmRIZWFkZXIucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/daniv/source/repos/StudentApp/StudentApp/Components/Header.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xIZWFkZXIucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Home/Index.cshtml]
+[C:/Users/Usuario/Desktop/Repo/StudentApp/StudentApp/Views/Home/Index.cshtml]
+
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
@@ -34,11 +29,13 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Shared/Advisement.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkdmlzZW1lbnQuY3NodG1s
+
+
+[C:/Users/Usuario/Desktop/Repo/StudentApp/StudentApp/Views/Shared/AddNews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkZE5ld3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Shared/Appointment.cshtml]
+[C:/Users/Usuario/Desktop/Repo/StudentApp/StudentApp/Views/Shared/Appointment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFwcG9pbnRtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
@@ -54,7 +51,13 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5ld3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/daniv/source/repos/StudentApp/StudentApp/Views/Shared/Profile.cshtml]
+
+
+[C:/Users/Usuario/Desktop/Repo/StudentApp/StudentApp/Views/Shared/NewsDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5ld3NEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Usuario/Desktop/Repo/StudentApp/StudentApp/Views/Shared/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 

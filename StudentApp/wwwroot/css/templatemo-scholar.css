@@ -1521,6 +1521,7 @@ Contact Style
   border-radius: 50%;
 }
 
+
 .contact-us .contact-us-content {
   border-radius: 25px;
   padding: 80px;
@@ -1528,7 +1529,6 @@ Contact Style
   position: relative;
   z-index: 1;
 }
-
 .contact-us .contact-us-content::before {
   background: url(../images/contact-dec-01.png);
   position: absolute;
@@ -1568,6 +1568,8 @@ Contact Style
   position: relative;
   z-index: 3;
 }
+
+
 
 
 #contact-form input::placeholder {
@@ -2061,7 +2063,7 @@ Secciones Propias
     padding: 20px;
 }
 
-/* T�tulos h2 m�s bonitos */
+/* Títulos h2 más bonitos */
 .section-title-appointment h2 {
     font-size: 2em;
     color: #333;
@@ -2131,9 +2133,10 @@ Secciones Propias
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
     width: 300px;
     text-align: center;
+    justify-self:center;
 }
 
 .h2-appointment {
@@ -2175,6 +2178,245 @@ Secciones Propias
     background-color: #fff;
     cursor: pointer;
 }
+
+#noAppointmentsMessage {
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    color: #555; /* Color gris tenue */
+    font-weight: 400; /* Peso de la fuente */
+    font-style: italic; /* Opcional: estilo en cursiva */
+    margin-top: 10px; /* Espaciado superior */
+    margin-left: 5px; /* Espaciado izquierdo */
+}
+/*NEWS*/
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: #66c5e3;
+    border-radius: 33px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+    .custom-file-upload:hover {
+        opacity: 0.8;
+    }
+
+.add-news-content {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-self: center !important; 
+    justify-content: center !important; 
+    border-radius: 25px;
+    padding: 80px;
+    background-color: #66c5e3;
+    z-index: 1;
+    width: 90%;
+}
+
+#add-news-form input {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgba(249, 235, 255, 0.15);
+    border: none;
+    outline: none;
+    font-weight: 300;
+    padding: 0px 20px;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+    #add-news-form input::placeholder {
+        color: #fff;
+    }
+
+#add-news-form textarea {
+    width: 100%;
+    height: 120px;
+    border-radius: 25px;
+    background-color: rgba(249, 235, 255, 0.15);
+    border: none;
+    outline: none;
+    font-weight: 300;
+    padding: 20px;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+    #add-news-form textarea::placeholder {
+        color: #fff;
+    }
+
+#add-news-form button {
+    border: none;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #fff;
+    padding: 0px 25px;
+    border-radius: 25px;
+    color: #66c5e3;
+    transition: all .4s;
+    position: relative;
+    z-index: 3;
+}
+
+    #add-news-form button:hover {
+        opacity: 0.8;
+    }
+
+
+
+
+/*News Comments*/
+
+.comment-footer {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    text-align:center;
+}
+.add-response-btn {
+    border: none;
+    font-weight: 600;
+    padding: 10px 25px;
+    font-size: 0.8em;
+    color: gray;
+    border-radius:33px;
+}
+#commentsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.response-card {
+    width: 90%;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+}
+
+.comment-card {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    gap: 10px;
+    color: #555;
+}
+
+.comment-user {
+    font-weight: bold;
+    color: black;
+}
+
+.comment-role {
+    font-style: italic;
+    color: #777;
+}
+
+.comment-date {
+    font-size: 0.8em;
+    color: gray;
+    text-align: right;
+}
+
+.comment-body {
+    margin-top: 8px;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre-line;
+}
+
+.no-comments {
+    text-align: center;
+    font-size: 1.1em;
+    color: #777;
+}
+
+.comment-add-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.comment-text-area {
+    resize: none;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#addCommentBtn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#addCommentBtn:hover {
+        background-color: #45a049;
+}
+
+/*Loader*/
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    z-index: 10; 
+}
+
+.loader {
+    border: 8px solid lightGray; 
+    border-top: 8px solid #66c5e3; 
+    border-radius: 50%; 
+    width: 70px; 
+    height: 70px; 
+    animation: spin 1s linear infinite; 
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg); 
+    }
+
+    100% {
+        transform: rotate(360deg); 
+    }
+}
+
 .button {
     padding: 10px 20px;
     font-size: 16px;
@@ -2202,4 +2444,26 @@ Secciones Propias
     .button-cancelar:hover {
         background-color: #c82333;
         transform: scale(1.05);
+    }
+
+.button-news {
+    height: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #66c5e3;
+    padding: 0px 25px;
+    border-radius: 25px;
+    color: white;
+    transition: all .4s;
+    position: relative;
+    z-index: 3;
+    width: 130px;
+    border: none;
+    margin-bottom: 50px;
+    margin-top:0px;
+}
+
+    .button-news:hover {
+        transform: scale(0.9); /* Reduce el tamaño al 90% */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Agrega una sombra suave */
     }

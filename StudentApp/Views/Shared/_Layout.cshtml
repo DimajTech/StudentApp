@@ -48,19 +48,21 @@
 
     @if (isAuthenticated)
     {
-        <!-- ** Header Area Start ** -->
+
+        <!-- ***** Header Area Start ***** -->
         <header class="header-area header-sticky background-header">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <nav class="main-nav">
-                            <!-- ** Logo Start ** -->
+
+                            <!-- ***** Logo Start ***** -->
                             <a href="/view/news" data-section="view/news" class="logo">
                                 <img src="/images/university-logo.png" alt="University Logo" style="height: 50px;" />
                             </a>
-                            <!-- ** Logo End ** -->
-                            <!-- ** Menu Start ** -->
-                            <ul class="nav" id="header">
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav" id= "header">
                                 <li class="scroll-to-section"><a href="/view/news" data-section="view/news">Noticias</a></li>
                                 <li class="scroll-to-section"><a href="/view/appointment" data-section="view/appointment">Horas consulta</a></li>
                                 <li class="scroll-to-section"><a href="/view/advisement" data-section="view/advisement">Consulta de Cursos</a></li>
@@ -69,7 +71,8 @@
                             <a class='menu-trigger'>
                                 <span>Menu</span>
                             </a>
-                            <!-- ** Menu End ** -->
+
+                            <!-- ***** Menu End ***** -->
                         </nav>
                     </div>
                 </div>
@@ -77,28 +80,31 @@
         </header>
 
         <div class="container" id="page-container">
-            <main role="main" id="main-content">
 
-                @RenderBody()
+                <main role="main" id="main-content">
 
-            </main>
+                    @RenderBody()
+
+                </main>
         </div>
 
     }
     else
     {
-        <!-- ** Header Area Start ** -->
+
+        <!-- ***** Header Area Start ***** -->
         <header class="header-area header-sticky background-header">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <nav class="main-nav">
-                            <!-- ** Logo Start ** -->
+
+                            <!-- ***** Logo Start ***** -->
                             <a href="/view/news" data-section="view/news" class="logo">
                                 <img src="/images/university-logo.png" alt="University Logo" style="height: 50px;" />
                             </a>
-                            <!-- ** Logo End ** -->
-                            <!-- ** Menu Start ** -->
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
                             <ul class="nav">
                                 <li><a href="/User/Login">Iniciar Sesión</a></li>
                                 <li><a href="/User/Register">Registrarse</a></li>
@@ -106,7 +112,8 @@
                             <a class='menu-trigger'>
                                 <span>Menu</span>
                             </a>
-                            <!-- ** Menu End ** -->
+
+                            <!-- ***** Menu End ***** -->
                         </nav>
                     </div>
                 </div>
@@ -116,7 +123,8 @@
         <div>
             <main role="main" id="main-content">
 
-                @RenderBody()
+
+                    @RenderBody()
 
             </main>
         </div>
@@ -126,7 +134,10 @@
 
 
 
-    <!-- ** Preloader Start ** -->
+
+    <!-- ***** Preloader Start ***** -->
+  
+
     <!--
     <div class="main-banner" id="top">
       <div class="container">
@@ -557,6 +568,9 @@
        -->
     <!--
 
+
+    <!--
+
         <footer>
         <div class="container">
             <div class="col-lg-12">
@@ -566,6 +580,8 @@
     </footer>
 
     -->
+
+
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="/jquery/jquery.js"></script>
