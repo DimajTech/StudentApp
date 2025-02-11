@@ -13,16 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    //Maneja navegaci髇 directa a una URL
+    //Maneja navegaci贸n directa a una URL
     window.addEventListener("popstate", () => {
 
         const section = location.pathname.substring(1); //obtiene el segmento de la uri
         if (section) {
-            loadSection(section); //carga la secci髇 en el contenedor
+            loadSection(section); //carga la secci贸n en el contenedor
         }
     });
 
-    //Carga la secci髇 inicial basada en la URL
+    //Carga la secci贸n inicial basada en la URL
     const initialSection = location.pathname.substring(1);
     if (initialSection) {
         loadSection(initialSection);
@@ -36,7 +36,7 @@ function loadSection(section) {
     toggleHeader(section);
 
 
-    //Separar la secci髇 del ID si existe
+    //Separar la secci贸n del ID si existe
     let [baseSection, id] = section.startsWith("view/newsdetails/")
         ? ["view/newsdetails", section.split("/").slice(2).join("/")]
         : [section, null];
@@ -46,7 +46,7 @@ function loadSection(section) {
     fetch(`/${baseSection}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Error al cargar la secci髇: ${response.status}`);
+                throw new Error(`Error al cargar la secci贸n: ${response.status}`);
             }
             return response.text();
         })
@@ -64,6 +64,12 @@ function loadSection(section) {
                 GetAppointments();
                 GetCourses();
             }
+            if (section === "view/advisement") {
+                var userEmail = localStorage.getItem("email");
+                GetAdvisementsByUser(userEmail);
+                GetPublicAdvisements(userEmail); // paso email para filtrar y no traer mis consultas de nuevo
+            }
+
             if (baseSection === "view/profile") {
                 GetUserData();
             }
@@ -72,11 +78,10 @@ function loadSection(section) {
             }
 
             history.pushState(null, "", `/${section}`); // Cambia la URL sin recargar
-
         })
         .catch(error => {
             console.error(error);
-            mainContent.innerHTML = `<p>Error: No se pudo cargar la secci髇 "${section}".</p>`;
+            mainContent.innerHTML = `<p>Error: No se pudo cargar la secci贸n "${section}".</p>`;
         });
 }
 
@@ -107,7 +112,7 @@ function toggleHeader() {
         `);
     } else {
         $("#header").html(`
-            <li><a href="/user/login">Iniciar sesi髇</a></li>
+            <li><a href="/user/login">Iniciar sesi贸n</a></li>
             <li><a href="/user/register">Registrarse</a></li>
         `);
     }

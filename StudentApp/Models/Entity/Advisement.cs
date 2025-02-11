@@ -2,7 +2,7 @@
 {
     public class Advisement
     {
-        private Guid id;
+        private string id;
         private Course course;
         private string content;
         private string status;
@@ -16,7 +16,7 @@
 
         public Advisement( Course course, string content, bool isPublic, User user) //Constructor para registro de una consulta
         {
-            id = Guid.NewGuid();
+            id = Guid.NewGuid().ToString();
             this.course = course;
             this.content = content;
             status = "Pending"; //estado inicial
@@ -25,7 +25,7 @@
             createdAt = DateTime.Now;
         }
 
-        public Guid Id { get => id; set => id = value; }
+        public string Id { get => id; set => id = value; }
         public Course Course { get => course; set => course = value; }
         public string Content { get => content; set => content = value; }
         public string Status { get => status; set => status = value; }

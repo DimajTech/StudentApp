@@ -4,7 +4,7 @@
 
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -48,12 +48,14 @@
 
     @if (isAuthenticated)
     {
+
         <!-- ***** Header Area Start ***** -->
         <header class="header-area header-sticky background-header">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <nav class="main-nav">
+
                             <!-- ***** Logo Start ***** -->
                             <a href="/view/news" data-section="view/news" class="logo">
                                 <img src="/images/university-logo.png" alt="University Logo" style="height: 50px;" />
@@ -69,6 +71,7 @@
                             <a class='menu-trigger'>
                                 <span>Menu</span>
                             </a>
+
                             <!-- ***** Menu End ***** -->
                         </nav>
                     </div>
@@ -77,6 +80,7 @@
         </header>
 
         <div class="container" id="page-container">
+
                 <main role="main" id="main-content">
 
                     @RenderBody()
@@ -87,12 +91,14 @@
     }
     else
     {
+
         <!-- ***** Header Area Start ***** -->
         <header class="header-area header-sticky background-header">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <nav class="main-nav">
+
                             <!-- ***** Logo Start ***** -->
                             <a href="/view/news" data-section="view/news" class="logo">
                                 <img src="/images/university-logo.png" alt="University Logo" style="height: 50px;" />
@@ -106,6 +112,7 @@
                             <a class='menu-trigger'>
                                 <span>Menu</span>
                             </a>
+
                             <!-- ***** Menu End ***** -->
                         </nav>
                     </div>
@@ -116,11 +123,13 @@
         <div>
             <main role="main" id="main-content">
 
+
                     @RenderBody()
 
             </main>
         </div>
     }
+
 
 
 
@@ -557,6 +566,7 @@
     </div>
 
        -->
+    <!--
 
 
     <!--

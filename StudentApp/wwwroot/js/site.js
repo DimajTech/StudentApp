@@ -222,50 +222,188 @@ function GetCourses() {
 
 }
 
-function AddAppointment() {
 
-    configureToastr();
+//------------------------------------------------
+//---------ADVISEMENT SECTION---------------
+//------------------------------------------------
 
-    const userId = localStorage.getItem("userId");
+function GetAdvisementsByUser(email) {
+    $.ajax({
+        url: "/Advisement/GetAdvisementsByUser",
+        type: "GET",
+        data: { email: email },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
 
-    var appointment = {
-        date: $('#datetime').val() + "T" + $('#time').val(),
-        mode: $('#mode').val(),
-        courseid: $('#course').val(),
-        userId,
-    };
-    var course = {
-        id: $('#course').val(),
-        name: $('#course').find('option:selected').text(),
-    };
+            var userHtmlTable = '';
+            $.each(result, function (key, item) {
+                userHtmlTable += '<tr>';
+                userHtmlTable += '<td>' + item.course.code + '</td>';
+                userHtmlTable += '<td>' + item.user.name + '</td>';
+                userHtmlTable += '<td>' + new Date(item.createdAt).toLocaleDateString() + '</td>';
+                userHtmlTable += '<td><button class="btn btn-info" onclick="GetAdvisementDetails(\'' + item.id + '\')">Ver más</button></td>';
+                userHtmlTable += '</tr>';
+            });
+
+            $('#user-advisements').html(userHtmlTable);
+        },
+        error: function (errorMessage) {
+            configureToastr();
+            toastr.error(errorMessage.responseText);
+        }
+    });
+}
+
+function GetPublicAdvisements(email) {
+    $.ajax({
+        url: "/Advisement/GetPublicAdvisements",
+        type: "GET",
+        data: { email: email },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+           
+
+            var publicHtmlTable = '';
+            $.each(result, function (key, item) {
+                publicHtmlTable += '<tr>';
+                publicHtmlTable += '<td>' + item.course.code + '</td>';
+                publicHtmlTable += '<td>' + item.user.name + '</td>';
+                publicHtmlTable += '<td>' + new Date(item.createdAt).toLocaleDateString() + '</td>';
+                publicHtmlTable += '<td><button class="btn btn-info" onclick="GetAdvisementDetails(\'' + item.id + '\')">Ver más</button></td>';
+                publicHtmlTable += '</tr>';
+            });
+
+            $('#public-advisements').html(publicHtmlTable);
+        },
+        error: function (errorMessage) {
+            configureToastr();
+            toastr.error(errorMessage.responseText);
+        }
+    });
+}
+
+function GetAdvisementDetails(id) {
+    $.ajax({
+        url: "/Advisement/GetAdvisementById",
+        type: "GET",
+        data: { id: id },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+       
+            $("#course").val(result.course.name);
+            $("#author").val(result.user.name);
+            $("#content").val(result.content);
+
+          
+            $(".section-advisements, #create-advisement").hide(); // Oculta las otras secciones
+            $("#advisement-details").show(); // Muestra la sección correcta
+        },
+        error: function (errorMessage) {
+            configureToastr();
+            toastr.error(errorMessage.responseText);
+        }
+    });
+}
+
+function GetCoursesForAdvisement() {
+    $.ajax({
+        url: "/Course/GetAllCourses",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var htmlSelect = '';
+            $.each(result, function (key, item) {
+                htmlSelect += '<option value="' + item.id + '">' + item.name + '</option>';
+            });
+            $("#advisement-course-select").append(htmlSelect);
+
+        },
+        error: function (errorMessage) {
+            configureToastr();
+            toastr.error(errorMessage.responseText);
+        }
+    });
+    
+}
+
+function ShowCreateAdvisementForm() {
+
+    $(".section-advisements, #advisement-details").hide();
+
+    $("#create-advisement").show();
+
+    GetCoursesForAdvisement();
+}
+
+function AddAdvisement() {
+
+    configureToastr(); 
+    var selectedCourseId = $("#advisement-course-select option:selected").val();
+   
+    var advisementContent = $('#advisement-content').val();
+    var isPublic = $('#publicCheck').is(':checked');
+
+
+    if (selectedCourseId === "0") {
+     
+        toastr.error("Por favor, seleccione un curso válido.");
+        return;
+    }
+
+    if (advisementContent.trim() === "") {
+     
+        toastr.error("Por favor, ingrese un mensaje.");
+        return;
+    }
+
+    //Se debe obtener el usuario autenticado correctamente
     var user = {
-        id: userId,
-    }
-    appointment.course = course;
-    appointment.user = user;
-    if (!$('#datetime').val()) {
-        toastr.error('Por favor, complete todos los campos correctamente.');
-    } else {
-        $.ajax({
-            url: "/Appointment/CreateNewAppointment",
-            data: JSON.stringify(appointment),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                $('#datetime').val('');
-                $("#mode").val(1);
-                $('#time').val('08:00')
-                toastr.success('Registrado con éxito');
-                GetAppointments();
-            },
-            error: function (errorMessage) {
-                toastr.error("Ha ocurrido un error al agendar la cita, por favor inténtelo más tarde");
-            }
-        });
-    }
+        id: "57f90130-0dee-4f6a-90bb-d00f37583cc0", //ID de prueba de la cookie
+        name: " " // 
+    };
 
-};
+
+    // Convertir ID del curso a string GUID en minúsculas
+    var formattedCourseId = selectedCourseId ? selectedCourseId.toLowerCase() : null;
+
+
+    var advisement = {
+        course: { id: formattedCourseId }, //porque el constructor de curso espera GUUID
+        content: advisementContent,
+        status: "Pending",
+        isPublic: isPublic,
+        user: user
+    };
+
+    $.ajax({
+        url: "/Advisement/CreateNewAdvisement",
+        type: "POST",
+        data: JSON.stringify(advisement),
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+
+            configureToastr(); 
+            toastr.success("Consulta creada con éxito."); 
+
+            $("#create-advisement").hide();
+            $(".section-advisements").show();
+        },
+        error: function (errorMessage) {
+            toastr.error(errorMessage.responseText);
+        }
+    });
+}
+
+function CancelCreateAdvisement() {
+    $("#create-advisement").hide();
+    $('#advisements').show();
+    $("#advisement-course-select").html('<option value="0" selected>Seleccione un curso</option>');
+}
 
 //------------------------------------------------
 //--------------PROFILE SECTION-------------------

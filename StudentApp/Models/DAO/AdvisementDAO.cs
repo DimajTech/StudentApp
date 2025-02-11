@@ -1,8 +1,11 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
 using StudentApp.Models.Entity;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.Data.SqlClient;
 
-namespace StudentApp.Models.DAO 
-{ 
+
+namespace StudentApp.Models.DAO
+{
     public class AdvisementDAO
     {
         private readonly IConfiguration _configuration;
@@ -15,7 +18,7 @@ namespace StudentApp.Models.DAO
         }
 
 
-        public int Insert(Advisement advisement)
+        public int Create(Advisement advisement)
         {
             int result = 0; //Saves 1 or 0 depending on the insertion result
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -23,9 +26,18 @@ namespace StudentApp.Models.DAO
                 {
                     {
                         connection.Open();
-                        SqlCommand command = new SqlCommand("InsertAdvisement", connection); //todo stored procedure
+                        SqlCommand command = new SqlCommand("CreateAdvisement", connection); //todo stored procedure
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        //Agregar AddValue para el procedimiento
+
+                        command.Parameters.AddWithValue("@Id", Guid.NewGuid().ToString());
+                        command.Parameters.AddWithValue("@CourseId", advisement.Course.Id);
+                        command.Parameters.AddWithValue("@Content", advisement.Content);
+                        command.Parameters.AddWithValue("@Status", advisement.Status);
+                        command.Parameters.AddWithValue("@IsPublic", advisement.IsPublic);
+                        command.Parameters.AddWithValue("@StudentId", advisement.User.Id);
+                        DateTime createdAt = advisement.CreatedAt == DateTime.MinValue ? DateTime.Now : advisement.CreatedAt;
+                        command.Parameters.AddWithValue("@CreatedAt", createdAt);
+
                         result = command.ExecuteNonQuery();
                         connection.Close();
 
@@ -40,26 +52,157 @@ namespace StudentApp.Models.DAO
 
         }
 
-        
-        public Advisement Get(string id)
+
+        public Advisement GetById(string id)
         {
-            Advisement advisement = new Advisement();
+            Advisement advisement = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand("GetAdvisementById", connection);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                command.Parameters.AddWithValue("@Id", id);
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read()) //ask if an user has been found with the given id
+                try
                 {
-                    //Todo parámetros que devuelve el store procedure
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("GetAdvisementById", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Id", id);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        advisement = new Advisement
+                        {
+                            Id = reader["Id"].ToString(),
+                            Course = new Course(
+                                reader["CourseCode"].ToString(),
+                                reader["CourseName"].ToString(),
+                                null, null, 0, true
+                            ), // constructor sobrecargado 
+                            Content = reader["Content"].ToString(),
+                            Status = reader["Status"].ToString(),
+                            IsPublic = reader["IsPublic"] != DBNull.Value && Convert.ToBoolean(reader["IsPublic"]),
+                            User = new User(
+                                        reader["UserId"] != DBNull.Value ? reader["UserId"].ToString() : string.Empty,
+                                        reader["UserName"] != DBNull.Value ? reader["UserName"].ToString() : string.Empty
+                                    ),
+                            CreatedAt = reader["CreatedAt"] != DBNull.Value ? Convert.ToDateTime(reader["CreatedAt"]) : DateTime.MinValue
+                        };
+                    }
+                    connection.Close();
                 }
-                connection.Close();
+                catch (SqlException)
+                {
+                    throw;
+                }
             }
             return advisement;
         }
+
+        public IEnumerable<Advisement> GetByUser(string email)
+        {
+            List<Advisement> advisements = new List<Advisement>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("GetAdvisementByUser", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@Email", email);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Advisement advisement = new Advisement
+                                {
+                                    Id = reader["Id"].ToString(),
+                                    Course = new Course(
+                                        reader["CourseCode"].ToString(),
+                                        reader["CourseName"].ToString(),
+                                        null, null, 0, true
+                                    ),
+                                    Content = reader["Content"].ToString(),
+                                    Status = reader["Status"].ToString(),
+                                    IsPublic = reader["IsPublic"] != DBNull.Value && Convert.ToBoolean(reader["IsPublic"]),
+                                    User = new User(
+                                        reader["UserId"] != DBNull.Value ? reader["UserId"].ToString() : string.Empty,
+                                        reader["UserName"] != DBNull.Value ? reader["UserName"].ToString() : string.Empty
+                                    ),
+                                    CreatedAt = reader["CreatedAt"] != DBNull.Value ? Convert.ToDateTime(reader["CreatedAt"]) : DateTime.MinValue
+                                };
+                                advisements.Add(advisement);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+                catch (SqlException)
+                {
+                    throw;
+                }
+
+                return advisements;
+            }
+        }
+
+
+
+        public IEnumerable<Advisement> GetPublicAdvisements(string email) //TODO: que no traiga las del email del estudiante logeado
+        {
+            List<Advisement> advisements = new List<Advisement>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("GetPublicAdvisements", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@Email", email);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Advisement advisement = new Advisement
+                                {
+                                    Id = reader["Id"].ToString(),
+                                    Course = new Course(
+                                        reader["CourseCode"].ToString(),
+                                        reader["CourseName"].ToString(),
+                                        null, null, 0, true
+                                    ),
+                                    Content = reader["Content"].ToString(),
+                                    Status = reader["Status"].ToString(),
+                                    IsPublic = reader["IsPublic"] != DBNull.Value && Convert.ToBoolean(reader["IsPublic"]),
+                                    User = new User(
+                                        reader["UserId"] != DBNull.Value ? reader["UserId"].ToString() : string.Empty,
+                                        reader["UserName"] != DBNull.Value ? reader["UserName"].ToString() : string.Empty
+                                    ),
+                                    CreatedAt = reader["CreatedAt"] != DBNull.Value ? Convert.ToDateTime(reader["CreatedAt"]) : DateTime.MinValue
+                                };
+
+                                advisements.Add(advisement);
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+                catch (SqlException)
+                {
+                    throw;
+                }
+
+
+                return advisements;
+            }
+
+        }
+
+
+
     }
 }
