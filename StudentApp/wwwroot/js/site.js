@@ -1006,7 +1006,7 @@ function LoadNewsItems() {
     const role = localStorage.getItem("role");
     const addBtn = $(`#add-news-btn`);
 
-    if (role === "President") {
+    if (role === "president") {
         addBtn.css("display", "block");
     }else {
         addBtn.css("display", "none");

@@ -20,7 +20,7 @@ namespace StudentApp.Models.DAO
         {
             int result = 0; //Saves 1 or 0 depending on the insertion result
 
-            if (news.User.Role =="President")
+            if (news.User.Role =="president")
 			{
                 using (SqlConnection connection = new SqlConnection(connectionString))
                     try
