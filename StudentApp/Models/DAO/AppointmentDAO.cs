@@ -65,47 +65,6 @@ namespace StudentApp.Models.DAO
             return result;
         }
 
-
-        /*
-        public int CreateAppointment(Appointment appointment)
-        {
-            int result = 0; 
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand("CreateAppointment", connection))
-                    {
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        command.Parameters.AddWithValue("@Id", Guid.NewGuid().ToString());
-                        command.Parameters.AddWithValue("@Date", appointment.Date);
-                        command.Parameters.AddWithValue("@Mode", appointment.Mode);
-                        command.Parameters.AddWithValue("@Status", "pending");
-                        command.Parameters.AddWithValue("@CourseId", appointment.Course.Id);
-                        command.Parameters.AddWithValue("@StudentId", appointment.User.Id); 
-
-                        result = command.ExecuteNonQuery();
-                        connection.Close();
-
-                    }
-                }
-                catch (SqlException e)
-                {
-                    
-                    throw; //se lanza excepcion para ser manejada en el controller
-                }
-            }
-
-            return result;
-        }
-        */
-
-
-
         public Appointment GetAppointment(Guid id)
         {
             Appointment appointment = null;
