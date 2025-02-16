@@ -1110,7 +1110,7 @@ function LoadNewsComments(pieceOfNewsID) {
 
 
     $.ajax({
-        url: "/CommentNews/GetCommentNewsByPieceOfNewsId/" + pieceOfNewsID,
+        url: "https://localhost:7047/CommentNews/GetCommentNewsByPieceOfNewsId/" + pieceOfNewsID,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         success: function (newsComments) {
@@ -1267,7 +1267,7 @@ const toggleAddResponse = (id, btnId) => {
     }
 };
 
-function AddNewsComment(pieceOfNewsID) {
+function AddNewsComment(pieceOfNewsId) {
 
 
     var text = ($('#comment-text-area').val() || "").trim(); 
@@ -1277,16 +1277,13 @@ function AddNewsComment(pieceOfNewsID) {
 
         const userID = localStorage.getItem("userId");
 
-        var comment = {
 
-            pieceOfNews: {
-                id: pieceOfNewsID
-            },
-            user: {
-                id: userID
-            },
+        var comment = {
+            id: null, 
+            pieceOfNewsId: pieceOfNewsId.toString(),
+            authorId: userID.toString(),
             text: text
-        }
+        };
 
         setLoading(true);
         $.ajax({
@@ -1300,7 +1297,7 @@ function AddNewsComment(pieceOfNewsID) {
                 toastr.options.positionClass = 'toast-bottom-right';
                 toastr.success('Comentario publicado con éxito');
 
-                LoadNewsComments(pieceOfNewsID);
+                LoadNewsComments(pieceOfNewsId);
                 setLoading(false);
 
 
@@ -1339,15 +1336,11 @@ function AddNewsCommentResponse(commentID, container, textarea, counter) {
         const userID = localStorage.getItem("userId");
 
         var response = {
-
-            CommentNews: {
-                id: commentID
-            },
-            user: {
-                id: userID
-            },
+            id: null,
+            commentNewsId: commentID.toString(),
+            authorId: userID.toString(),
             text: text
-        }
+        };
 
         setLoading(true);
         $.ajax({

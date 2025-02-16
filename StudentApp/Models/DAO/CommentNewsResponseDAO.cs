@@ -24,6 +24,7 @@ namespace StudentApp.Models.DAO
                         connection.Open();
                         SqlCommand command = new SqlCommand("InsertNewsCommentResponse", connection);
                         command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@Id", comment.Id);
                         command.Parameters.AddWithValue("@commentNewsId", comment.CommentNews.Id);
                         command.Parameters.AddWithValue("@AuthorID", comment.User.Id);
                         command.Parameters.AddWithValue("@Text", comment.Text);
