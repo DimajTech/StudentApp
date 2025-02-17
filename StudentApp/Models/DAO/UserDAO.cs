@@ -135,7 +135,7 @@ namespace StudentApp.Models.DAO
         }
 
         
-        public int Update(UserUpdateRequestDTO user)
+        public int Update(User user)
         {
             int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
             Exception? exception = new Exception();
@@ -147,13 +147,13 @@ namespace StudentApp.Models.DAO
                     SqlCommand command = new SqlCommand("UpdateUser", connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     
-                    command.Parameters.AddWithValue("@Id", user.id);
-                    command.Parameters.AddWithValue("@Name", user.name);
-                    command.Parameters.AddWithValue("@Password", user.password);
-                    command.Parameters.AddWithValue("@Description", user.description);
-                    command.Parameters.AddWithValue("@ProfessionalBackground", user.professionalBackground);
-                    command.Parameters.AddWithValue("@LinkedIn", user.linkedin);
-                    command.Parameters.AddWithValue("@Picture", user.picture);
+                    command.Parameters.AddWithValue("@Id", user.Id);
+                    command.Parameters.AddWithValue("@Name", user.Name);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+                    command.Parameters.AddWithValue("@Description", user.Description);
+                    command.Parameters.AddWithValue("@ProfessionalBackground", user.ProfessionalBackground);
+                    command.Parameters.AddWithValue("@LinkedIn", user.LinkedIn);
+                    command.Parameters.AddWithValue("@Picture", user.Picture);
 
                     resultToReturn = command.ExecuteNonQuery();
                     connection.Close();

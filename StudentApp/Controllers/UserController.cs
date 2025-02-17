@@ -162,7 +162,21 @@ namespace StudentApp.Controllers
 
         [HttpPut]
         [Route("[action]")]
-        public IActionResult UpdateUser([FromBody] UserUpdateRequestDTO newValues)
+        public IActionResult UpdateUser([FromBody] User newValues)
+        {
+            try
+            {
+                return Ok(userDAO.Update(newValues));
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("[action]")]
+        public IActionResult UpdateProfessor([FromBody] User newValues)
         {
             try
             {
