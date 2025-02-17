@@ -44,10 +44,17 @@ function AuthenticateUser() {
     const email = $('#email').val();
     const password = $('#password').val();
 
+    const login = {
+        email: email,
+        password: password
+    };
+
     $.ajax({
         url: "/User/Login",
         type: "POST",
-        data: { email, password },
+        data: JSON.stringify(login),
+        contentType: "application/json",
+        dataType: "json",
         success: function (response) {
             if (response.success) {
 
@@ -632,9 +639,8 @@ function GetUserData() {
     const userEmail = localStorage.getItem("email");
 
     $.ajax({
-        url: "/User/GetByEmail",
+        url: `/User/GetByEmail/${encodeURIComponent(userEmail)}`,
         type: "GET",
-        data: { email: userEmail },
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
@@ -814,7 +820,7 @@ function DeleteAccount() {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: `/User/DeleteUser?id=${userId}`,
+                url: `/User/DeleteUser/${encodeURIComponent(userId)}`,
                 type: "DELETE",
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",

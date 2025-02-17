@@ -2,10 +2,13 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using StudentApp.Models.DAO;
+using StudentApp.Models.DTO;
 using StudentApp.Models.Entity;
 
 namespace StudentApp.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
@@ -21,29 +24,32 @@ namespace StudentApp.Controllers
 
         }
         [HttpGet]
+        [Route("[action]")]
         public IActionResult Login()
         {
             return View();
         }
         [HttpGet]
+        [Route("[action]")]
         public IActionResult Register()
         {
             return View(); //ASP.NET Core busca automáticamente Views/Shared/Register.cshtml
         }
 
         [HttpPost]
-        public IActionResult Login(string email, string password)
+        [Route("[action]")]
+        public IActionResult Login([FromBody] LoginRequestDTO login)
         {
             try
             {
-                User user = userDAO.GetByEmail(email);
+                User user = userDAO.GetByEmail(login.email);
                 bool success = false;
                 string message = "";
                 string userId = "";
                 string role = "";
                 string picture = "";
 
-                if (user != null && user.Password == password)
+                if (user != null && user.Password == login.password)
                 {
                     if (user.RegistrationStatus == "accepted")
                     {
@@ -93,6 +99,7 @@ namespace StudentApp.Controllers
 
 
         [HttpPost]
+        [Route("[action]")]
         public IActionResult Register([FromBody] User user)
         {
             bool success = false;
@@ -131,7 +138,8 @@ namespace StudentApp.Controllers
         }
 
 		[HttpGet]
-		public IActionResult GetByEmail([FromQuery] string email)
+        [Route("[action]/{email}")]
+		public IActionResult GetByEmail(string email)
 		{
 			try
 			{
@@ -152,11 +160,12 @@ namespace StudentApp.Controllers
 		}
 
         [HttpPut]
-        public IActionResult UpdateUser([FromBody] User user)
+        [Route("[action]")]
+        public IActionResult UpdateUser([FromBody] UserUpdateRequestDTO newValues)
         {
             try
             {
-                return Ok(userDAO.Update(user));
+                return Ok(userDAO.Update(newValues));
             }
             catch (SqlException e)
             {
@@ -165,7 +174,8 @@ namespace StudentApp.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteUser([FromQuery] string id)
+        [Route("[action]/{id}")]
+        public IActionResult DeleteUser(string id)
         {
             try
             {
