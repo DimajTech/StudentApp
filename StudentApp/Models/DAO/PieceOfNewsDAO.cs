@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using StudentApp.Models.DTO;
 using StudentApp.Models.Entity;
 
 namespace StudentApp.Models.DAO
@@ -16,11 +17,11 @@ namespace StudentApp.Models.DAO
 			connectionString = _configuration.GetConnectionString("DefaultConnection");
 		}
 
-        public int Insert(PieceOfNews news)
+        public int Insert(CreatePieceOfNewsDTO news)
         {
             int result = 0; //Saves 1 or 0 depending on the insertion result
 
-            if (news.User.Role =="president")
+            if (news.UserRole =="president")
 			{
                 using (SqlConnection connection = new SqlConnection(connectionString))
                     try
@@ -42,7 +43,7 @@ namespace StudentApp.Models.DAO
 
 
                             command.Parameters.AddWithValue("@Picture", imageBytes);
-                            command.Parameters.AddWithValue("@AuthorID", news.User.Id);
+                            command.Parameters.AddWithValue("@AuthorID", news.UserId);
                             command.Parameters.AddWithValue("@Description", news.Description);
 
 

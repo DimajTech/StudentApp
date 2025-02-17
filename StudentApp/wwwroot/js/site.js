@@ -899,13 +899,12 @@ function AddPieceOfNews() {
             if (title.length > 0 && description.length > 0) {
 
                 var news = {
+                    id: null,
                     title: $('#add-news-title').val(),
                     description: $('#add-news-description').val(),
                     picture: reader.result,
-                    user: {
-                        id: localStorage.getItem("userId"),
-                        role: localStorage.getItem("role")
-                    }
+                    userId: localStorage.getItem("userId"),
+                    userRole: localStorage.getItem("role")
                 };
                 $.ajax({
                     url: "/PieceOfNews/CreateNews",
