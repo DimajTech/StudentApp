@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using StudentApp.Models.DAO;
 using StudentApp.Models.DTO;
 using StudentApp.Models.Entity;
+using StudentApp.Service.ProfessorApp;
+using System.Transactions;
 
 namespace StudentApp.Controllers
 {
@@ -15,14 +18,14 @@ namespace StudentApp.Controllers
         private readonly ILogger<UserController> _logger;
         private readonly IConfiguration _configuration;
         UserDAO userDAO;
-
+        private readonly string PROFESSOR_API_URL;
         public UserController(ILogger<UserController> logger, IConfiguration configuration)
         {
             _logger = logger;
             _configuration = configuration;
 
             userDAO = new UserDAO(_configuration);
-
+            PROFESSOR_API_URL = _configuration["EnvironmentVariables:PROFESSOR_API_URL"];
         }
         [HttpGet]
         [Route("[action]")]
@@ -160,33 +163,28 @@ namespace StudentApp.Controllers
 
 		}
 
+        
         [HttpPut]
         [Route("[action]")]
-        public IActionResult UpdateUser([FromBody] User newValues)
+        public IActionResult UpdateUser([FromBody] UpdateStudentDTO user)
         {
             try
             {
-                return Ok(userDAO.Update(newValues));
+                var service = new ProfessorUserService(_configuration);
+                service.UpdateStudent(user);
+
+                return Ok(userDAO.Update(user));
             }
             catch (SqlException e)
             {
                 return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { error = e.Message });
             }
         }
 
-        [HttpPut]
-        [Route("[action]")]
-        public IActionResult UpdateProfessor([FromBody] User newValues)
-        {
-            try
-            {
-                return Ok(userDAO.Update(newValues));
-            }
-            catch (SqlException e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
 
         [HttpDelete]
         [Route("[action]/{id}")]
@@ -200,6 +198,21 @@ namespace StudentApp.Controllers
             catch (SqlException e)
             {
                 return BadRequest(new { success = false, message = e.Message });
+            }
+        }
+
+        //----------------------- PROFESSOR-TO-STUDENT METHODS -----------------------
+        [HttpPut]
+        [Route("[action]")]
+        public IActionResult UpdateProfessor([FromBody] UpdateStudentDTO newValues)
+        {
+            try
+            {
+                return Ok(userDAO.Update(newValues));
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(e.Message);
             }
         }
     }

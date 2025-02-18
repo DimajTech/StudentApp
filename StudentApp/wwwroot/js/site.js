@@ -12,6 +12,7 @@ $(document).ready(() => {
 
         event.preventDefault();
         Add();
+        Add();
 
     });
 
@@ -732,7 +733,7 @@ function EditUser() {
         name: $('#p-name2').val(),
         password: $('#p-password').val(),
         description: $('#p-description').val(),
-        linkedIn: $('#p-linkedin').val(),
+        linkedin: $('#p-linkedin').val(),
         picture: $('#p-picture').attr("src")
     }
 

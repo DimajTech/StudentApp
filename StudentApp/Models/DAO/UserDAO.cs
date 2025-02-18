@@ -135,7 +135,7 @@ namespace StudentApp.Models.DAO
         }
 
         
-        public int Update(User user)
+        public int Update(UpdateStudentDTO user)
         {
             int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
             Exception? exception = new Exception();
