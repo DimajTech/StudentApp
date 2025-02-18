@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using StudentApp.Models.Entity;
+using StudentApp.Service;
 
 namespace StudentApp.Models.DAO
 {
@@ -13,43 +14,56 @@ namespace StudentApp.Models.DAO
             _configuration = configuration;
             connectionString = _configuration.GetConnectionString("DefaultConnection");
         }
+
+
         public int CreateAppointment(Appointment appointment)
         {
-            int result = 0; 
+            int result = 0;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                try
+                connection.Open();
+                using (SqlTransaction transaction = connection.BeginTransaction())
                 {
-
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand("CreateAppointment", connection))
+                    try
                     {
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        using (SqlCommand command = new SqlCommand("CreateAppointment", connection, transaction))
+                        {
+                            command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@Id", Guid.NewGuid().ToString());
-                        command.Parameters.AddWithValue("@Date", appointment.Date);
-                        command.Parameters.AddWithValue("@Mode", appointment.Mode);
-                        command.Parameters.AddWithValue("@Status", "pending");
-                        command.Parameters.AddWithValue("@CourseId", appointment.Course.Id);
-                        command.Parameters.AddWithValue("@StudentId", appointment.User.Id); 
+                            command.Parameters.AddWithValue("@Id", Guid.NewGuid().ToString());
+                            command.Parameters.AddWithValue("@Date", appointment.Date);
+                            command.Parameters.AddWithValue("@Mode", appointment.Mode);
+                            command.Parameters.AddWithValue("@Status", "pending");
+                            command.Parameters.AddWithValue("@CourseId", appointment.Course.Id);
+                            command.Parameters.AddWithValue("@StudentId", appointment.User.Id);
 
-                        result = command.ExecuteNonQuery();
-                        connection.Close();
+                            result = command.ExecuteNonQuery();
+                        }
 
+                        using (SqlCommand command = new SqlCommand("GetProfessorEmail", connection, transaction))
+                        {
+                            command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            command.Parameters.AddWithValue("@CourseId", appointment.Course.Id);
+
+                            var professorEmail = command.ExecuteScalar()?.ToString() ?? string.Empty; 
+
+                            SendEmail.AppointmentEmail(professorEmail);
+                        }
+
+                        transaction.Commit();
                     }
-                }
-                catch (SqlException e)
-                {
-                    
-                    throw; //se lanza excepcion para ser manejada en el controller
+                    catch (SqlException)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
                 }
             }
 
             return result;
         }
-
-
 
         public Appointment GetAppointment(Guid id)
         {

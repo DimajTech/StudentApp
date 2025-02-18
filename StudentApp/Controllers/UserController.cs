@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using StudentApp.Models.DAO;
 using StudentApp.Models.Entity;
+using StudentApp.Service;
 
 namespace StudentApp.Controllers
 {
@@ -106,6 +107,8 @@ namespace StudentApp.Controllers
                     if(result == 1)
                     {
                         success = true;
+                        //TODO: Agregar funcionalidad de correo
+                        SendEmail.RegisterEmail(user);
                         message = "Su solicitud ha sido enviada correctamente. Revisa tu correo. ";
                     }
                     else

@@ -43,7 +43,7 @@ function AuthenticateUser() {
 
     const email = $('#email').val();
     const password = $('#password').val();
-
+    
     $.ajax({
         url: "/User/Login",
         type: "POST",
@@ -87,12 +87,12 @@ function Add() {
         email: $('#r-email').val(),
         password: $('#r-password').val(),
     };
-
     if (user.password != $('#confirm-password').val()) {
 
         $('#validation').text('Las contraseñas no coinciden');
 
     } else {
+
         $.ajax({
             url: "/User/Register",
             data: JSON.stringify(user), //convierte la variable estudiante en tipo json
@@ -107,7 +107,7 @@ function Add() {
                     $('#r-name').val('');
                     $('#r-email').val('');
                     $('#r-password').val('');
-                    $('confirm-password').val('');
+                    $('#confirm-password').val('');
                     $('#validation').text(response.message);
                     $('#validation').css('color', 'green');
 
@@ -273,7 +273,52 @@ function AddAppointment() {
         });
     }
 
+function AddAppointment() {
+
+    configureToastr();
+
+    const userId = localStorage.getItem("userId");
+
+    var appointment = {
+        date: $('#datetime').val() + "T" + $('#time').val(),
+        mode: $('#mode').val(),
+        courseid: $('#course').val(),
+        userId,
+    };
+    var course = {
+        id: $('#course').val(),
+        name: $('#course').find('option:selected').text(),
+    };
+    var user = {
+        id: userId,
+    }
+    appointment.course = course;
+    appointment.user = user;
+    if (!$('#datetime').val()) {
+        toastr.error('Por favor, complete todos los campos correctamente.');
+    } else {
+        $.ajax({
+            url: "/Appointment/CreateNewAppointment",
+            data: JSON.stringify(appointment),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#datetime').val('');
+                $("#mode").val(1);
+                $('#time').val('08:00')
+                toastr.success('Registrado con éxito');
+                GetAppointments();
+            },
+            error: function (errorMessage) {
+                toastr.error("Ha ocurrido un error al agendar la cita, por favor inténtelo más tarde");
+            }
+        });
+    }
+
 };
+
+
 //------------------------------------------------
 //---------ADVISEMENT SECTION---------------
 //------------------------------------------------
@@ -1383,7 +1428,6 @@ function AddNewsCommentResponse(commentID, container, textarea, counter) {
 
 
 }
-
 //------------------------------------------------
 //-------------------UTILITY----------------------
 //------------------------------------------------
