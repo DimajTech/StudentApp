@@ -1,6 +1,8 @@
 //Intercepta clics en los enlaces del header
 document.addEventListener("DOMContentLoaded", () => {
 
+    setLoading(false);
+
     document.querySelectorAll("a[data-section]").forEach(link => {
 
         link.addEventListener("click", (event) => {
@@ -35,11 +37,14 @@ function loadSection(section) {
     mainContent.innerHTML = "";
     toggleHeader(section);
 
-
-    //Separar la sección del ID si existe
+    section.toLowerCase();
+    //separar la sección del ID si existe
     let [baseSection, id] = section.startsWith("view/newsdetails/")
         ? ["view/newsdetails", section.split("/").slice(2).join("/")]
-        : [section, null];
+        : section.startsWith("view/advisementdetails/")
+            ? ["view/advisementdetails", section.split("/").slice(2).join("/")]
+            : [section, null];
+
 
     toggleHeader();
 
@@ -64,7 +69,7 @@ function loadSection(section) {
                 GetAppointments();
                 GetCourses();
             }
-            if (section === "view/advisement") {
+            if (baseSection === "view/advisement") {
                 var userEmail = localStorage.getItem("email");
                 GetAdvisementsByUser(userEmail);
                 GetPublicAdvisements(userEmail); // paso email para filtrar y no traer mis consultas de nuevo
@@ -76,6 +81,22 @@ function loadSection(section) {
             if (baseSection === "view/newsdetails" && id) {
                 LoadNewsDetail(id);
             }
+
+            if (baseSection === "view/advisementdetails" && id) {
+                GetAdvisementDetails(id);
+
+            }
+
+
+            if (baseSection === "view/advisementdetails" && id) {
+                GetAdvisementDetails(id);
+
+            }
+            if (baseSection === "user/login" && id) {
+
+                setLoading(false);
+            }
+
 
             history.pushState(null, "", `/${section}`); // Cambia la URL sin recargar
         })
@@ -101,6 +122,7 @@ function toggleHeader() {
     const isAuthenticated = getCookie("AuthCookie") !== null;
 
     $("#page-container").removeClass();
+    const picture = localStorage.getItem("userPicture");
 
     if (isAuthenticated) {
         $("#page-container").addClass("container");
@@ -108,8 +130,13 @@ function toggleHeader() {
             <li class="scroll-to-section"><a href="/view/news" data-section="view/news">Noticias</a></li>
             <li class="scroll-to-section"><a href="/view/appointment" data-section="view/appointment">Horas consulta</a></li>
             <li class="scroll-to-section"><a href="/view/advisement" data-section="view/advisement">Consulta de Cursos</a></li>
-            <li class="scroll-to-section"><a href="/view/profile" data-section="view/profile">Perfil</a></li>
-        `);
+            <li class="scroll-to-section"><a href="/view/profile" data-section="view/profile"><img src="${picture}" id="p-picture-header"></a> </li>
+            <li class="scroll-to-section">
+                <a href="javascript:void(0);" onclick="logoutUser()">
+                    <img src="/images/door-check-out-icon.png" id="p-picture-header" style="border-radius:0; height:30px; width:30px;">
+                </a>
+            </li>
+            `);
     } else {
         $("#header").html(`
             <li><a href="/user/login">Iniciar sesión</a></li>
@@ -125,5 +152,22 @@ function toggleHeader() {
             history.pushState(null, "", `/${section}`);
             loadSection(section);
         });
+    });
+}
+
+function logoutUser() {
+    Swal.fire({
+        text: "Estás a punto de salir de cuenta.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#218838',
+        cancelButtonColor: '#dc3545',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) { // Cambiado de result.success a result.isConfirmed
+            document.cookie = "AuthCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.href = "/user/login";
+        }
     });
 }

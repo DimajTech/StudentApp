@@ -55,6 +55,9 @@ function AuthenticateUser() {
                 localStorage.setItem("role", response.role);
                 localStorage.setItem("userId", response.userId);
 
+
+                localStorage.setItem("userPicture", response.picture);
+
                 window.location.href = "/";
 
 
@@ -129,6 +132,9 @@ function Add() {
 //--------------APPOINTMENTS SECTION--------------
 //------------------------------------------------
 function GetAppointments() {
+
+    setLoading(true);
+
     const userEmail = localStorage.getItem("email");
 
     $.ajax({
@@ -138,7 +144,8 @@ function GetAppointments() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            
+            setLoading(false);
+
             if (result.length === 0) {
                 $('#myappointments-table').hide();
                 $('#noAppointmentsMessage').show();
@@ -171,11 +178,14 @@ function GetAppointments() {
                 htmlTable += '</tr>';
             });
 
+
             $('#myappointments-tbody').html(htmlTable);
         },
         error: function () {
             configureToastr();
             toastr.error("Error al obtener citas.");
+            setLoading(false);
+
         }
     });
 }
@@ -199,8 +209,6 @@ function GetCourses() {
 
     setAvailableTimeAppointment();
 
-    console.log($('#time').val());
-
     $.ajax({
         url: "/Course/GetAllCourses",
         type: "GET",
@@ -222,6 +230,48 @@ function GetCourses() {
 
 }
 
+function AddAppointment() {
+
+    configureToastr();
+
+    const userId = localStorage.getItem("userId");
+
+    var appointment = {
+        date: $('#datetime').val() + "T" + $('#time').val(),
+        mode: $('#mode').val(),
+        courseid: $('#course').val(),
+        userId,
+    };
+    var course = {
+        id: $('#course').val(),
+        name: $('#course').find('option:selected').text(),
+    };
+    var user = {
+        id: userId,
+    }
+    appointment.course = course;
+    appointment.user = user;
+    if (!$('#datetime').val()) {
+        toastr.error('Por favor, complete todos los campos correctamente.');
+    } else {
+        $.ajax({
+            url: "/Appointment/CreateNewAppointment",
+            data: JSON.stringify(appointment),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#datetime').val('');
+                $("#mode").val(1);
+                $('#time').val('08:00')
+                toastr.success('Registrado con éxito');
+                GetAppointments();
+            },
+            error: function (errorMessage) {
+                toastr.error("Ha ocurrido un error al agendar la cita, por favor inténtelo más tarde");
+            }
+        });
+    }
 
 function AddAppointment() {
 
@@ -268,11 +318,141 @@ function AddAppointment() {
 
 };
 
+
 //------------------------------------------------
 //---------ADVISEMENT SECTION---------------
 //------------------------------------------------
 
+function AddNewResponse(advisementId) {
+
+
+    var text = ($('#response-text-area').val() || "").trim();
+
+    if (text.length > 0) {
+        $("#response-text-area").css("border-color", "black");
+
+        const userID = localStorage.getItem("userId");
+
+        var response = {
+
+            advisementId,
+            user: {
+                id: userID
+            },
+            text: text
+        }
+
+        setLoading(true);
+        $.ajax({
+            url: "/Advisement/AddNewResponse",
+            data: JSON.stringify(response), //convierte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                setLoading(false);
+
+                toastr.options.positionClass = 'toast-bottom-right';
+                toastr.success('Respuesta publicada con éxito');
+
+                LoadAdvisementResponses(advisementId)
+
+
+
+            },
+            error: function (errorMessage) {
+                console.log(errorMessage.responseText);
+
+                toastr.options.positionClass = 'toast-bottom-right';
+                toastr.error('Ha ocurrido un error al agregar la respuesta, intente de nuevo más tarde.');
+
+                setLoading(false);
+
+            }
+        });
+    } else {
+
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.error('Por favor rellene todos los campos');
+
+        $("#response-text-area").css("border-color", "red");
+
+    }
+
+
+}
+function LoadAdvisementResponses(advisementId) {
+
+
+    $.ajax({
+        url: "/Advisement/GetAdvisementResponsesById/" + advisementId,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (advisementResponses) {
+
+
+            //Caja para comentar
+            var htmlContent = ``;
+            $("#commentsContainer>").html(`<div class="loader"></div>`);
+
+            htmlContent += `
+                <div class="comment-add-container" id="responses-advise-form" style="">
+
+                    <textarea id="response-text-area" class="comment-text-area" maxlength="200" rows="4" placeholder="Escribe tu respuesta..." required></textarea><br>
+                    <button id="addCommentBtn" class="comment-button" onclick="AddNewResponse('${advisementId}')" >
+                        Agregar Respuesta
+                    </button>
+                </div>
+                <div style="text-align:right; padding-right:10px;">
+                    <br> <h6 id= "totalResponses"></h6><br>
+                </div>
+            `;
+
+            let index = 0;
+            totalResponses = advisementResponses.length;
+
+            //Comentarios
+            advisementResponses.forEach(response => {
+
+
+                index++;
+                htmlContent += `
+                    <div class="comment-card">
+                        <div class="comment-header">
+                            <div>
+                                <span class="comment-user">${response.user.name}</span>
+                                <span class="comment-role">(${response.user.role})</span>
+                            </div>
+                           
+                            <span class="comment-date">${new Date(response.dateTime).toLocaleString()}</span>
+                        </div>
+                        <div class="comment-body">
+                            <p>${response.text}</p>
+                        </div>
+                        </div>
+                `;
+            });
+
+            $('#responses-container').html(htmlContent);
+            $('#totalResponses').html(totalResponses + " Respuesta(s)");
+
+
+        },
+        error: function (errorMessage) {
+            console.log(errorMessage.responseText);
+
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.error('Ha ocurrido un error al cargar las respuestas, intente de nuevo más tarde.');
+
+            setLoading(false);
+        }
+    });
+}
 function GetAdvisementsByUser(email) {
+
+    setLoading(true);
+
     $.ajax({
         url: "/Advisement/GetAdvisementsByUser",
         type: "GET",
@@ -281,26 +461,34 @@ function GetAdvisementsByUser(email) {
         dataType: "json",
         success: function (result) {
 
+            setLoading(false);
+
             var userHtmlTable = '';
             $.each(result, function (key, item) {
                 userHtmlTable += '<tr>';
                 userHtmlTable += '<td>' + item.course.code + '</td>';
                 userHtmlTable += '<td>' + item.user.name + '</td>';
                 userHtmlTable += '<td>' + new Date(item.createdAt).toLocaleDateString() + '</td>';
-                userHtmlTable += '<td><button class="btn btn-info" onclick="GetAdvisementDetails(\'' + item.id + '\')">Ver más</button></td>';
+                userHtmlTable += `<td><button class="btn btn-info" style="color:white; background-color:#66c5e3;" onclick="loadSection('view/advisementdetails/${item.id}')">Ver más</button></td>`;
                 userHtmlTable += '</tr>';
             });
 
             $('#user-advisements').html(userHtmlTable);
+
         },
         error: function (errorMessage) {
             configureToastr();
             toastr.error(errorMessage.responseText);
+            setLoading(false);
+
         }
     });
 }
 
 function GetPublicAdvisements(email) {
+
+    setLoading(true);
+
     $.ajax({
         url: "/Advisement/GetPublicAdvisements",
         type: "GET",
@@ -309,6 +497,7 @@ function GetPublicAdvisements(email) {
         dataType: "json",
         success: function (result) {
            
+            setLoading(false);
 
             var publicHtmlTable = '';
             $.each(result, function (key, item) {
@@ -316,20 +505,25 @@ function GetPublicAdvisements(email) {
                 publicHtmlTable += '<td>' + item.course.code + '</td>';
                 publicHtmlTable += '<td>' + item.user.name + '</td>';
                 publicHtmlTable += '<td>' + new Date(item.createdAt).toLocaleDateString() + '</td>';
-                publicHtmlTable += '<td><button class="btn btn-info" onclick="GetAdvisementDetails(\'' + item.id + '\')">Ver más</button></td>';
+                publicHtmlTable += `<td><button class="btn btn-info" style="color:white; background-color:#66c5e3;" onclick="loadSection('view/advisementdetails/${item.id}')">Ver más</button></td>`;
                 publicHtmlTable += '</tr>';
             });
 
             $('#public-advisements').html(publicHtmlTable);
+
         },
         error: function (errorMessage) {
             configureToastr();
             toastr.error(errorMessage.responseText);
+            setLoading(false);
+
         }
     });
 }
 
 function GetAdvisementDetails(id) {
+
+    setLoading(true);
     $.ajax({
         url: "/Advisement/GetAdvisementById",
         type: "GET",
@@ -337,18 +531,34 @@ function GetAdvisementDetails(id) {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-       
-            $("#course").val(result.course.name);
-            $("#author").val(result.user.name);
-            $("#content").val(result.content);
+
+            setLoading(false);
+
+            if (result && Object.keys(result).length > 0) {
+
+                $("#course").val(result.course.name);
+                $("#author").val(result.user.name);
+                $("#content").val(result.content);
 
           
-            $(".section-advisements, #create-advisement").hide(); // Oculta las otras secciones
-            $("#advisement-details").show(); // Muestra la sección correcta
+                $(".section-advisements, #create-advisement").hide(); 
+                $("#advisement-details").show(); 
+
+                LoadAdvisementResponses(id);
+            } else {
+
+                toastr.options.positionClass = 'toast-bottom-right';
+                toastr.error('La consulta no existe o ha sido eliminada.');
+
+                loadSection('view/advisement');
+            }
+
+           
         },
         error: function (errorMessage) {
             configureToastr();
             toastr.error(errorMessage.responseText);
+            setLoading(false);
         }
     });
 }
@@ -386,7 +596,9 @@ function ShowCreateAdvisementForm() {
 
 function AddAdvisement() {
 
-    configureToastr(); 
+    setLoading(true);
+
+    //configureToastr(); 
     var selectedCourseId = $("#advisement-course-select option:selected").val();
    
     var advisementContent = $('#advisement-content').val();
@@ -394,8 +606,9 @@ function AddAdvisement() {
 
 
     if (selectedCourseId === "0") {
-     
-        toastr.error("Por favor, seleccione un curso válido.");
+
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.error('Por favor selecciona un curso.');
         return;
     }
 
@@ -407,7 +620,7 @@ function AddAdvisement() {
 
     //Se debe obtener el usuario autenticado correctamente
     var user = {
-        id: "57f90130-0dee-4f6a-90bb-d00f37583cc0", //ID de prueba de la cookie
+        id: localStorage.getItem("userId"), 
         name: " " // 
     };
 
@@ -435,11 +648,15 @@ function AddAdvisement() {
             configureToastr(); 
             toastr.success("Consulta creada con éxito."); 
 
-            $("#create-advisement").hide();
-            $(".section-advisements").show();
+            loadSection("view/advisement")
+
+            setLoading(false);
+
         },
         error: function (errorMessage) {
             toastr.error(errorMessage.responseText);
+            setLoading(false);
+
         }
     });
 }
@@ -454,6 +671,8 @@ function CancelCreateAdvisement() {
 //--------------PROFILE SECTION-------------------
 //------------------------------------------------
 function GetUserData() {
+
+    setLoading(true);
 
     const userEmail = localStorage.getItem("email");
 
@@ -476,9 +695,14 @@ function GetUserData() {
 
                 $('#p-picture').attr('src', result.picture);
             }
+
+            setLoading(false);
+
         },
         error: function (errorMessage) {
             console.error(errorMessage);
+            setLoading(false);
+
         }
     });
 }
@@ -540,6 +764,7 @@ function AllowFieldEditing() {
 
 function EditUser() {
     configureToastr();
+    setLoading(true);
 
     var newValues = {
         id: $('#p-id').val(),
@@ -573,9 +798,18 @@ function EditUser() {
 
             configureToastr();
             toastr.success('Los datos fueron actualizados correctamente');
+
+
+            localStorage.setItem("userPicture", newValues.picture);
+            $('#p-picture-header').attr("src", newValues.picture);
+
+            setLoading(false);
+
         },
         error: function (errorMessage) {
             toastr.error('Algo salió mal');
+            setLoading(false);
+
         }
     });
     
@@ -612,6 +846,7 @@ function ValidatePassword(){
 
 function DeleteAccount() {
     const userId = localStorage.getItem("userId");
+    setLoading(true);
 
     Swal.fire({
         text: "¿Seguro de que deseas eliminar la cuenta?",
@@ -636,8 +871,11 @@ function DeleteAccount() {
                             text: 'Tu cuenta ha sido eliminada exitosamente'
                         }).then(() => {
                             //TODO: Redirect to login
+                            logoutUser();
                         });
                     }
+                    setLoading(false);
+
                 },
                 error: function (xhr, status, error) {
                     console.error("Error:", error);
@@ -646,6 +884,8 @@ function DeleteAccount() {
                         title: 'Error',
                         text: 'No se pudo eliminar la cuenta'
                     });
+                    setLoading(false);
+
                 }
             });
         }
@@ -704,13 +944,12 @@ function AddPieceOfNews() {
             if (title.length > 0 && description.length > 0) {
 
                 var news = {
+                    id: null,
                     title: $('#add-news-title').val(),
                     description: $('#add-news-description').val(),
                     picture: reader.result,
-                    user: {
-                        id: localStorage.getItem("userId"),
-                        role: localStorage.getItem("role")
-                    }
+                    userId: localStorage.getItem("userId"),
+                    userRole: localStorage.getItem("role")
                 };
                 $.ajax({
                     url: "/PieceOfNews/CreateNews",
@@ -811,7 +1050,7 @@ function LoadNewsItems() {
     const role = localStorage.getItem("role");
     const addBtn = $(`#add-news-btn`);
 
-    if (role === "President") {
+    if (role === "president") {
         addBtn.css("display", "block");
     }else {
         addBtn.css("display", "none");
@@ -878,6 +1117,8 @@ function LoadNewsDetail(pieceOfNewsID) {
         contentType: "application/json;charset=utf-8",
         success: function (newsItem) {
 
+            setLoading(false);
+
             if (newsItem && Object.keys(newsItem).length > 0) {
 
                 $('#img-news-detail').attr('src', newsItem.picture);
@@ -893,13 +1134,8 @@ function LoadNewsDetail(pieceOfNewsID) {
                 toastr.options.positionClass = 'toast-bottom-right';
                 toastr.error('La noticia no existe o ha sido eliminada.');
 
-                setLoading(false);
                 loadSection('view/news');
             }
-
-
-            setLoading(false);
-
 
         },
         error: function (errorMessage) {
@@ -913,19 +1149,19 @@ function LoadNewsDetail(pieceOfNewsID) {
     });
 }
 
-let totalComments = 0;
+let totalResponses = 0;
 function LoadNewsComments(pieceOfNewsID) {
 
 
     $.ajax({
-        url: "/CommentNews/GetCommentNewsByPieceOfNewsId/" + pieceOfNewsID,
+        url: "https://localhost:7047/CommentNews/GetCommentNewsByPieceOfNewsId/" + pieceOfNewsID,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         success: function (newsComments) {
 
 
 
-            totalComments = newsComments.length;
+            totalResponses = newsComments.length;
 
             //Caja para comentar
             var htmlContent = `<br><h3>Comentarios</h3>`;
@@ -948,7 +1184,7 @@ function LoadNewsComments(pieceOfNewsID) {
             //Comentarios
             newsComments.forEach(comment => {
 
-                totalComments += comment.totalResponses
+                totalResponses += comment.totalResponses
 
                 index++;
                 htmlContent += `
@@ -996,7 +1232,7 @@ function LoadNewsComments(pieceOfNewsID) {
             });
 
             $('#commentsContainer').html(htmlContent);
-            $('#totalComments').html(totalComments + " Comentario(s)");
+            $('#totalComments').html(totalResponses + " Comentario(s)");
             
 
         },
@@ -1075,7 +1311,7 @@ const toggleAddResponse = (id, btnId) => {
     }
 };
 
-function AddNewsComment(pieceOfNewsID) {
+function AddNewsComment(pieceOfNewsId) {
 
 
     var text = ($('#comment-text-area').val() || "").trim(); 
@@ -1085,16 +1321,13 @@ function AddNewsComment(pieceOfNewsID) {
 
         const userID = localStorage.getItem("userId");
 
-        var comment = {
 
-            pieceOfNews: {
-                id: pieceOfNewsID
-            },
-            user: {
-                id: userID
-            },
+        var comment = {
+            id: null, 
+            pieceOfNewsId: pieceOfNewsId.toString(),
+            authorId: userID.toString(),
             text: text
-        }
+        };
 
         setLoading(true);
         $.ajax({
@@ -1108,7 +1341,7 @@ function AddNewsComment(pieceOfNewsID) {
                 toastr.options.positionClass = 'toast-bottom-right';
                 toastr.success('Comentario publicado con éxito');
 
-                LoadNewsComments(pieceOfNewsID);
+                LoadNewsComments(pieceOfNewsId);
                 setLoading(false);
 
 
@@ -1147,15 +1380,11 @@ function AddNewsCommentResponse(commentID, container, textarea, counter) {
         const userID = localStorage.getItem("userId");
 
         var response = {
-
-            CommentNews: {
-                id: commentID
-            },
-            user: {
-                id: userID
-            },
+            id: null,
+            commentNewsId: commentID.toString(),
+            authorId: userID.toString(),
             text: text
-        }
+        };
 
         setLoading(true);
         $.ajax({
@@ -1173,8 +1402,8 @@ function AddNewsCommentResponse(commentID, container, textarea, counter) {
                 setLoading(false);
                 $('#' + textarea).val('');
 
-                totalComments++;
-                $('#totalComments').html(totalComments + " Comentario(s)");
+                totalResponses++;
+                $('#totalComments').html(totalResponses + " Comentario(s)");
 
 
             },

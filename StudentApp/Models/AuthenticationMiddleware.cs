@@ -11,8 +11,16 @@
     {
         var path = context.Request.Path.Value;
 
-        if (path == "/User/Login" || path == "/User/Register"
-            || path.StartsWith("/css") || path.StartsWith("/js") || path.StartsWith("/images"))
+        if (path == "/User/Login" || path == "/User/Register" 
+            || path.StartsWith("/CommentNews/") 
+            || path.StartsWith("/User/") 
+            || path.StartsWith("/PieceOfNews/") 
+            || path.StartsWith("/Course/")
+            || path.StartsWith("/Advisement/")
+            || path.StartsWith("/Appointment/")
+            || path.StartsWith("/css") 
+            || path.StartsWith("/js") 
+            || path.StartsWith("/images"))
         {
             await _next(context);
             return;

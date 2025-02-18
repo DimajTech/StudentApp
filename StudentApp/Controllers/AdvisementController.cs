@@ -98,7 +98,31 @@ namespace StudentApp.Controllers
             }
         }
 
+        public IActionResult GetAdvisementResponsesById(string id)
+        {
+            try
+            {
+                return Ok(advisementDAO.GetAdvisementResponsesById(id));
+            }
+            catch (SqlException e)
+            {
+                return StatusCode(500, new { message = "An error occurred", error = e.Message });
+            }
+        }
+        [HttpPost]
+        public IActionResult AddNewResponse([FromBody] ResponseAdvisement response)
+        {
+            try
+            {
 
+                return Ok(advisementDAO.InsertNewResponse(response));
+            }
+            catch (SqlException e)
+            {
+                ViewBag.Message = e.Message;
+                return StatusCode(500, new { message = "An error ocurred", error = e.Message });
+            }
+        }
 
     }
 }

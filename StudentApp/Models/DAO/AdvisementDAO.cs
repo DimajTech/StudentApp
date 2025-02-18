@@ -2,6 +2,7 @@
 using StudentApp.Models.Entity;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace StudentApp.Models.DAO
@@ -203,6 +204,63 @@ namespace StudentApp.Models.DAO
         }
 
 
+        public List<ResponseAdvisement> GetAdvisementResponsesById(string id)
+        {
+            List<ResponseAdvisement> comments = new List<ResponseAdvisement>();
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("GetAdvisementResponsesById", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Id", id);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    comments.Add(new ResponseAdvisement
+                    {
+                        Id = reader["Id"].ToString(),
+                        Text = reader["Text"].ToString(),
+                        DateTime = DateTime.Parse(reader["Date"].ToString()),
+                        User = new User(null, reader["Name"].ToString(), null, null, reader["Role"].ToString()),
+                    });
+                }
+                connection.Close();
+            }
+            return comments;
+        }
+
+        public int InsertNewResponse(ResponseAdvisement advisement)
+        {
+            int result = 0; //Saves 1 or 0 depending on the insertion result
+            using (SqlConnection connection = new SqlConnection(connectionString))
+                try
+                {
+                    {
+                        connection.Open();
+                        SqlCommand command = new SqlCommand("InsertNewResponse", connection);
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@AdvisementId", advisement.AdvisementId); // Ajustado al SP
+                        command.Parameters.AddWithValue("@UserId", advisement.User.Id); // Ajustado al SP
+                        command.Parameters.AddWithValue("@Text", advisement.Text); // Ajustado al SP
+
+                        result = command.ExecuteNonQuery();
+                        connection.Close();
+
+
+                    }
+                }
+                catch (SqlException e)
+                {
+                    throw;
+                }
+
+            return result;
+
+        }
     }
+
 }

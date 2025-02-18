@@ -42,6 +42,7 @@ namespace StudentApp.Controllers
                 string message = "";
                 string userId = "";
                 string role = "";
+                string picture = "";
 
                 if (user != null && user.Password == password)
                 {
@@ -64,6 +65,7 @@ namespace StudentApp.Controllers
                             success = true;
                             userId = user.Id.ToString();
                             role = user.Role.ToString();
+                            picture = user.Picture.ToString();
                         }
                         else
                         {
@@ -80,7 +82,7 @@ namespace StudentApp.Controllers
                     message = "Credenciales inválidas.";
                 }
 
-                return Json(new { success, message, userId, role });
+                return Json(new { success, message, userId, role, picture });
             }
             catch (Exception ex)
             {

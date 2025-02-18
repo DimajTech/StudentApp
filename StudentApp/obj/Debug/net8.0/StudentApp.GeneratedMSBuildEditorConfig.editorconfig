@@ -28,10 +28,15 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Esteban/Documents/UCR/Tercer año/III Semestre/Lenguajes para Aplicaciones Comerciales/Proyecto/StudentApp/StudentApp/Views/Shared/AddNews.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkZE5ld3MuY3NodG1s
+
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Esteban/Documents/UCR/Tercer año/III Semestre/Lenguajes para Aplicaciones Comerciales/Proyecto/StudentApp/StudentApp/Views/Shared/Advisement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkdmlzZW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Esteban/Documents/UCR/Tercer año/III Semestre/Lenguajes para Aplicaciones Comerciales/Proyecto/StudentApp/StudentApp/Views/Shared/AdvisementDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkdmlzZW1lbnREZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Esteban/Documents/UCR/Tercer año/III Semestre/Lenguajes para Aplicaciones Comerciales/Proyecto/StudentApp/StudentApp/Views/Shared/Appointment.cshtml]
