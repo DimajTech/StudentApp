@@ -1,0 +1,21 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.x'
+
+- script: |
+    dotnet restore StudentApp/StudentApp.sln
+    dotnet build StudentApp/StudentApp.sln --configuration Release
+  displayName: 'Build StudentApp'
+
+- script: dotnet test StudentApp/ --no-restore --verbosity normal
+  displayName: 'Run Tests for StudentApp'
