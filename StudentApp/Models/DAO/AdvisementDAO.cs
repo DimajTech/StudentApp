@@ -3,6 +3,7 @@ using StudentApp.Models.Entity;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
+using StudentApp.Models.DTO;
 
 
 namespace StudentApp.Models.DAO
@@ -19,7 +20,7 @@ namespace StudentApp.Models.DAO
         }
 
 
-        public int Create(Advisement advisement)
+        public int Create(CreateAdvisementDTO advisement)
         {
             int result = 0; //Saves 1 or 0 depending on the insertion result
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -30,14 +31,14 @@ namespace StudentApp.Models.DAO
                         SqlCommand command = new SqlCommand("CreateAdvisement", connection); //todo stored procedure
                         command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@Id", Guid.NewGuid().ToString());
-                        command.Parameters.AddWithValue("@CourseId", advisement.Course.Id);
+                        command.Parameters.AddWithValue("@Id", advisement.Id);
+                        command.Parameters.AddWithValue("@CourseId", advisement.CourseId);
                         command.Parameters.AddWithValue("@Content", advisement.Content);
                         command.Parameters.AddWithValue("@Status", advisement.Status);
                         command.Parameters.AddWithValue("@IsPublic", advisement.IsPublic);
-                        command.Parameters.AddWithValue("@StudentId", advisement.User.Id);
-                        DateTime createdAt = advisement.CreatedAt == DateTime.MinValue ? DateTime.Now : advisement.CreatedAt;
-                        command.Parameters.AddWithValue("@CreatedAt", createdAt);
+                        command.Parameters.AddWithValue("@StudentId", advisement.StudentId);
+                        //DateTime createdAt = advisement.CreatedAt == DateTime.MinValue ? DateTime.Now : advisement.CreatedAt;
+                        command.Parameters.AddWithValue("@CreatedAt", advisement.CreatedAt);
 
                         result = command.ExecuteNonQuery();
                         connection.Close();
@@ -232,7 +233,7 @@ namespace StudentApp.Models.DAO
             return comments;
         }
 
-        public int InsertNewResponse(ResponseAdvisement advisement)
+        public int InsertNewResponse(CreateResponseAdvisementDTO advisement)
         {
             int result = 0; //Saves 1 or 0 depending on the insertion result
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -243,9 +244,10 @@ namespace StudentApp.Models.DAO
                         SqlCommand command = new SqlCommand("InsertNewResponse", connection);
                         command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@AdvisementId", advisement.AdvisementId); // Ajustado al SP
-                        command.Parameters.AddWithValue("@UserId", advisement.User.Id); // Ajustado al SP
-                        command.Parameters.AddWithValue("@Text", advisement.Text); // Ajustado al SP
+                        command.Parameters.AddWithValue("@Id", advisement.Id); 
+                        command.Parameters.AddWithValue("@AdvisementId", advisement.AdvisementId);
+                        command.Parameters.AddWithValue("@UserId", advisement.UserId); 
+                        command.Parameters.AddWithValue("@Text", advisement.Text); 
 
                         result = command.ExecuteNonQuery();
                         connection.Close();

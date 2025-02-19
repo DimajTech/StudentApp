@@ -157,7 +157,7 @@ function toggleHeader() {
 
 function logoutUser() {
     Swal.fire({
-        text: "Estás a punto de salir de cuenta.",
+        text: "Estás a punto de salir de tu cuenta.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#218838',
