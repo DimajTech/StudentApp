@@ -42,6 +42,7 @@ namespace StudentApp.Models.DAO
                             byte[] imageBytes = Convert.FromBase64String(base64String);
 
 
+                            command.Parameters.AddWithValue("@Id", news.Id);
                             command.Parameters.AddWithValue("@Picture", imageBytes);
                             command.Parameters.AddWithValue("@AuthorID", news.UserId);
                             command.Parameters.AddWithValue("@Description", news.Description);

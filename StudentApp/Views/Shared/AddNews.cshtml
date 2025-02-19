@@ -1,12 +1,13 @@
 ﻿
 <div class="add-news-content">
-    <form id="add-news-form">
-        <div class="row">
-            <button onclick="loadSection('view/news')" class="button-news" style="background-color:white; margin-left:30px">
-                ← Volver
-            </button>  
 
-            <h2 style="color:white; text-align:left;padding-bottom:20px;margin-left:20px;">Agregar Noticia</h2>
+
+    <button onclick="loadSection('view/news')" class="general-button-white" style="width:130px">
+        ← Volver
+    </button>
+    <form id="add-news-form">
+        <div class="column">
+
 
             <img id="previewImage" src="/images/istockphoto-1128826884-612x612.jpg" alt="Imagen seleccionada" class="preview-image"
                  style="height: 400px; width:auto; border-radius: 44px; padding-top:20px; margin-bottom:50px; justify-self:center !important;">
@@ -14,7 +15,7 @@
             <div class="col-lg-12" style="margin-bottom:20px;">
                 <fieldset>
                     <input type="file" id="add-news-image-upload" accept="image/*" style="display: none;" onchange="previewSelectedImage(this)">
-                    <label for="add-news-image-upload" class="custom-file-upload">Seleccionar imagen</label>
+                    <label for="add-news-image-upload" class="general-button-white">Seleccionar imagen</label>
                     <span id="fileName" style="color:white; margin-left:20px;">Sin archivos seleccionados</span>
 
                 </fieldset>
@@ -33,10 +34,12 @@
             </div>
 
             <div class="col-lg-12">
-                <fieldset>
-                    <button type="submit" id="form-submit" style="background-color: #218838; color:white;">
+                <fieldset style="justify-content:center;">
+                    <button type="submit" id="form-submit" class="general-button-green" style="width:30%">
                         Agregar Noticia
                     </button>
+                    <button type="reset" id="form-cancel" class="general-button-red" onclick="" style="width:30%">Cancelar</button>
+
                 </fieldset>
             </div>
 

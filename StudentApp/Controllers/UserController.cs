@@ -47,7 +47,7 @@ namespace StudentApp.Controllers
                 {
                     if (user.RegistrationStatus == "accepted")
                     {
-                        if (user.IsActive)
+                        if (user.IsActive != null && user.IsActive == true)
                         {
                             var authData = $"{user.Email} {user.Id}";
 

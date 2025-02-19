@@ -107,7 +107,7 @@ function Add() {
                     $('#r-name').val('');
                     $('#r-email').val('');
                     $('#r-password').val('');
-                    $('confirm-password').val('');
+                    $('#confirm-password').val('');
                     $('#validation').text(response.message);
                     $('#validation').css('color', 'green');
 
@@ -179,6 +179,8 @@ function GetAppointments() {
 
 
             $('#myappointments-tbody').html(htmlTable);
+            setupPagination("myappointments-tbody");
+
         },
         error: function () {
             configureToastr();
@@ -266,8 +268,7 @@ function AddAppointment() {
             }
         });
     }
-
-};
+}
 //------------------------------------------------
 //---------ADVISEMENT SECTION---------------
 //------------------------------------------------
@@ -280,21 +281,17 @@ function AddNewResponse(advisementId) {
     if (text.length > 0) {
         $("#response-text-area").css("border-color", "black");
 
-        const userID = localStorage.getItem("userId");
-
-        var response = {
+        var request = {
 
             advisementId,
-            user: {
-                id: userID
-            },
-            text: text
+            userId: localStorage.getItem("userId")+"",
+            text
         }
-
+        console.log(request);
         setLoading(true);
         $.ajax({
             url: "/Advisement/AddNewResponse",
-            data: JSON.stringify(response), //convierte la variable estudiante en tipo json
+            data: JSON.stringify(request), //convierte la variable estudiante en tipo json
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -418,11 +415,12 @@ function GetAdvisementsByUser(email) {
                 userHtmlTable += '<td>' + item.course.code + '</td>';
                 userHtmlTable += '<td>' + item.user.name + '</td>';
                 userHtmlTable += '<td>' + new Date(item.createdAt).toLocaleDateString() + '</td>';
-                userHtmlTable += `<td><button class="btn btn-info" style="color:white; background-color:#66c5e3;" onclick="loadSection('view/advisementdetails/${item.id}')">Ver más</button></td>`;
+                userHtmlTable += `<td><button class="general-button" onclick="loadSection('view/advisementdetails/${item.id}')">Ver más</button></td>`;
                 userHtmlTable += '</tr>';
             });
 
             $('#user-advisements').html(userHtmlTable);
+            setupPagination("user-advisements");
 
         },
         error: function (errorMessage) {
@@ -454,11 +452,13 @@ function GetPublicAdvisements(email) {
                 publicHtmlTable += '<td>' + item.course.code + '</td>';
                 publicHtmlTable += '<td>' + item.user.name + '</td>';
                 publicHtmlTable += '<td>' + new Date(item.createdAt).toLocaleDateString() + '</td>';
-                publicHtmlTable += `<td><button class="btn btn-info" style="color:white; background-color:#66c5e3;" onclick="loadSection('view/advisementdetails/${item.id}')">Ver más</button></td>`;
+                publicHtmlTable += `<td><button class="general-button" onclick="loadSection('view/advisementdetails/${item.id}')">Ver más</button></td>`;
                 publicHtmlTable += '</tr>';
             });
 
             $('#public-advisements').html(publicHtmlTable);
+            setupPagination("public-advisements");
+
 
         },
         error: function (errorMessage) {
@@ -567,24 +567,18 @@ function AddAdvisement() {
         return;
     }
 
-    //Se debe obtener el usuario autenticado correctamente
-    var user = {
-        id: localStorage.getItem("userId"), 
-        name: " " // 
-    };
-
-
     // Convertir ID del curso a string GUID en minúsculas
     var formattedCourseId = selectedCourseId ? selectedCourseId.toLowerCase() : null;
 
 
     var advisement = {
-        course: { id: formattedCourseId }, //porque el constructor de curso espera GUUID
+        courseId: formattedCourseId, // Se ajusta a la propiedad CourseId del DTO
         content: advisementContent,
         status: "Pending",
         isPublic: isPublic,
-        user: user
+        studentId: localStorage.getItem("userId") // Se extrae solo el ID del usuario en lugar del objeto completo
     };
+
 
     $.ajax({
         url: "/Advisement/CreateNewAdvisement",
@@ -603,7 +597,8 @@ function AddAdvisement() {
 
         },
         error: function (errorMessage) {
-            toastr.error(errorMessage.responseText);
+            toastr.error("Ha ocurrido un error al crear la consulta. Intente de nuevo más tarde.");
+            console.log(errorMessage.responseText);
             setLoading(false);
 
         }
@@ -1103,7 +1098,7 @@ function LoadNewsComments(pieceOfNewsID) {
 
 
     $.ajax({
-        url: "/CommentNews/GetCommentNewsByPieceOfNewsId/" + pieceOfNewsID,
+        url: "https://localhost:7047/CommentNews/GetCommentNewsByPieceOfNewsId/" + pieceOfNewsID,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         success: function (newsComments) {
@@ -1260,7 +1255,7 @@ const toggleAddResponse = (id, btnId) => {
     }
 };
 
-function AddNewsComment(pieceOfNewsID) {
+function AddNewsComment(pieceOfNewsId) {
 
 
     var text = ($('#comment-text-area').val() || "").trim(); 
@@ -1270,16 +1265,13 @@ function AddNewsComment(pieceOfNewsID) {
 
         const userID = localStorage.getItem("userId");
 
-        var comment = {
 
-            pieceOfNews: {
-                id: pieceOfNewsID
-            },
-            user: {
-                id: userID
-            },
+        var comment = {
+            id: null, 
+            pieceOfNewsId: pieceOfNewsId.toString(),
+            authorId: userID.toString(),
             text: text
-        }
+        };
 
         setLoading(true);
         $.ajax({
@@ -1293,7 +1285,7 @@ function AddNewsComment(pieceOfNewsID) {
                 toastr.options.positionClass = 'toast-bottom-right';
                 toastr.success('Comentario publicado con éxito');
 
-                LoadNewsComments(pieceOfNewsID);
+                LoadNewsComments(pieceOfNewsId);
                 setLoading(false);
 
 
@@ -1332,15 +1324,11 @@ function AddNewsCommentResponse(commentID, container, textarea, counter) {
         const userID = localStorage.getItem("userId");
 
         var response = {
-
-            CommentNews: {
-                id: commentID
-            },
-            user: {
-                id: userID
-            },
+            id: null,
+            commentNewsId: commentID.toString(),
+            authorId: userID.toString(),
             text: text
-        }
+        };
 
         setLoading(true);
         $.ajax({
