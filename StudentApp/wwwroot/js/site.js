@@ -132,7 +132,7 @@ function Add() {
 //--------------APPOINTMENTS SECTION--------------
 //------------------------------------------------
 function GetAppointments() {
-
+    
     setLoading(true);
 
     const userEmail = localStorage.getItem("email");
@@ -145,7 +145,6 @@ function GetAppointments() {
         dataType: "json",
         success: function (result) {
             setLoading(false);
-
             if (result.length === 0) {
                 $('#myappointments-table').hide();
                 $('#noAppointmentsMessage').show();
@@ -154,11 +153,11 @@ function GetAppointments() {
 
             $('#myappointments-table').show();
             $('#noAppointmentsMessage').hide();
-
+            
             var htmlTable = '';
             $.each(result, function (key, item) {
                 const [fecha, hora] = item.date.split('T');
-
+                
                 htmlTable += '<tr>';
                 htmlTable += '<td>' + fecha + '</td>';
                 htmlTable += '<td>' + hora + '</td>';
@@ -241,21 +240,16 @@ function AddAppointment() {
     var appointment = {
         date: $('#datetime').val() + "T" + $('#time').val(),
         mode: $('#mode').val(),
-        courseid: $('#course').val(),
-        userId,
+        courseId: $('#course').val(),
+        studentId: userId,
     };
-    var course = {
-        id: $('#course').val(),
-        name: $('#course').find('option:selected').text(),
-    };
-    var user = {
-        id: userId,
-    }
-    appointment.course = course;
-    appointment.user = user;
+   
+
     if (!$('#datetime').val()) {
         toastr.error('Por favor, complete todos los campos correctamente.');
     } else {
+        console.log(appointment);
+
         $.ajax({
             url: "/Appointment/CreateNewAppointment",
             data: JSON.stringify(appointment),
