@@ -107,7 +107,7 @@ function Add() {
                     $('#r-name').val('');
                     $('#r-email').val('');
                     $('#r-password').val('');
-                    $('confirm-password').val('');
+                    $('#confirm-password').val('');
                     $('#validation').text(response.message);
                     $('#validation').css('color', 'green');
 
@@ -180,6 +180,8 @@ function GetAppointments() {
 
 
             $('#myappointments-tbody').html(htmlTable);
+            setupPagination("myappointments-tbody");
+
         },
         error: function () {
             configureToastr();
@@ -420,11 +422,12 @@ function GetAdvisementsByUser(email) {
                 userHtmlTable += '<td>' + item.course.code + '</td>';
                 userHtmlTable += '<td>' + item.user.name + '</td>';
                 userHtmlTable += '<td>' + new Date(item.createdAt).toLocaleDateString() + '</td>';
-                userHtmlTable += `<td><button class="btn btn-info" style="color:white; background-color:#66c5e3;" onclick="loadSection('view/advisementdetails/${item.id}')">Ver más</button></td>`;
+                userHtmlTable += `<td><button class="general-button" onclick="loadSection('view/advisementdetails/${item.id}')">Ver más</button></td>`;
                 userHtmlTable += '</tr>';
             });
 
             $('#user-advisements').html(userHtmlTable);
+            setupPagination("user-advisements");
 
         },
         error: function (errorMessage) {
@@ -456,11 +459,13 @@ function GetPublicAdvisements(email) {
                 publicHtmlTable += '<td>' + item.course.code + '</td>';
                 publicHtmlTable += '<td>' + item.user.name + '</td>';
                 publicHtmlTable += '<td>' + new Date(item.createdAt).toLocaleDateString() + '</td>';
-                publicHtmlTable += `<td><button class="btn btn-info" style="color:white; background-color:#66c5e3;" onclick="loadSection('view/advisementdetails/${item.id}')">Ver más</button></td>`;
+                publicHtmlTable += `<td><button class="general-button" onclick="loadSection('view/advisementdetails/${item.id}')">Ver más</button></td>`;
                 publicHtmlTable += '</tr>';
             });
 
             $('#public-advisements').html(publicHtmlTable);
+            setupPagination("public-advisements");
+
 
         },
         error: function (errorMessage) {

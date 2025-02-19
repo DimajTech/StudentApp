@@ -1,29 +1,34 @@
 ﻿<section class="section-advisements" id="advisements">
     <div class="container">
         <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-success" onclick="ShowCreateAdvisementForm()" style="color:white; background-color:#28a745; border:none;">+ Crear nueva consulta</button>
+            <button class="general-button-green" onclick="ShowCreateAdvisementForm()">+ Crear nueva consulta</button>
         </div>
 
         <h3>Mis consultas</h3>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Curso</th>
-                    <th>Estudiante</th>
-                    <th>Fecha</th>
-                    <th>Detalle</th>
-                </tr>
-            </thead>
-            <tbody id="user-advisements">
-                <!-- Datos dinámicos de consultas de usuarios -->
-            </tbody>
-        </table>
+        <div class="table-responsive-general">
+            <table class=" w3-table-all-general">
+                <thead>
+                    <tr>
+                        <th>Curso</th>
+                        <th>Estudiante</th>
+                        <th>Fecha</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody id="user-advisements">
+                    <!-- Datos dinámicos de consultas de usuarios -->
+                </tbody>
+            </table>
+
+        </div>
+
         <br />
         <br />
         <br />
         <h3>Todas las consultas</h3>
-        <table class="table table-striped">
-            <thead>
+        <div class="table-responsive-general">
+            <table class=" w3-table-all-general">
+                <thead>
                 <tr>
                     <th>Curso</th>
                     <th>Estudiante</th>
@@ -35,6 +40,7 @@
                 <!-- Datos dinámicos de consultas públicas -->
             </tbody>
         </table>
+        </div>
     </div>
 </section>
 
@@ -45,7 +51,7 @@
 <section id="create-advisement" style="display: none; margin: 80px;">
     <div class="w3-container w3-card w3-padding">
         <div class="row">
-            <button onclick="loadSection('view/advisement')" class="button-news">
+            <button onclick="loadSection('view/advisement')" class="general-button" style="width:130px">
                 ← Volver
             </button>
             <div class="section-title-create-advisement text-center mb-4">
@@ -75,8 +81,8 @@
 
                 <!-- Botones -->
                 <div class="d-flex gap-2">
-                    <button type="button" class="btn btn-primary w-50" onclick="AddAdvisement()" style="color:white; background-color:#28a745; border:none;">Enviar</button>
-                    <button type="reset" class="btn btn-secondary w-50" onclick="CancelCreateAdvisement()" style="color:white; background-color:#dc3545; border:none;">Cancelar</button>
+                    <button type="button" class="general-button-green" onclick="AddAdvisement()" style="width:50%">Enviar</button>
+                    <button type="reset" class="general-button-red" onclick="CancelCreateAdvisement()" style="width:50%">Cancelar</button>
                 </div>
             </form>
         </div>
