@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using StudentApp.Models.DTO;
 using StudentApp.Models.Entity;
 
 namespace StudentApp.Models.DAO
@@ -13,7 +14,7 @@ namespace StudentApp.Models.DAO
             _configuration = configuration;
             connectionString = _configuration.GetConnectionString("DefaultConnection");
         }
-        public int CreateAppointment(Appointment appointment)
+        public int CreateAppointment(AppointmentDTO appointment)
         {
             int result = 0; 
 
@@ -27,12 +28,12 @@ namespace StudentApp.Models.DAO
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@Id", Guid.NewGuid().ToString());
+                        command.Parameters.AddWithValue("@Id", appointment.Id);
                         command.Parameters.AddWithValue("@Date", appointment.Date);
                         command.Parameters.AddWithValue("@Mode", appointment.Mode);
                         command.Parameters.AddWithValue("@Status", "pending");
-                        command.Parameters.AddWithValue("@CourseId", appointment.Course.Id);
-                        command.Parameters.AddWithValue("@StudentId", appointment.User.Id); 
+                        command.Parameters.AddWithValue("@CourseId", appointment.CourseId);
+                        command.Parameters.AddWithValue("@StudentId", appointment.StudentId); 
 
                         result = command.ExecuteNonQuery();
                         connection.Close();
@@ -121,7 +122,8 @@ namespace StudentApp.Models.DAO
                                 reader["Code"].ToString(),
                                 reader["Name"].ToString(),
                                 null, null, 0, true
-                            )
+                            ),
+                            ProfessorComment = reader["ProfessorComment"].ToString()
                         });
                     }
                     connection.Close();
@@ -135,6 +137,38 @@ namespace StudentApp.Models.DAO
           
         }
 
+
+
+        //Endpoint para Professor
+        public int UpdateAppointment(UpdateAppointmentDTO updatedAppointment)
+        {
+            int result = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("UpdateAppointment", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@Id", updatedAppointment.Id);
+                        command.Parameters.AddWithValue("@Status", (object)updatedAppointment.Status ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ProfessorComment", (object)updatedAppointment.ProfessorComment ?? DBNull.Value);
+
+                        result = command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
+                catch (SqlException e)
+                {
+                    throw;
+                }
+            }
+
+            return result;
+        }
 
     }
 }

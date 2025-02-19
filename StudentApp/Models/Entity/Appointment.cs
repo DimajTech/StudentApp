@@ -33,5 +33,6 @@ namespace StudentApp.Models.Entity
         public string Status { get => status; set => status = value; }
         public Course Course { get => course; set => course = value; }
         public User User { get => user; set => user = value; }
+        public string ProfessorComment { get => professorComment; set => professorComment = value; }
     }
 }
