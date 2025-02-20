@@ -26,35 +26,35 @@ namespace StudentApp.Models.DAO
                 {
                     try
                     {
+
                         using (SqlCommand command = new SqlCommand("CreateAppointment", connection, transaction))
                         {
                             command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                            command.Parameters.AddWithValue("@Id", Guid.NewGuid().ToString());
+                            command.Parameters.AddWithValue("@Id", appointment.Id);
                             command.Parameters.AddWithValue("@Date", appointment.Date);
                             command.Parameters.AddWithValue("@Mode", appointment.Mode);
                             command.Parameters.AddWithValue("@Status", "pending");
-                            command.Parameters.AddWithValue("@CourseId", appointment.Course.Id);
-                            command.Parameters.AddWithValue("@StudentId", appointment.User.Id);
+                            command.Parameters.AddWithValue("@CourseId", appointment.CourseId);
+                            command.Parameters.AddWithValue("@StudentId", appointment.StudentId);
 
                             result = command.ExecuteNonQuery();
                         }
 
+
                         using (SqlCommand command = new SqlCommand("GetProfessorEmail", connection, transaction))
                         {
                             command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        command.Parameters.AddWithValue("@Id", appointment.Id);
-                        command.Parameters.AddWithValue("@Date", appointment.Date);
-                        command.Parameters.AddWithValue("@Mode", appointment.Mode);
-                        command.Parameters.AddWithValue("@Status", "pending");
-                        command.Parameters.AddWithValue("@CourseId", appointment.CourseId);
-                        command.Parameters.AddWithValue("@StudentId", appointment.StudentId); 
+                            command.Parameters.AddWithValue("@CourseId", appointment.CourseId);
 
                             var professorEmail = command.ExecuteScalar()?.ToString() ?? string.Empty;
 
-                            SendEmail.AppointmentEmail(professorEmail);
+                            // Enviar el correo
+                            if (!string.IsNullOrEmpty(professorEmail))
+                            {
+                                SendEmail.AppointmentEmail(professorEmail);
+                            }
                         }
+
 
                         transaction.Commit();
                     }

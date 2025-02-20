@@ -130,6 +130,7 @@ namespace StudentApp.Controllers
 
         }
 
+
 		[HttpGet]
 		public IActionResult GetByEmail([FromQuery] string email)
 		{
