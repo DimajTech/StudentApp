@@ -25,14 +25,29 @@ steps:
       start /B cmd /c "dotnet run --project StudentApp/StudentApp.csproj --no-build > studentapp.log 2>&1"
       echo "Esperando 30 segundos para que la aplicación levante..."
       timeout /t 30 /nobreak
+
+      echo "Verificando si StudentApp está corriendo..."
+      for /L %%i in (1,1,5) do (
+        netstat -ano | findstr :7047 && exit /b 0
+        echo "Intento %%i: La aplicación aún no responde, esperando..."
+        timeout /t 5 /nobreak
+      )
+      
+      echo "ERROR: StudentApp no levantó correctamente. Revisar studentapp.log"
+      type studentapp.log
+      exit /b 1
     displayName: "Start StudentApp"
 
   - script: |
-      echo "Verificando si la aplicación está corriendo en el puerto 7047..."
-      netstat -ano | findstr :7047
-    displayName: "Check if StudentApp is running"
+      echo "Verificando que ProfessorAppAPI está corriendo..."
+      netstat -ano | findstr :7039 || (
+        echo "ERROR: ProfessorAppAPI no está corriendo en el puerto esperado."
+        exit /b 1
+      )
+    displayName: "Check if ProfessorAppAPI is running"
 
   - script: |
+      echo "Ejecutando pruebas Selenium..."
       dotnet test StudentApp.Tests/StudentApp.Tests.csproj --no-restore --verbosity normal
     displayName: "Run Selenium Tests"
 
