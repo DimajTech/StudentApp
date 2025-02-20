@@ -21,8 +21,8 @@ steps:
     displayName: "Build Solution"
 
   - script: |
-      start cmd /c "dotnet run --project StudentApp/StudentApp.csproj --no-build"
-      timeout /t 20 /nobreak
+      start /B dotnet run --project StudentApp/StudentApp.csproj --no-build
+      ping 127.0.0.1 -n 20 > nul
     displayName: "Start StudentApp"
 
   - script: |
