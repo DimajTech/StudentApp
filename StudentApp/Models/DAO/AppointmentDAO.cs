@@ -26,7 +26,7 @@ namespace StudentApp.Models.DAO
                 {
                     try
                     {
-                        // Insertar la cita
+                        
                         using (SqlCommand command = new SqlCommand("CreateAppointment", connection, transaction))
                         {
                             command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -40,7 +40,7 @@ namespace StudentApp.Models.DAO
                             result = command.ExecuteNonQuery();
                         }
 
-                        // Obtener el correo del profesor utilizando solo el CourseId
+                        
                         using (SqlCommand command = new SqlCommand("GetProfessorEmail", connection, transaction))
                         {
                             command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -55,7 +55,7 @@ namespace StudentApp.Models.DAO
                             }
                         }
 
-                        // Confirmar la transacción si todo sale bien
+                        
                         transaction.Commit();
                     }
                     catch (SqlException)
