@@ -13,9 +13,10 @@ steps:
     version: '8.0.x'
 
 - script: |
-    dotnet restore StudentApp/StudentApp.sln
-    dotnet build StudentApp/StudentApp.sln --configuration Release
+    dotnet restore StudentApp.sln
+    dotnet build StudentApp/StudentApp.csproj --configuration Release
   displayName: 'Build StudentApp'
 
-- script: dotnet test StudentApp/ --no-restore --verbosity normal
+- script: |
+    dotnet test StudentApp/StudentApp.csproj --no-restore --verbosity normal
   displayName: 'Run Tests for StudentApp'
