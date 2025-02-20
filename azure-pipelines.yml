@@ -4,19 +4,27 @@ trigger:
       - main
 
 pool:
-  name: 'Default'
+  name: "Default"
 
 steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '8.0.x'
+  - task: UseDotNet@2
+    inputs:
+      packageType: "sdk"
+      version: "8.0.x"
 
-- script: |
-    dotnet restore StudentApp.sln
-    dotnet build StudentApp/StudentApp.csproj --configuration Release
-  displayName: 'Build StudentApp'
+  - script: |
+      dotnet restore StudentApp.sln
+    displayName: "Restore dependencies"
 
-- script: |
-    dotnet test StudentApp/StudentApp.csproj --no-restore --verbosity normal
-  displayName: 'Run Tests for StudentApp'
+  - script: |
+      dotnet build StudentApp.sln --configuration Release
+    displayName: "Build Solution"
+
+  - script: |
+      start cmd /c "dotnet run --project StudentApp/StudentApp.csproj --no-build"
+      timeout /t 20 /nobreak
+    displayName: "Start StudentApp"
+
+  - script: |
+      dotnet test StudentApp.Tests/StudentApp.Tests.csproj --no-restore --verbosity normal
+    displayName: "Run Selenium Tests"
