@@ -36,11 +36,11 @@ namespace StudentApp.Tests
 
           
             Thread.Sleep(6000); 
-            // 5️⃣ Esperar el mensaje de validación en la interfaz
+          
             IWebElement validationMessage = wait.Until(d => d.FindElement(By.Id("validation")));
             string messageText = validationMessage.Text;
 
-            // 6️⃣ Lista de mensajes esperados del backend
+            
             string[] expectedMessages = {
                 "Su solicitud ha sido enviada correctamente. Revisa tu correo.",
                 "El correo electrónico ya ha sido registrado en el sistema.",
@@ -48,7 +48,6 @@ namespace StudentApp.Tests
                 "Ha ocurrido un error inesperado en el sistema. Intente de nuevo más tarde."
             };
 
-            // 7️⃣ Validar que el mensaje recibido esté en la lista de mensajes esperados
             Assert.IsTrue(Array.Exists(expectedMessages, msg => messageText.Contains(msg)),
                           $"Mensaje recibido inesperado: {messageText}");
         }
@@ -58,7 +57,7 @@ namespace StudentApp.Tests
         {
             if (driver != null)
             {
-                driver.Dispose(); // ✅ Usa Dispose() para cerrar el navegador correctamente
+                driver.Dispose(); 
             }
         }
     }
