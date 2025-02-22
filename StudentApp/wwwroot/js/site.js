@@ -625,9 +625,8 @@ function GetUserData() {
     const userEmail = localStorage.getItem("email");
 
     $.ajax({
-        url: "/User/GetByEmail",
+        url: `/User/GetByEmail?email=${encodeURIComponent(userEmail)}`,
         type: "GET",
-        data: { email: userEmail },
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
@@ -719,7 +718,7 @@ function EditUser() {
         name: $('#p-name2').val(),
         password: $('#p-password').val(),
         description: $('#p-description').val(),
-        linkedIn: $('#p-linkedin').val(),
+        linkedin: $('#p-linkedin').val(),
         picture: $('#p-picture').attr("src")
     }
 
@@ -760,7 +759,7 @@ function EditUser() {
 
         }
     });
-    
+
 }
 
 function CancelEditing() {
@@ -780,7 +779,7 @@ function CancelEditing() {
     $('#p-email').css("margin-bottom", "30px");
 }
 
-function ValidatePassword(){
+function ValidatePassword() {
     var password = $('#p-password').val();
 
     if (password.length < 8) {
@@ -807,7 +806,7 @@ function DeleteAccount() {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: `/User/DeleteUser?id=${userId}`,
+                url: `/User/DeleteUser/${encodeURIComponent(userId)}`,
                 type: "DELETE",
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",

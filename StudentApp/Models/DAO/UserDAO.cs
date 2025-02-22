@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using StudentApp.Models.DTO;
 using StudentApp.Models.Entity;
 using System.Data;
 
@@ -133,8 +134,8 @@ namespace StudentApp.Models.DAO
 
         }
 
-        
-        public int Update(User user)
+
+        public int Update(UpdateStudentDTO user)
         {
             int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
             Exception? exception = new Exception();
@@ -142,16 +143,15 @@ namespace StudentApp.Models.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-
-
                     connection.Open();
                     SqlCommand command = new SqlCommand("UpdateUser", connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    
+
                     command.Parameters.AddWithValue("@Id", user.Id);
                     command.Parameters.AddWithValue("@Name", user.Name);
                     command.Parameters.AddWithValue("@Password", user.Password);
                     command.Parameters.AddWithValue("@Description", user.Description);
+                    command.Parameters.AddWithValue("@ProfessionalBackground", user.ProfessionalBackground);
                     command.Parameters.AddWithValue("@LinkedIn", user.LinkedIn);
                     command.Parameters.AddWithValue("@Picture", user.Picture);
 

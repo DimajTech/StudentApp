@@ -2,8 +2,10 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using StudentApp.Models.DAO;
+using StudentApp.Models.DTO;
 using StudentApp.Models.Entity;
 using StudentApp.Service;
+using StudentApp.Service.ProfessorApp;
 
 namespace StudentApp.Controllers
 {
@@ -12,6 +14,7 @@ namespace StudentApp.Controllers
         private readonly ILogger<UserController> _logger;
         private readonly IConfiguration _configuration;
         UserDAO userDAO;
+        private readonly string PROFESSOR_API_URL;
 
         public UserController(ILogger<UserController> logger, IConfiguration configuration)
         {
@@ -19,6 +22,7 @@ namespace StudentApp.Controllers
             _configuration = configuration;
 
             userDAO = new UserDAO(_configuration);
+            PROFESSOR_API_URL = _configuration["EnvironmentVariables:PROFESSOR_API_URL"];
 
         }
         [HttpGet]
@@ -154,15 +158,22 @@ namespace StudentApp.Controllers
 		}
 
         [HttpPut]
-        public IActionResult UpdateUser([FromBody] User user)
+        public IActionResult UpdateUser([FromBody] UpdateStudentDTO user)
         {
             try
             {
+                var service = new ProfessorUserService(_configuration);
+                service.UpdateStudent(user);
+
                 return Ok(userDAO.Update(user));
             }
             catch (SqlException e)
             {
                 return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { error = e.Message });
             }
         }
 
@@ -177,6 +188,20 @@ namespace StudentApp.Controllers
             catch (SqlException e)
             {
                 return BadRequest(new { success = false, message = e.Message });
+            }
+        }
+
+        //----------------------- PROFESSOR-TO-STUDENT METHODS -----------------------
+        [HttpPut]
+        public IActionResult UpdateProfessor([FromBody] UpdateStudentDTO newValues)
+        {
+            try
+            {
+                return Ok(userDAO.Update(newValues));
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(e.Message);
             }
         }
     }
