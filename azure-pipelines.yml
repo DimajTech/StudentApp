@@ -51,7 +51,7 @@ stages:
   - job: Deploy
     displayName: Deploy to Azure Web App
     pool:
-      vmImage: ubuntu-latest
+      name: myAgent
     steps:
     - task: AzureWebAppContainer@1
       displayName: 'Deploy to Azure App Service'
