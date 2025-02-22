@@ -64,7 +64,7 @@ namespace StudentApp.Controllers
                     */
 
                     news.Id = Guid.NewGuid().ToString();
-                    var postTask = client.PostAsJsonAsync("api/PieceOfNews/AddPieceOfNews", news);
+                    var postTask = client.PostAsJsonAsync("/api/PieceOfNews/AddPieceOfNews", news);
                     postTask.Wait();
 
                     var result = postTask.Result;

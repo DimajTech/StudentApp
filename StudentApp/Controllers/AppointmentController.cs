@@ -40,7 +40,7 @@ namespace StudentApp.Controllers
                     client.BaseAddress = new Uri(PROFESSOR_API_URL);
 
 
-                    var postTask = client.PostAsJsonAsync("api/Appointment/CreateAppointmentFromMVC", appointment);
+                    var postTask = client.PostAsJsonAsync("/api/Appointment/CreateAppointmentFromMVC", appointment);
                     postTask.Wait();
 
                     var result = postTask.Result;

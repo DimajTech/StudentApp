@@ -235,6 +235,7 @@ function AddAppointment() {
 
     configureToastr();
 
+    setLoading(true);
     const userId = localStorage.getItem("userId");
 
     var appointment = {
@@ -261,9 +262,12 @@ function AddAppointment() {
                 $("#mode").val(1);
                 $('#time').val('08:00')
                 toastr.success('Registrado con éxito');
+                setLoading(false);
+
                 GetAppointments();
             },
             error: function (errorMessage) {
+                setLoading(false);
                 toastr.error("Ha ocurrido un error al agendar la cita, por favor inténtelo más tarde");
             }
         });

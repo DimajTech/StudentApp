@@ -46,7 +46,7 @@ namespace StudentApp.Controllers
                 {
                     client.BaseAddress = new Uri(PROFESSOR_API_URL);
 
-                    var postTask = client.PostAsJsonAsync("api/Advisement/AddAdvisement", advisement);
+                    var postTask = client.PostAsJsonAsync("/api/Advisement/AddAdvisement", advisement);
                     postTask.Wait();
 
                     var result = postTask.Result;
@@ -163,7 +163,7 @@ namespace StudentApp.Controllers
                     };
 
 
-                    var postTask = client.PostAsJsonAsync("api/Advisement/CreateResponseAdvisementFromStudent", responseFormat);
+                    var postTask = client.PostAsJsonAsync("/api/Advisement/CreateResponseAdvisementFromStudent", responseFormat);
                     postTask.Wait();
 
                     var result = postTask.Result;
