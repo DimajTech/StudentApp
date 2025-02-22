@@ -59,13 +59,3 @@ stages:
         azureSubscription: '$(azureServiceConnection)'
         appName: '$(azureWebApp)'
         containers: '$(dockerHubRepository):latest'
-
-    - task: AzureCLI@2
-      displayName: 'Restart Azure Web App'
-      inputs:
-          azureSubscription: '$(azureServiceConnection)'
-          scriptType: 'bash'
-          scriptLocation: 'inlineScript'
-          inlineScript: |
-            "C:/Program Files/Git/bin/bash.exe" -c "
-            az webapp restart --name $(azureWebApp) --resource-group $(resourceGroup)"
