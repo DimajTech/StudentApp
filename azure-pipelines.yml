@@ -1,0 +1,61 @@
+trigger:
+  - main
+
+resources:
+  - repo: self
+
+variables:
+  dockerHubServiceConnection: 'Docker Hub'  # Nombre de la Service Connection en Azure DevOps
+  dockerHubRepository: 'solvark/studentapp'  # Reemplaza con tu usuario/repositorio en Docker Hub
+  azureServiceConnection: 'Azure subscription 1(038f37af-8bcd-4643-88f7-ef578ad59ddc)'  
+  azureWebApp: 'StudentsApp'  # Nombre de la Web App en Azure
+  tag: '$(Build.BuildId)'  # Usa un número único para cada imagen
+
+stages:
+- stage: Build
+  displayName: Build and Push Docker Image
+  jobs:
+  - job: Build
+    displayName: Build Docker Image
+    pool:
+      name: myAgent
+    steps:
+    - task: Docker@2
+      displayName: 'Login to Docker Hub'
+      inputs:
+        command: 'login'
+        containerRegistry: $(dockerHubServiceConnection)
+
+    - task: Docker@2
+      displayName: 'Build Docker Image'
+      inputs:
+        command: 'build'
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        repository: '$(dockerHubRepository)'
+        tags: |
+          $(tag)
+          latest
+
+    - task: Docker@2
+      displayName: 'Push Docker Image to Docker Hub'
+      inputs:
+        command: 'push'
+        repository: '$(dockerHubRepository)'
+        tags: |
+          $(tag)
+          latest
+
+- stage: Deploy
+  displayName: Deploy to Azure
+  jobs:
+  - job: Deploy
+    displayName: Deploy to Azure Web App
+    pool:
+      name: myAgent
+    steps:
+    - task: AzureWebAppContainer@1
+      displayName: 'Deploy to Azure App Service'
+      inputs:
+        azureSubscription: '$(azureServiceConnection)'
+        appName: '$(azureWebApp)'
+        containers: '$(dockerHubRepository):latest'
