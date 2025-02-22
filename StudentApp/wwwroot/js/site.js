@@ -1098,7 +1098,7 @@ function LoadNewsComments(pieceOfNewsID) {
 
 
     $.ajax({
-        url: "https://localhost:7047/CommentNews/GetCommentNewsByPieceOfNewsId/" + pieceOfNewsID,
+        url: "/CommentNews/GetCommentNewsByPieceOfNewsId/" + pieceOfNewsID,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         success: function (newsComments) {
