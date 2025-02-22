@@ -65,4 +65,4 @@ stages:
         azureSubscription: '$(azureServiceConnection)'
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
-        inlineScript: 'az webapp restart --name $(azureWebApp) --resource-group <TU_RESOURCE_GROUP>'
+        inlineScript: 'az webapp restart --name $(azureWebApp) --resource-group <DIMAJ>'
