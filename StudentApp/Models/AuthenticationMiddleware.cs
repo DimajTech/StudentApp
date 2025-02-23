@@ -11,7 +11,7 @@
     {
         var path = context.Request.Path.Value;
 
-        if (path == "/User/Login" || path == "/User/Register" 
+        if (path == "/User/Login" || path == "/User/Register"
             || path.StartsWith("/CommentNews/") 
             || path.StartsWith("/User/") 
             || path.StartsWith("/PieceOfNews/") 
