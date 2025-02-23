@@ -95,8 +95,6 @@ namespace StudentApp.Controllers
         }
 
 
-
-
         [HttpPost]
         public IActionResult Register([FromBody] User user)
         {
@@ -198,6 +196,19 @@ namespace StudentApp.Controllers
             try
             {
                 return Ok(userDAO.Update(newValues));
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPatch]
+        public IActionResult ChangeUserStatus(string id, [FromBody] StatusUpdateDTO status)
+        {
+            try
+            {
+                return Ok(userDAO.UpdateStatus(id, status));
             }
             catch (SqlException e)
             {
