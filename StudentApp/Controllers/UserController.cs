@@ -119,7 +119,7 @@ namespace StudentApp.Controllers
                     if (result == 1)
                     {
 
-                        SendEmail.RegisterEmail(user);
+                       // SendEmail.RegisterEmail(user);
                         var professorService = new ProfessorUserService(_configuration);
                         professorService.RegisterStudentToProfessor(user);
                         var adminService = new AdminUserService(_configuration);
@@ -231,8 +231,10 @@ namespace StudentApp.Controllers
         public IActionResult RegisterProfessor([FromBody] InsertProfessorDTO user)
         {
             return Ok(userDAO.InsertProfessor(user));
+            }
 
         [HttpPatch]
+        [Route("[action]")]
         public IActionResult ChangeUserStatus(string id, [FromBody] StatusUpdateDTO status)
         {
             try

@@ -51,7 +51,7 @@ namespace StudentApp.Models.DAO
                             // Enviar el correo
                             if (!string.IsNullOrEmpty(professorEmail))
                             {
-                                SendEmail.AppointmentEmail(professorEmail);
+                               // SendEmail.AppointmentEmail(professorEmail);
                             }
                         }
 

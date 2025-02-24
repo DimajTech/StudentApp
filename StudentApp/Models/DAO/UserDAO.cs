@@ -200,6 +200,7 @@ namespace StudentApp.Models.DAO
                 }
 
             return result;
+        }
 
 
         public int UpdateStatus(string id, StatusUpdateDTO status)
