@@ -19,7 +19,7 @@ namespace StudentApp.Service.ProfessorApp
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri($"{PROFESSOR_API_URL}api/User/");
+                client.BaseAddress = new Uri($"{PROFESSOR_API_URL}/api/User/");
 
                 var response = client.PutAsJsonAsync($"UpdateStudent/{user.Id}", user).Result;
 

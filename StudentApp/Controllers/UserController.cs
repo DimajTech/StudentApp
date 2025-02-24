@@ -177,9 +177,11 @@ namespace StudentApp.Controllers
         {
             try
             {
-                //Todo: Revisar Profesor
-                var service = new ProfessorUserService(_configuration);
-                service.UpdateStudent(user);
+                var professorService = new ProfessorUserService(_configuration);
+                professorService.UpdateStudent(user);
+
+                var adminService = new AdminUserService(_configuration);
+                adminService.UpdateStudent(user);
 
                 return Ok(userDAO.Update(user));
             }

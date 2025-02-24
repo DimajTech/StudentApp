@@ -33,5 +33,21 @@ namespace StudentApp.Service.AdminApp
 
             }
         }
+
+        public void UpdateStudent(UpdateStudentDTO user)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ADMIN_API_URL);
+
+                var response = client.PutAsJsonAsync($"user/updateStudent", user).Result;
+
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception($"Error al actualizar el estudiante. Código: {response.StatusCode}, Mensaje: {response.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
     }
 }
