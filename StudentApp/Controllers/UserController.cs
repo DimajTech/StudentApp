@@ -100,8 +100,6 @@ namespace StudentApp.Controllers
         }
 
 
-
-
         [HttpPost]
         [Route("[action]")]
         public IActionResult Register([FromBody] InsertStudentDTO user)
@@ -233,6 +231,19 @@ namespace StudentApp.Controllers
         public IActionResult RegisterProfessor([FromBody] InsertProfessorDTO user)
         {
             return Ok(userDAO.InsertProfessor(user));
+
+        [HttpPatch]
+        public IActionResult ChangeUserStatus(string id, [FromBody] StatusUpdateDTO status)
+        {
+            try
+            {
+                return Ok(userDAO.UpdateStatus(id, status));
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(e.Message);
+            }
+
         }
     }
 }

@@ -171,6 +171,7 @@ namespace StudentApp.Models.DAO
             return resultToReturn;
 
         }
+
         public int InsertProfessor(InsertProfessorDTO insertProfessorDTO)
         {
             int result = 0; //Saves 1 or 0 depending on the insertion result
@@ -199,6 +200,34 @@ namespace StudentApp.Models.DAO
                 }
 
             return result;
+
+
+        public int UpdateStatus(string id, StatusUpdateDTO status)
+        {
+            int resultToReturn = 0;
+            Exception? exception = new Exception();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("UpdateStatus", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue ("@Status", status.status);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+            return resultToReturn;
+
         }
     }
 }

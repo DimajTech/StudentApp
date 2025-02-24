@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using StudentApp.Models.DAO;
+using StudentApp.Models.DTO;
+using StudentApp.Models.Entity;
 
 namespace StudentApp.Controllers
 {
@@ -41,7 +43,49 @@ namespace StudentApp.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult PostCourse([FromBody] CourseCrudDTO course)
+        {
+            try
+            {
+                return Ok(courseDAO.PostCourse(course));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteCourse(string id)
+        {
+            try
+            {
+                return Ok(courseDAO.Delete(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        public IActionResult PutCourse(string id, [FromBody] CourseCrudDTO course)
+        {
+            try
+            {
+                if(id  == null || id != course.id)
+                {
+                    return BadRequest();
+                }
 
 
+                return Ok(courseDAO.Update(course));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

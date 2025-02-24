@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using StudentApp.Models.DTO;
 using StudentApp.Models.Entity;
 
 namespace StudentApp.Models.DAO 
@@ -82,6 +83,91 @@ namespace StudentApp.Models.DAO
             return course;
         }
      
+        public int PostCourse(CourseCrudDTO course)
+        {
+            int result = 0;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+                try
+                {
+                    {
+                        connection.Open();
+                        SqlCommand command = new SqlCommand("CreateCourse", connection);
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        
+                        command.Parameters.AddWithValue("@id", course.id);
+                        command.Parameters.AddWithValue("@code", course.code);
+                        command.Parameters.AddWithValue("@name", course.name);
+                        command.Parameters.AddWithValue("@professorId", course.professorId);
+                        command.Parameters.AddWithValue("@semester", course.semester);
+                        command.Parameters.AddWithValue("@year", course.year);
+                        command.Parameters.AddWithValue("@isActive", course.isActive);
 
+                        result = command.ExecuteNonQuery();
+                        connection.Close();
+
+                    }
+                }
+                catch (SqlException e)
+                {
+                    throw;
+                }
+
+            return result;
+        }
+
+        public int Delete(string id)
+        {
+            int result = 0; //Saves 1 or 0 depending on the insertion result
+            using (SqlConnection connection = new SqlConnection(connectionString))
+                try
+                {
+                    {
+                        connection.Open();
+                        SqlCommand command = new SqlCommand("DeleteCourse", connection);
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@Id", id);
+                        result = command.ExecuteNonQuery();
+                        connection.Close();
+
+                    }
+                }
+                catch (SqlException e)
+                {
+                    throw;
+                }
+            return result;
+        }
+
+        public int Update(CourseCrudDTO course)
+        {
+            int result = 0;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+                try
+                {
+                    {
+                        connection.Open();
+                        SqlCommand command = new SqlCommand("UpdateCourse", connection);
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@id", course.id);
+                        command.Parameters.AddWithValue("@code", course.code);
+                        command.Parameters.AddWithValue("@name", course.name);
+                        command.Parameters.AddWithValue("@professorId", course.professorId);
+                        command.Parameters.AddWithValue("@semester", course.semester);
+                        command.Parameters.AddWithValue("@year", course.year);
+                        command.Parameters.AddWithValue("@isActive", course.isActive);
+
+                        result = command.ExecuteNonQuery();
+                        connection.Close();
+
+                    }
+                }
+                catch (SqlException e)
+                {
+                    throw;
+                }
+
+            return result;
+        }
     }
 }
