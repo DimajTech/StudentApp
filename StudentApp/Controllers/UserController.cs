@@ -234,7 +234,7 @@ namespace StudentApp.Controllers
             }
 
         [HttpPatch]
-        [Route("[action]")]
+        [Route("[action]/{id}")]
         public IActionResult ChangeUserStatus(string id, [FromBody] StatusUpdateDTO status)
         {
             try
