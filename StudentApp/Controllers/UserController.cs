@@ -119,7 +119,7 @@ namespace StudentApp.Controllers
                     if (result == 1)
                     {
 
-                       // SendEmail.RegisterEmail(user);
+                        SendEmail.RegisterEmail(user);
                         var professorService = new ProfessorUserService(_configuration);
                         professorService.RegisterStudentToProfessor(user);
                         var adminService = new AdminUserService(_configuration);
