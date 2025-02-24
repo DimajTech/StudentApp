@@ -1,4 +1,5 @@
-﻿using StudentApp.Models.Entity;
+﻿using StudentApp.Models.DTO;
+using StudentApp.Models.Entity;
 
 namespace StudentApp.Service
 {
@@ -6,7 +7,7 @@ namespace StudentApp.Service
     public static class SendEmail
     {
         static Email email = new Email();
-        public static void RegisterEmail(User user)
+        public static void RegisterEmail(InsertStudentDTO user)
         {
             using (var client = new HttpClient())
             {
