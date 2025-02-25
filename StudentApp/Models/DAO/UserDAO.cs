@@ -16,8 +16,9 @@ namespace StudentApp.Models.DAO
             connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public int Insert(User user)
+        public int Insert(InsertStudentDTO user)
         {
+            user.Id = Guid.NewGuid().ToString();
             int result = 0; //Saves 1 or 0 depending on the insertion result
             using (SqlConnection connection = new SqlConnection(connectionString))
                 try
@@ -27,7 +28,7 @@ namespace StudentApp.Models.DAO
                         SqlCommand command = new SqlCommand("InsertUser", connection);
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         //TODO AddValue
-                        command.Parameters.AddWithValue("@id", Guid.NewGuid().ToString());
+                        command.Parameters.AddWithValue("@id", user.Id);
                         command.Parameters.AddWithValue("@name", user.Name);
                         command.Parameters.AddWithValue("@email", user.Email);
                         command.Parameters.AddWithValue("@password", user.Password);
@@ -171,6 +172,37 @@ namespace StudentApp.Models.DAO
 
         }
 
+        public int InsertProfessor(InsertProfessorDTO insertProfessorDTO)
+        {
+            int result = 0; //Saves 1 or 0 depending on the insertion result
+            using (SqlConnection connection = new SqlConnection(connectionString))
+                try
+                {
+                    {
+                        connection.Open();
+                        SqlCommand command = new SqlCommand("InsertProfessor", connection);
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        //TODO AddValue
+                        command.Parameters.AddWithValue("@id", insertProfessorDTO.Id);
+                        command.Parameters.AddWithValue("@name", insertProfessorDTO.Name);
+                        command.Parameters.AddWithValue("@email", insertProfessorDTO.Email);
+                        command.Parameters.AddWithValue("@password", insertProfessorDTO.Password);
+                        command.Parameters.AddWithValue("@role", insertProfessorDTO.Role);
+
+                        result = command.ExecuteNonQuery();
+                        connection.Close();
+
+                    }
+                }
+                catch (SqlException e)
+                {
+                    throw;
+                }
+
+            return result;
+        }
+
+
         public int UpdateStatus(string id, StatusUpdateDTO status)
         {
             int resultToReturn = 0;
@@ -196,6 +228,7 @@ namespace StudentApp.Models.DAO
             }
 
             return resultToReturn;
+
         }
     }
 }

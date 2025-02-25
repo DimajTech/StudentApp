@@ -41,17 +41,21 @@ function AuthenticateUser() {
 
     setLoading(true);
 
-    const email = $('#email').val();
-    const password = $('#password').val();
-
+    var login = {
+        email: $('#email').val(),
+        password: $('#password').val(),
+    }
+    
     $.ajax({
         url: "/User/Login",
+        data: JSON.stringify(login),
         type: "POST",
-        data: { email, password },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
         success: function (response) {
             if (response.success) {
 
-                localStorage.setItem("email", email);
+                localStorage.setItem("email", login.email);
                 localStorage.setItem("role", response.role);
                 localStorage.setItem("userId", response.userId);
 
