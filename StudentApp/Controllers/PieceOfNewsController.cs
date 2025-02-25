@@ -17,6 +17,7 @@ namespace StudentApp.Controllers
         private readonly IConfiguration _configuration;
         PieceOfNewsDAO newsDAO;
         private readonly string PROFESSOR_API_URL;
+        private readonly string ADMIN_API_URL;
 
         public PieceOfNewsController(ILogger<PieceOfNewsController> logger, IConfiguration configuration)
         {
@@ -25,6 +26,7 @@ namespace StudentApp.Controllers
 
             newsDAO = new PieceOfNewsDAO(_configuration);
             PROFESSOR_API_URL = _configuration["EnvironmentVariables:PROFESSOR_API_URL"];
+            ADMIN_API_URL = _configuration["EnvironmentVariables:ADMIN_API_URL"];
 
         }
 
@@ -51,18 +53,6 @@ namespace StudentApp.Controllers
                 {
                     client.BaseAddress = new Uri(PROFESSOR_API_URL);
 
-                    /*
-                    var newsFormat = new
-                    {
-                        Id = news.Id,
-                        Title = news.Description,
-                        Description = news.Description,
-                        Picture = news.Picture,
-                        UserId = news.UserId,
-                        UserRole = news.UserRole,
-                    };
-                    */
-
                     news.Id = Guid.NewGuid().ToString();
                     var postTask = client.PostAsJsonAsync("/api/PieceOfNews/AddPieceOfNews", news);
                     postTask.Wait();
@@ -78,8 +68,31 @@ namespace StudentApp.Controllers
                         return StatusCode((int)result.StatusCode, new { Message = "Failed to add Response", Error = errorMessage });
                     }
 
-                    return Ok(newsDAO.Insert(news));
                 }
+
+                using (var client = new HttpClient())
+                {
+
+                    //Comunicarse con admin
+                    client.BaseAddress = new Uri(ADMIN_API_URL);
+
+                    news.AuthorId = news.UserId;
+
+                    var postTask = client.PostAsJsonAsync("/api/pieceOfNews/savePieceOfNews", news);
+                    postTask.Wait();
+
+                    var result = postTask.Result;
+
+                    if (!result.IsSuccessStatusCode)
+                    {
+                        var errorMessage = result.Content.ReadAsStringAsync().Result;
+                        return StatusCode((int)result.StatusCode, new { Message = "Failed to add Response", Error = errorMessage });
+                    }
+
+                }
+
+                return Ok(newsDAO.Insert(news));
+
             }
             catch (SqlException e)
             {
@@ -95,24 +108,27 @@ namespace StudentApp.Controllers
             }
         }
 
-        /*
         [HttpPost]
-        public IActionResult CreateNews([FromBody] PieceOfNews news)
+        [Route("[action]")]
+        public IActionResult CreateNewsFromAdmin([FromBody] CreatePieceOfNewsDTO news)
         {
             try
             {
-                return Ok(newsDAO.Insert(news));
+              return Ok(newsDAO.Insert(news));
             }
             catch (SqlException e)
             {
-                return StatusCode(500, new { message = "An error occurred", error = e.Message });
+                return StatusCode(500, new
+                {
+                    message = "An error occurred",
+                    error = e.Message
+                });
             }
             catch (Exception e)
             {
                 return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
             }
         }
-        */
         [HttpGet]
         [Route("[action]/{id}")]
         public IActionResult GetById(string id)
@@ -134,6 +150,29 @@ namespace StudentApp.Controllers
             {
                 return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
 
+            }
+        }
+
+
+        [HttpPost]
+        [Route("[action]/{id}")]
+        public IActionResult DeletePieceOfNews(string id)
+        {
+            try
+            {
+                return Ok(newsDAO.Delete(id));
+            }
+            catch (SqlException e)
+            {
+                return StatusCode(500, new
+                {
+                    message = "An error occurred",
+                    error = e.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
             }
         }
     }

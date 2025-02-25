@@ -17,6 +17,7 @@ namespace StudentApp.Controllers
         PieceOfNewsDAO newsDAO;
 
         private readonly string PROFESSOR_API_URL;
+        private readonly string ADMIN_API_URL;
 
         public CommentNewsController(ILogger<CommentNewsController> logger, IConfiguration configuration)
 		{
@@ -29,7 +30,7 @@ namespace StudentApp.Controllers
 
 
             PROFESSOR_API_URL = _configuration["EnvironmentVariables:PROFESSOR_API_URL"];
-
+            ADMIN_API_URL = _configuration["EnvironmentVariables:ADMIN_API_URL"];
 
         }
 
@@ -83,7 +84,30 @@ namespace StudentApp.Controllers
                     else
                     {
                         var errorMessage = result.Content.ReadAsStringAsync().Result;
-                        return StatusCode((int)result.StatusCode, new { Message = "Failed to add Response", Error = errorMessage });
+                        return StatusCode((int)result.StatusCode, new { Message = "Failed to add Comment", Error = errorMessage });
+                    }
+
+                }
+
+                //Se llama a la API admins:
+
+
+                using (var client = new HttpClient())
+                {
+
+                    //Comunicarse con admin
+                    client.BaseAddress = new Uri(ADMIN_API_URL);
+
+
+                    var postTask = client.PostAsJsonAsync("/api/commentNews/saveCommentNews", comment);
+                    postTask.Wait();
+
+                    var result = postTask.Result;
+
+                    if (!result.IsSuccessStatusCode)
+                    {
+                        var errorMessage = result.Content.ReadAsStringAsync().Result;
+                        return StatusCode((int)result.StatusCode, new { Message = "Failed to add Comment", Error = errorMessage });
                     }
 
                 }
@@ -135,6 +159,29 @@ namespace StudentApp.Controllers
                     {
                     }
                     else
+                    {
+                        var errorMessage = result.Content.ReadAsStringAsync().Result;
+                        return StatusCode((int)result.StatusCode, new { Message = "Failed to add Response", Error = errorMessage });
+                    }
+
+                }
+
+                //Se llama a la API admins:
+
+
+                using (var client = new HttpClient())
+                {
+
+                    //Comunicarse con admin
+                    client.BaseAddress = new Uri(ADMIN_API_URL);
+
+
+                    var postTask = client.PostAsJsonAsync("/api/commentNewsResponse/saveCommentNewsResponse", commentResponse);
+                    postTask.Wait();
+
+                    var result = postTask.Result;
+
+                    if (!result.IsSuccessStatusCode)
                     {
                         var errorMessage = result.Content.ReadAsStringAsync().Result;
                         return StatusCode((int)result.StatusCode, new { Message = "Failed to add Response", Error = errorMessage });
@@ -202,6 +249,51 @@ namespace StudentApp.Controllers
             {
                 ViewBag.Message = e.Message;
                 return StatusCode(500, new { message = "An error ocurred", error = e.Message });
+            }
+        }
+
+
+        [HttpPost]
+        [Route("[action]/{id}")]
+        public IActionResult DeleteCommentNewsById(string id)
+        {
+            try
+            {
+                return Ok(commentNewsDAO.DeleteCommentNewsById(id));
+            }
+            catch (SqlException e)
+            {
+                return StatusCode(500, new
+                {
+                    message = "An error occurred",
+                    error = e.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]/{id}")]
+        public IActionResult DeleteResponseById(string id)
+        {
+            try
+            {
+                return Ok(commentNewsDAO.DeleteResponseById(id));
+            }
+            catch (SqlException e)
+            {
+                return StatusCode(500, new
+                {
+                    message = "An error occurred",
+                    error = e.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred", error = e.Message });
             }
         }
 

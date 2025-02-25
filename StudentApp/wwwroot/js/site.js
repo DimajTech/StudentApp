@@ -912,7 +912,7 @@ function AddPieceOfNews() {
                             $('#add-news-title').val('');
                             $('#add-news-description').val('');
 
-                            $("#previewImage").attr("src", "/images/photo-editor-icon.png");
+                            $("#previewImage").attr("src", "/istockphoto-1128826884-612x612.jpg");
                             $(fileInput).val(""); // Resetear input si no es imagen
                             $("#fileName").text("Sin archivos seleccionados");
 

@@ -74,7 +74,52 @@ namespace StudentApp.Models.DAO
 			}
 			return comments;
 		}
-		
-		//Possible Method: Bring all the comments by PieceOfNewsId
-	}
+
+        public int DeleteCommentNewsById(string commentId)
+        {
+            int result = 0; 
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+                try
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("DeleteCommentNewsById", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Id", commentId);
+
+                    result = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (SqlException e)
+                {
+                    throw;
+                }
+
+            return result;
+        }
+
+        public int DeleteResponseById(string responseId)
+        {
+            int result = 0; 
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+                try
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("DeleteResponseById", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Id", responseId);
+
+                    result = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (SqlException e)
+                {
+                    throw;
+                }
+
+            return result;
+        }
+
+    }
 }
