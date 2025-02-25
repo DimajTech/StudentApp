@@ -21,7 +21,7 @@ namespace StudentApp.Models.DAO
         {
             int result = 0; //Saves 1 or 0 depending on the insertion result
 
-            if (news.UserRole =="president")
+            if (news.UserRole =="president" || news.UserRole == "administrator")
 			{
                 using (SqlConnection connection = new SqlConnection(connectionString))
                     try
@@ -64,6 +64,33 @@ namespace StudentApp.Models.DAO
             return result;
 
         }
+        public int Delete(string id)
+        {
+            int result = 0; // Guarda 1 o 0 dependiendo del resultado
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand("DeleteNewsById", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    result = command.ExecuteNonQuery();
+
+                    connection.Close();
+                }
+                catch (SqlException e)
+                {
+                    throw;
+                }
+            }
+
+            return result;
+        }
+
         public List<PieceOfNews> Get()
 		{
 			List<PieceOfNews> news = new List<PieceOfNews>();
