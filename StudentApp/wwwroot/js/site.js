@@ -916,8 +916,8 @@ function AddPieceOfNews() {
                             $('#add-news-title').val('');
                             $('#add-news-description').val('');
 
-                            $("#previewImage").attr("src", "/istockphoto-1128826884-612x612.jpg");
-                            $(fileInput).val(""); // Resetear input si no es imagen
+                            $("#previewImage").attr("src", "/images/istockphoto-1128826884-612x612.jpg");
+                            $(fileInput).val(""); 
                             $("#fileName").text("Sin archivos seleccionados");
 
 

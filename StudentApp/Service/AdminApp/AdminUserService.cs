@@ -20,7 +20,7 @@ namespace StudentApp.Service.AdminApp
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ADMIN_API_URL);
-                var postTask = client.PostAsJsonAsync("user/saveUser", user);
+                var postTask = client.PostAsJsonAsync("/api/user/saveUser", user);
                 postTask.Wait();
 
                 var result = postTask.Result;
@@ -40,7 +40,7 @@ namespace StudentApp.Service.AdminApp
             {
                 client.BaseAddress = new Uri(ADMIN_API_URL);
 
-                var response = client.PutAsJsonAsync($"user/updateStudent", user).Result;
+                var response = client.PutAsJsonAsync("/api/user/updateStudent", user).Result;
 
 
                 if (!response.IsSuccessStatusCode)
